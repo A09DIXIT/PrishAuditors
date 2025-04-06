@@ -9,12 +9,12 @@ const AboutUs = () => {
                 {/* Left Section - Enlarged Image */}
                 <div className="who-left w-full md:w-1/2 mb-6 md:mb-0 relative group">
                     <img 
-                        src="who-we-are.jpeg" 
+                        src="/who-we-are.jpeg" 
                         alt="Who We Are" 
                         className="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-lg transition-transform duration-500 ease-in-out group-hover:scale-105"
                     />
                 </div>
-
+  
                 {/* Right Section - Text */}
                 <div className="who-right w-full md:w-1/2 md:pl-8 text-[#163c4f]">
                     <span className="singleLine block w-36 h-1 bg-[#163c4f] mb-4"></span>

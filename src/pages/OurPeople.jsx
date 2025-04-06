@@ -1,93 +1,122 @@
 import React from "react";
+import { FaLinkedin, FaFacebook } from "react-icons/fa";
+import AboutUs from "../assets/components/AboutUs.component/AboutUs.component";
+
+const teamMembers = [
+  {
+    name: "CA. JOSEPH PHILIP",
+    designation: ["BCom, FCA, MBA", "Managing Partner"],
+    image: "/Taxation.jpg", // Ensure correct path
+    profileLink: "https://www.stuaham.com/our-people/CA.-JOSEPH-PHILIP.html",
+    linkedin: "https://www.linkedin.com/in/ca-joseph-philip-bcom-fca-mba-700aa0101/",
+    facebook: "https://www.facebook.com/jppooppallil",
+  },
+
+  {
+    name: "CA. JOSEPH PHILIP",
+    designation: ["BCom, FCA, MBA", "Managing Partner"],
+    image: "/Taxation.jpg", // Ensure correct path
+    profileLink: "https://www.stuaham.com/our-people/CA.-JOSEPH-PHILIP.html",
+    linkedin: "https://www.linkedin.com/in/ca-joseph-philip-bcom-fca-mba-700aa0101/",
+    facebook: "https://www.facebook.com/jppooppallil",
+  },
+
+  {
+    name: "CA. JOSEPH PHILIP",
+    designation: ["BCom, FCA, MBA", "Managing Partner"],
+    image: "/Taxation.jpg", // Ensure correct path
+    profileLink: "https://www.stuaham.com/our-people/CA.-JOSEPH-PHILIP.html",
+    linkedin: "https://www.linkedin.com/in/ca-joseph-philip-bcom-fca-mba-700aa0101/",
+    facebook: "https://www.facebook.com/jppooppallil",
+  },
+
+  {
+    name: "CA. JOSEPH PHILIP",
+    designation: ["BCom, FCA, MBA", "Managing Partner"],
+    image: "/Taxation.jpg", // Ensure correct path
+    profileLink: "https://www.stuaham.com/our-people/CA.-JOSEPH-PHILIP.html",
+    linkedin: "https://www.linkedin.com/in/ca-joseph-philip-bcom-fca-mba-700aa0101/",
+    facebook: "https://www.facebook.com/jppooppallil",
+  },
+
+  {
+    name: "CA. JOSEPH PHILIP",
+    designation: ["BCom, FCA, MBA", "Managing Partner"],
+    image: "/Taxation.jpg", // Ensure correct path
+    profileLink: "https://www.stuaham.com/our-people/CA.-JOSEPH-PHILIP.html",
+    linkedin: "https://www.linkedin.com/in/ca-joseph-philip-bcom-fca-mba-700aa0101/",
+    facebook: "https://www.facebook.com/jppooppallil",
+  },
+
+  {
+    name: "CA. AJITH ABRAHAM JACOB",
+    designation: ["BSc., FCA, CPA, CMA", "Senior Partner"],
+    image: "/Taxation.jpg",
+    profileLink: "https://www.stuaham.com/our-people/CA.-AJITH-ABRAHAM-JACOB.html",
+    linkedin: "https://www.linkedin.com/in/ca-ajith-abraham-jacob-fca-cpa-cma-74632223/",
+    facebook: "https://www.facebook.com/ajith.jacob.777?mibextid=LQQJ4d",
+  },
+];
 
 const OurPeople = () => {
   return (
-    <>
-      <section className="about-five p-5 mt-5">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6">
-              <div className="image-box position-relative">
-                <div className="shape position-absolute">
-                  <div
-                    className="w-36 h-36 bg-cover"
-                    style={{ backgroundImage: "url(https://www.stuaham.com/public/images/shape/shape-66.png)" }}
-                  ></div>
-                  <div
-                    className="w-36 h-36 bg-cover"
-                    style={{ backgroundImage: "url(https://www.stuaham.com/public/images/shape/shape-77.png)" }}
-                  ></div>
-                </div>
-                <figure>
-                  <img
-                    src="https://www.stuaham.com/upload/our_mission/c766bf70c7289e238e985368e4e9ee1e.jpg"
-                    alt="Our Mission"
-                    className="rounded-lg"
-                  />
-                </figure>
+    <section className="py-28 px-4 bg-gray-50">
+      <AboutUs />
+      <div className="container mx-auto text-center">
+        <h2 className="text-4xl font-bold text-gray-800 mb-10">Meet Our Team</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {teamMembers.map((member, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <a href={member.profileLink} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-64 object-cover rounded-lg mb-4"
+                  loading="lazy"
+                />
+              </a>
+              <h4 className="text-xl font-semibold text-gray-900">
+                <a
+                  href={member.profileLink}
+                  className="text-blue-600 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {member.name}
+                </a>
+              </h4>
+              <div className="text-gray-600 mt-2">
+                {member.designation.map((title, i) => (
+                  <p key={i} className="text-sm">{title}</p>
+                ))}
+              </div>
+              <div className="flex justify-center gap-4 mt-4">
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 text-2xl hover:scale-110 transition-transform"
+                >
+                  <FaLinkedin />
+                </a>
+                <a
+                  href={member.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 text-2xl hover:scale-110 transition-transform"
+                >
+                  <FaFacebook />
+                </a>
               </div>
             </div>
-            <div className="col-lg-6">
-              <div className="content-box ml-4 mr-4">
-                <h2 className="text-2xl font-bold">
-                  To optimize our Vision, we would be guided by the core values
-                </h2>
-                <ul className="list-none mt-3">
-                  <li className="font-bold">We create Insight</li>
-                  <li className="font-bold">We work as a Team</li>
-                  <li className="font-bold">We Care for our Clients</li>
-                  <li className="font-bold">We Act with Integrity</li>
-                  <li className="font-bold">We Invest in Talent</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
-
-      <footer className="footer-five p-5 bg-gray-800 text-white">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-3">
-              <h4>STUART & HAMLYN</h4>
-              <div className="social-icons mt-3 flex space-x-4">
-                <a href="https://www.facebook.com/dubaicharteredaccountants/" target="_blank">Facebook</a>
-                <a href="https://twitter.com/stuahamuae" target="_blank">Twitter</a>
-                <a href="https://www.linkedin.com/company/stuart-hamlyn-chartered-accountants/" target="_blank">LinkedIn</a>
-                <a href="https://www.instagram.com/dubaicharteredaccountants/" target="_blank">Instagram</a>
-                <a href="https://www.youtube.com" target="_blank">YouTube</a>
-              </div>
-            </div>
-            <div className="col-lg-3">
-              <h4>Quick Links</h4>
-              <ul className="mt-3">
-                <li><a href="https://www.stuaham.com/about.html">About Us</a></li>
-                <li><a href="https://www.stuaham.com/news.html">News</a></li>
-                <li><a href="https://www.stuaham.com/blog.html">Blog</a></li>
-                <li><a href="https://www.stuaham.com/contact.html">Contact</a></li>
-              </ul>
-            </div>
-            <div className="col-lg-3">
-              <h4>Services</h4>
-              <ul className="mt-3">
-                <li><a href="https://www.stuaham.com/services/audit-&-assurance">Audit & Assurance</a></li>
-                <li><a href="https://www.stuaham.com/services/taxation">Taxation</a></li>
-                <li><a href="https://www.stuaham.com/services/transfer-pricing">Transfer Pricing</a></li>
-              </ul>
-            </div>
-            <div className="col-lg-3">
-              <h4>Join Us & Increase Your Business</h4>
-              <form action="https://www.stuaham.com/newsletter/save.html" method="post">
-                <input type="email" name="email" placeholder="Your email address" className="p-2" />
-                <button type="submit" className="bg-blue-500 p-2 ml-2">Subscribe</button>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div className="text-center mt-5">&copy; 2025 STUART & HAMLYN. All Rights Reserved.</div>
-      </footer>
-    </>
+      </div>
+    </section>
   );
 };
 
-export default Ourpeople;
+export default OurPeople;

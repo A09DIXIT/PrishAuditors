@@ -1,7 +1,13 @@
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-10">
-      <div className="container mx-auto px-4">
+    <footer
+      className="relative bg-cover bg-center text-white py-10"
+      style={{ backgroundImage: "url('who-we-are.jpeg)" }} // ✅ Replace with your image path
+    >
+      {/* Optional Dark Overlay for Better Readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
           {/* Logo & Text Section */}
@@ -41,7 +47,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Subscribe Section with Adjusted Button Width */}
+          {/* Subscribe Section */}
           <div className="space-y-4">
             <h4 className="text-xl font-bold">Join Us & Increase Your Business</h4>
             <input

@@ -9,9 +9,8 @@ const navigation = [
     name: "About Us",
     submenu: [
       { name: "About Us", href: "/about" },
-      { name: "Message from Managing Partner", href: "/about/message" },
-      { name: "Our People", href: "/about/people" },
-      { name: "Our Vision", href: "/about/vision" },
+      { name: "Our People", href: "/about/OurPeople" },
+      { name: "Our Vision", href: "/about/OurVision" },
       { name: "Our Values", href: "/about/values" },
       { name: "Testimonials", href: "/about/testimonials" },
     ],
@@ -82,7 +81,7 @@ export default function Navbar() {
               {/* Logo */}
               <div className="flex items-center">
   <a href="/">
-    <img src="prish.png" alt="Logo" className="h-17 w-auto cursor-pointer" />
+    <img src="/prish.png" alt="Logo" className="h-17 w-auto cursor-pointer" />
   </a>
 </div>
 

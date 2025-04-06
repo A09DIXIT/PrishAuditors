@@ -1,6 +1,8 @@
 import React from "react";
 import AboutUs from "../assets/components/AboutUs.component/AboutUs.component";
 
+
+
 export default function About() {
   return (
     <div className="bg-gray-100">
@@ -22,7 +24,6 @@ export default function About() {
   </div>
 <AboutUs />
       
-
       {/* Why Choose Us Section */}
       <section
   className="py-16 px-6 max-w-6xl mx-auto bg-cover bg-center"
