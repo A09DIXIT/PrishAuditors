@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
+import { db } from '../../../firebase';
+import { ref, push } from 'firebase/database';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
@@ -8,81 +9,93 @@ const ContactForm = () => {
         email: '',
         message: '',
     });
-    const [captchaValue, setCaptchaValue] = useState(null);
-    const [success, setSuccess] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
     const [error, setError] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleCaptchaChange = (value) => {
-        setCaptchaValue(value);
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!captchaValue) {
-            setError(true);
-            return;
-        }
+        try {
+            const contactRef = ref(db, 'contacts');
+            await push(contactRef, formData);
+            setShowPopup(true);
+            setError(false);
+            setFormData({ name: '', mobile: '', email: '', message: '' });
 
-        console.log('Form Data Submitted:', formData);
-        setSuccess(true);
-        setError(false);
+            // Hide after 1 second
+            setTimeout(() => setShowPopup(false), 3000);
+        } catch (err) {
+            console.error("Error saving to Firebase:", err);
+            setError(true);
+        }
     };
 
     return (
-        <section id="contact-form" className="p-10 bg-gray-100 flex justify-center items-center">
+        <section id="contact-form" className="p-10 bg-gray-100 flex justify-center items-center relative">
+            {/* Smooth Success Popup */}
+            {showPopup && (
+                <div className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ease-in-out">
+                    <div className="bg-green-500 text-white px-10 py-6 rounded-lg shadow-md animate-fade-in-out">
+                        Thanks for your interest! We will contact you soon.
+                    </div>
+                </div>
+            )}
+
             <div className="max-w-7xl w-full bg-white shadow-lg rounded-lg flex flex-wrap overflow-hidden">
-                {/* Left Section - Contact Form */}
+                {/* Left Section */}
                 <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
                     <h2 className="text-3xl font-semibold text-center mb-6 text-[#163c4f]">Contact Us</h2>
-                    {success && <p className="text-green-600 text-center mb-4">Your message was sent successfully!</p>}
-                    {error && <p className="text-red-600 text-center mb-4">Please complete the reCAPTCHA.</p>}
+                    {error && (
+                        <p className="text-red-600 text-center mb-4">
+                            Something went wrong. Please try again.
+                        </p>
+                    )}
 
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        <input 
-                            type="text" 
-                            name="name" 
-                            placeholder="Name" 
-                            required 
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            placeholder="Name"
+                            required
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition"
-                            onChange={handleChange} 
+                            onChange={handleChange}
                         />
-                        <input 
-                            type="text" 
-                            name="mobile" 
-                            placeholder="Mobile Number" 
-                            required 
+                        <input
+                            type="text"
+                            name="mobile"
+                            value={formData.mobile}
+                            placeholder="Mobile Number"
+                            required
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition"
-                            onChange={handleChange} 
+                            onChange={handleChange}
                         />
-                        <input 
-                            type="email" 
-                            name="email" 
-                            placeholder="Email" 
-                            required 
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            placeholder="Email"
+                            required
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition"
-                            onChange={handleChange} 
+                            onChange={handleChange}
                         />
-                        <textarea 
-                            name="message" 
-                            placeholder="Message" 
-                            required 
-                            rows="5" 
+                        <textarea
+                            name="message"
+                            value={formData.message}
+                            placeholder="Message"
+                            required
+                            rows="5"
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition"
                             onChange={handleChange}
                         ></textarea>
 
-                        <div className="flex justify-center">
-                            <ReCAPTCHA sitekey="6LfV8kYpAAAAAE8iGYF1MUtnPN1IBKfyoYSQLGpj" onChange={handleCaptchaChange} />
-                        </div>
-
                         <div className="text-center">
-                            <button 
-                                type="submit" 
+                            <button
+                                type="submit"
                                 className="bg-[#163c4f] text-white px-6 py-3 rounded-lg hover:bg-[#0f2f3c] transition duration-300"
                             >
                                 Submit
@@ -91,11 +104,11 @@ const ContactForm = () => {
                     </form>
                 </div>
 
-                {/* Right Section - Image */}
+                {/* Right Section */}
                 <div className="w-full md:w-1/2 relative">
-                    <img 
-                        src="pro-contact.webp" 
-                        alt="Contact Us" 
+                    <img
+                        src="pro-contact.webp"
+                        alt="Contact Us"
                         className="w-full h-full object-cover rounded-lg shadow-md"
                     />
                 </div>

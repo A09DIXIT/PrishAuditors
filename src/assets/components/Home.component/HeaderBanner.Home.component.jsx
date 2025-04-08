@@ -62,6 +62,7 @@ export default function HeaderBanner() {
           <button className="px-5 py-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition-transform duration-300 transform hover:scale-105 text-white font-semibold rounded-full shadow-lg text-lg">
             Get Started →
           </button>
+          
         </div>
       </div>
 

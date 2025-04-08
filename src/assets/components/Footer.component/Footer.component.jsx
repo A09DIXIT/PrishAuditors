@@ -47,7 +47,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Subscribe Section */}
+         {/* Subscribe Section */}
+         
           <div className="space-y-4">
             <h4 className="text-xl font-bold">Join Us & Increase Your Business</h4>
             <input
@@ -61,8 +62,8 @@ export default function Footer() {
               </button>
             </div>
           </div>
-        </div>
-
+        </div> 
+        
         {/* Footer Bottom */}
         <div className="mt-10 text-center border-t border-gray-700 pt-5">
           <p>&copy; 2025 PRISH. All rights reserved.</p>

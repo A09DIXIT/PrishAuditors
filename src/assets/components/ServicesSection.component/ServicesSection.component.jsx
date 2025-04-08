@@ -4,7 +4,7 @@ import React from "react";
 const services = [
   { title: "Audit & Assurance", link: "/services/audit-assurance", image: "/Audit-Assurance.png" },
   { title: "Taxation", link: "/services/taxation", image: "/Taxation.jpg" },
-  { title: "Transfer Pricing", link: "/services/transfer-pricing", image: "Transfer-Pricing.jpg" },
+  { title: "Transfer Pricing", link: "/services/transfer-pricing", image: "tranfer-pri.jpeg" },
   { title: "Business Advisory", link: "/services/business-advisory", image: "Business-Advisory.avif" },
   { title: "Company Incorporation", link: "/services/company-incorporation", image: "Company-Incorporation.webp" },
   { title: "Accounting & Payroll", link: "/services/accounting-payroll", image: "Accounting-Payroll.avif" },
