@@ -1,0 +1,44 @@
+/* Add this to Audit.css for styling the images */
+.hexagon, .hexagon1, .hexagon2 {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 20%; /* Rounded corners */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hexagon img, .hexagon1 img, .hexagon2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hexagon:hover, .hexagon1:hover, .hexagon2:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  }
+  
+  /* Additional spacing adjustments for images */
+  .hexagon1, .hexagon2 {
+    margin-top: -25px;
+  }
+  
+  .hexagon1 {
+    margin-left: -25px;
+  }
+  
+  .hexagon2 {
+    margin-left: 25px;
+  }
+  
+  /* Add to your CSS */
+.cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  

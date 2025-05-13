@@ -1,0 +1,23 @@
+.custom-dots {
+    display: flex !important;
+    justify-content: flex-start;
+    padding-left: 1rem;
+  }
+  
+  .custom-dots li {
+    margin-right: 8px;
+  }
+  
+  .custom-dots .dot {
+    width: 10px;
+    height: 10px;
+    background: #d4d4d4;
+    border-radius: 9999px;
+    display: inline-block;
+    transition: background 0.3s ease;
+  }
+  
+  .custom-dots li.slick-active .dot {
+    background: #e11d48; /* red-600 */
+  }
+  

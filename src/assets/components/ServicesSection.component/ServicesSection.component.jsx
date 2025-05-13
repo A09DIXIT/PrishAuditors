@@ -2,14 +2,15 @@ import React from "react";
 
 // Service data with images
 const services = [
-  { title: "Audit & Assurance", link: "/services/audit-assurance", image: "/Audit-Assurance.png" },
-  { title: "Taxation", link: "/services/taxation", image: "/Taxation.jpg" },
-  { title: "Transfer Pricing", link: "/services/transfer-pricing", image: "tranfer-pri.jpeg" },
-  { title: "Business Advisory", link: "/services/business-advisory", image: "Business-Advisory.avif" },
-  { title: "Company Incorporation", link: "/services/company-incorporation", image: "Company-Incorporation.webp" },
-  { title: "Accounting & Payroll", link: "/services/accounting-payroll", image: "Accounting-Payroll.avif" },
-  { title: "Technology Consulting", link: "/services/technology-consulting", image: "Technology-Consulting.avif" },
-  { title: "Other Services", link: "/services/other-services", image: "Other-Services.avif" },
+  { title: "AUDIT & ASSURANCE", link: "/services/audit", image: "/Audit-Assurance.png" },
+  { title: "SPECIAL AUDITS", link: "/services/taxation", image: "/Taxation.jpg" },
+  { title: "RISK ASSURANCE", link: "/services/risk-assurance", image: "/tranfer-pri.jpeg" },
+  { title: "TAXATION", link: "/services/taxation", image: "/Business-Advisory.avif" },
+  { title: "ACCOUNTING & BOOKKEEPING", link: "/services/AccountingBookkeeping", image: "/Company-Incorporation.webp" },
+  { title: "Anti Money Laundering (AML) Compliances", link: "/services/accounting-payroll", image: "/Accounting-Payroll.avif" },
+  { title: "Corporate Consultancy", link: "/services/technology-consulting", image: "/Technology-Consulting.avif" },
+  { title: "Company Incorporation Services", link: "/services/CompanyIncorporation", image: "/CompanyIncorporation.jpg" },
+  { title: "Mergers & Acquisitions", link: "/services/Mergers-Acquisitions", image: "/Other-Services.avif" },
 ];
 
 const ServicesSection = () => {

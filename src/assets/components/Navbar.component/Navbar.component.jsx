@@ -12,27 +12,27 @@ const navigation = [
       { name: "Our People", href: "/about/OurPeople" },
       { name: "Our Vision", href: "/about/OurVision" },
       { name: "Our Values", href: "/about/OurValues" },
-      { name: "Testimonials", href: "/about/Testimonials" },
     ],
   },
   {
     name: "Our Services",
     submenu: [
-      { name: "Audit & Assurance", href: "/services/audit" },
-      { name: "Taxation", href: "/services/taxation" },
-      { name: "Transfer Pricing", href: "/services/transfer-pricing" },
-      { name: "Business Advisory", href: "/services/business-advisory" },
-      { name: "Company Incorporation", href: "/services/company-incorporation" },
-      { name: "Accounting & Payroll", href: "/services/accounting-payroll" },
-      { name: "Technology Consulting", href: "/services/tech-consulting" },
-      { name: "Other Services", href: "/services/other" },
+      { name: "AUDIT & ASSURANCE", href: "/services/audit" },
+      { name: "SPECIAL AUDITS", href: "/services/taxation" },
+      { name: "RISK ASSURANCE", href: "/services/risk-assurance" },
+      { name: "TAXATION", href: "/services/taxation" },
+      { name: "ACCOUNTING & BOOKKEEPING", href: "/services/AccountingBookkeeping" },
+      { name: "Anti Money Laundering (AML) Compliances", href: "/services/AntiMoneyLaundering" },
+      { name: "Corporate Consultancy", href: "/services/corporate-consulting" },
+      { name: "Company Incorporation Services", href: "/services/CompanyIncorporation" },
+      { name: "Mergers & Acquisitions", href: "/services/other" },
     ],
   },
   {
     name: "Resources",
     submenu: [
-      { name: "News", href: "/resources/news" },
-      { name: "Blog", href: "/resources/blog" },
+      { name: "Blogs and News", href: "/resources/blogs" },
+      
       { name: "Downloads", href: "/resources/downloads" },
     ],
   },
@@ -40,12 +40,6 @@ const navigation = [
     name: "Contact",
     submenu: [
       { name: "Dubai", href: "/contact/dubai" },
-      { name: "Abu Dhabi", href: "/contact/abu-dhabi" },
-      { name: "Ras Al Khaimah", href: "/contact/ras-al-khaimah" },
-      { name: "Sharjah", href: "/contact/sharjah" },
-      { name: "Sharjah Saif Zone", href: "/contact/sharjah-saif-zone" },
-      { name: "India", href: "/contact/india" },
-      { name: "Australia", href: "/contact/australia" },
     ],
   },
 ];
@@ -128,8 +122,7 @@ export default function Navbar() {
               <div className="md:hidden">
                 <button
                   onClick={() => setOpenMenu(!openMenu)}
-                  className="text-black focus:outline-none"
-                >
+                  className="text-black focus:outline-none">
                   {openMenu ? (
                     <XMarkIcon className="w-7 h-7" />
                   ) : (
