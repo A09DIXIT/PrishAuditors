@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -38,6 +38,12 @@ const Blog = () => {
     customPaging: i => <div className="dot"></div>,
   };
 
+
+  
+    //Scroll on top
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, [])
   return (
     <section className="bg-white py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">

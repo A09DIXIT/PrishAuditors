@@ -1,87 +1,83 @@
-import React from "react";
-import AboutUs from "../assets/components/AboutUs.component/AboutUs.component";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import WhyChooseUs from "../assets/components/WhyChooseUs/WhyChooseUs";
+import VisionMissionValues from "./OurValues";
 
-export default function About() {
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const OurPeople = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="bg-gray-100">
-      {/* Hero Section */}
-      <section
-        className="relative flex items-center justify-center h-96 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://www.stuaham.com/public/images/banner/main-slider-1-1.jpg')",
-        }}
+    <section className="py-8 px-4 bg-white">
+      {/* About Section */}
+      <motion.div
+        className="max-w-7xl mx-auto mb-20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
       >
-        <div className="absolute inset-0 bg-white opacity-50"></div>
-        <h1 className="relative text-5xl font-bold z-10">About Us</h1>
-      </section>
-
-      {/* Marquee Section */}
-      <div className="relative bg-[#163c4f] py-3 overflow-hidden shadow-lg">
-        <div className="absolute inset-0 bg-opacity-30 backdrop-blur-md"></div>
-        <div className="whitespace-nowrap animate-marquee text-white text-xl font-bold tracking-wide uppercase flex items-center">
-          <span className="mx-10">🚀 Empowering Businesses</span>
-          <span className="mx-10">🌍 Transforming Industries</span>
-          <span className="mx-10">💼 Driving Success</span>
-        </div>
-      </div>
-
-      {/* About Us Content */}
-      <AboutUs />
-
-      {/* Why Choose PRISH Section */}
-      <section className="py-16 px-6 max-w-6xl mx-auto bg-cover bg-center">
-        <div className="bg-opacity-60 p-10 rounded-lg">
-          <h2
-            className="text-4xl font-bold text-center mb-10"
-            style={{ color: "#163c4f" }}
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            className="w-full"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.3 }}
           >
-            Why Choose PRISH?
-          </h2>
+            <img
+              src="/who-we-are.jpeg"
+              alt="Who We Are"
+              className="rounded-lg shadow-lg w-full object-cover max-h-[420px]"
+            />
+          </motion.div>
 
-          <p className="text-center text-lg mb-10 max-w-3xl mx-auto text-gray-700">
-            Are you seeking financial guidance that goes beyond mere numbers?
-            Look no further than PRISH Accounting and Auditing. We understand
-            that selecting the right Chartered Accountants is crucial for the
-            success and prosperity of your business. Here's why choosing PRISH
-            can be the best decision for you:
-          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              [
-                "Perfection beyond imagination – Every detail matters",
-                "Reliable & consistent – We deliver what we promise",
-                "Innovative solutions – Tailored to your business needs",
-                "Solution-driven approach – We solve, not just serve",
-              ],
-              [
-                "Expert team – Highly qualified & experienced",
-                "Ethical practices – Transparent and trustworthy service",
-                "Client-first support – Communication that builds trust",
-                "Complete financial care – All services under one roof",
-              ],
-            ].map((column, i) => (
-              <ul key={i} className="space-y-4 text-lg">
-                {column.map((item, index) => (
-                  <li
-                    key={index}
-                    className="p-6 text-white font-semibold text-center rounded-lg shadow-lg bg-cover bg-center transition-transform duration-300 hover:scale-105"
-                    style={{
-                      backgroundImage:
-                        "url('https://www.stuaham.com/public/images/shape/shape-66.png')",
-                      backgroundBlendMode: "overlay",
-                      backgroundColor: "#163c4f",
-                    }}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            ))}
-          </div>
+<div className="mb-0">
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <h3 className="text-4xl uppercase font-medium text-black mb-2">
+              About PRISH!
+            </h3>
+            <h2 className="text-2xl font-bold text-black mb-4 leading-snug">
+              One Stop Solution for all your Accounting and Business Needs
+            </h2>
+            <p className="text-gray-700 mb-3">
+             Welcome to PRISH Accounting and Auditing, your trusted partner in navigating the complexities of financial management and compliance. We deliver tailored solutions across Accounting, Auditing & Assurance, Taxation, Mergers & Acquisitions, Management Consultancy, and Company Formation services.
+            </p>
+            <p className="text-gray-700 mb-3">
+              At PRISH Accounting and Auditing, we understand the pivotal role financial integrity plays in the success of your endeavors. Our team of professionals brings forth a wealth of experience and a commitment to excellence, ensuring that your financial objectives are not only met but exceeded.
+            </p>
+            <p className="text-gray-700">
+              Our experienced team ensures your financial goals are exceeded with a deep commitment to excellence and integrity. Whether you're a startup or an established business, our services are customized to fit your unique journey.
+            </p>
+          </motion.div>
+          
         </div>
-      </section>
-    </div>
+           </div>
+      </motion.div>
+      
+   
+
+      {/* Why Choose Us Section */}
+      <WhyChooseUs />
+      <VisionMissionValues />
+
+      
+      
+    </section>
   );
-}
+};
+
+export default OurPeople;

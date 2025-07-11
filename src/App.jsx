@@ -5,7 +5,7 @@ import Home from './assets/components/Home.component/Home.component';
 import ServicesSection from './assets/components/ServicesSection.component/ServicesSection.component';
 import ContactForm from './assets/components/ContactForm.component/ContactForm.component';
 import About from './Pages/about'; // Correct import for About Page
-import OurPeople from './Pages/OurPeople';
+import OurPeople from './assets/components/AboutUs.component/OurTeamMembers';
 import OurVision from './Pages/OurVision';
 import OurValues from './Pages/OurValues';
 import Testimonials from './Pages/Testimonials';
@@ -23,9 +23,51 @@ import MysteryAudit from './Pages/MysteryAudit';
 import RiskAssurance from "./Pages/RiskAssurance";
 import AccountingBookkeeping from './Pages/AccountingBookkeeping';
 import AntiMoneyLaundering from './Pages/AntiMoneyLaundering';
-import CorporateConsultancy from './Pages/CorporateConsultancy';
 import CompanyIncorporation from './Pages/CompanyIncorporation';
 import MergersAcquisitions from './Pages/MergersAcquisitions';
+import SendQueryForm from './assets/components/SendQueryForm/SendQueryForm';
+import InternalAudit from './Pages/InternalAudit';
+import CorporateConsultancy from './Pages/CorporateConsultancy';
+import SOPs from './assets/components/SOPs/SOPs';
+import RiskControlMatrix from './assets/components/RiskControlMatrix/RiskControlMatrix';
+import ManagementAudit from './Pages/ManagementAudit';
+import VAT from './assets/components/ValueAddedTax/ValueAddedTax';
+import SpecialAudit from './assets/components/SpecialAudit/SpecialAudit';
+import CorporateTax from './assets/components/UAECorporateTax/CorporateTax';
+import TransferPricing from './assets/components/TransferPricing/TransferPricing';
+import TRCPage from './assets/components/TaxResidencyCertificate/TRC';
+import AMLBanner from './assets/components/ONEforallbanner/AMLBanner';
+import GlobalExpertiseBanner from './assets/components/GlobalExpertiseBanner/GlobalExpertiseBanner';
+import DueDiligence from './Pages/DueDiligence';
+import ValuationAdvisory from './Pages/ValuationAdvisory';
+import RestructuringReorganization from './Pages/RestructuringReorganization';
+import StrategicPlanning from './Pages/StrategicPlanning';
+import FinancialBudgeting from './Pages/FinancialBudgeting';
+import FixedAssetsManagement from './Pages/FixedAssetsManagement';
+import TechnologyConsulting from './Pages/TechnologyConsulting';
+import CFOServices from './Pages/CFOServices';
+import GoldAudit from './Pages/GoldAudit';
+import { SyringeIcon } from 'lucide-react';
+import SystemAudit from './Pages/SystemAudit';
+import TransactionAudit from './Pages/TransactionAudit';
+import MeetOurCEO from './assets/components/AboutUs.component/MeetOurCEO';
+import OurTeamMembers from './assets/components/AboutUs.component/OurTeamMembers';
+import OurTeam from './Pages/OurTeam';
+import Careers from './Pages/Careers';
+import ReraAudit from './Pages/ReraAudit';
+import SalesTaxCertificationAudit from './Pages/SalesTaxCertificationAudit';
+import WhyChooseUs from './assets/components/WhyChooseUs/WhyChooseUs';
+import AMLCFTPolicy from './Pages/AML/AMLCFTPolicy';
+import InHouseAMLCompliance from './Pages/AML/InHouseAMLCompliance';
+import AMLTraining from './Pages/AML/AMLTraining';
+import AMLSoftwareSelection from './Pages/AML/AMLSoftwareSelection';
+import AnnualAMLRiskAssessment from './Pages/AML/AnnualAMLRiskAssessment';
+import AmlHealthCheck from './Pages/AML/AmlHealthCheck';
+import AMLBusinessRiskAssessment from './Pages/AML/AMLBusinessRiskAssessment';
+import AMLSoftwareValidation from './Pages/AML/AMLSoftwareValidation';
+import AMLRegulatoryReporting from './Pages/AML/AMLRegulatoryReporting';
+import KYCAndCDDServices from './Pages/AML/KYCAndCDDServices';
+
 
 
 
@@ -58,11 +100,54 @@ const router = createBrowserRouter([
     { path: '/services/AntiMoneyLaundering', element: <AntiMoneyLaundering />},
     { path: '/services/corporate-consulting', element: <CorporateConsultancy />}, 
     { path: '/services/CompanyIncorporation', element: <CompanyIncorporation />},  
-    { path: '/services/Mergers-Acquisitions', element: <MergersAcquisitions />},   
+   { path: '/services/mergers-acquisitions', element: <MergersAcquisitions /> },
+
+    { path: '/sendquaryform', element: <SendQueryForm />},
+    { path: '/internal-audit', element: <InternalAudit />},
+    { path: '/sops', element: <SOPs />},
+    { path: '/rcm', element: <RiskControlMatrix />},
+    { path: '/management-audit', element: <ManagementAudit />},
+    { path: '/VAT', element: <VAT />},
+    { path: '/services/special-audit', element: <SpecialAudit />},
+    { path: '/corporate-tax', element: <CorporateTax />},
+    { path: '/transfer-pricing', element: <TransferPricing />},
+    { path: '/Trc', element: <TRCPage />},
+    { path: '/AMLbanner', element: <AMLBanner />},
+    { path: '/GlobalExpertiseBanner', element: <GlobalExpertiseBanner />},
+    { path: '/Mergers-Acquisitions/due-diligence', element: <DueDiligence />},
+    { path: '/Mergers-Acquisitions/valuation-advisory', element: <ValuationAdvisory />},
+    { path: '/Mergers-Acquisitions/restructuring-reorganization', element: <RestructuringReorganization />},
+    { path: '/corporate-consulting/strategic-planning', element: <StrategicPlanning /> },
+    { path: '/corporate-consulting/financial-budgeting', element: <FinancialBudgeting />},
+    { path: '/corporate-consulting/fixed-assets', element: <FixedAssetsManagement />}, 
+    { path: '/corporate-consulting/technology-consulting', element: <TechnologyConsulting />},
+    { path: '/corporate-consulting/cfo-services', element: <CFOServices />}, 
+    { path: '/gold-audit', element: <GoldAudit />},
+    { path: '/system-audit', element: <SystemAudit />},
+    { path: '/transaction-audit', element: <TransactionAudit />},
+    { path: '/meetourceo', element: <MeetOurCEO />},
+    { path: '/ourteammembers', element: <OurTeamMembers />},
+    { path: '/ourteam', element: <OurTeam />},
+    { path: '/careers', element: <Careers />},
+    { path: '/rera-audit', element: <ReraAudit />},
+    { path: '/sales-tax-certification-audit', element: <SalesTaxCertificationAudit />},
+    { path: '/whychooseus', element: <WhyChooseUs />    },
+    { path: '/aml-cft-policy', element: <AMLCFTPolicy />},
+    { path: '/inhouseamlcompliance', element: <InHouseAMLCompliance />},
+    { path: '/AMLTraining', element: <AMLTraining />},
+    { path: '/AMLSoftwareSelection', element: <AMLSoftwareSelection />},
+    { path: '/AnnualAMLRiskAssessment', element: <AnnualAMLRiskAssessment />},
+    { path: '/AmlHealthCheck', element: <AmlHealthCheck />},
+    { path: '/AMLBusinessRiskAssessment', element: <AMLBusinessRiskAssessment />},
+     { path: '/AMLSoftwareValidation', element: <AMLSoftwareValidation />},
+     { path: '/AMLRegulatoryReporting', element: <AMLRegulatoryReporting />},
+     { path: '/KYCAndCDDServices', element: <KYCAndCDDServices />},
      ],
   },
 ]);
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return <>
+  <RouterProvider router={router} />
+</>
 }

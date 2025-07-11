@@ -1,59 +1,87 @@
-import React from 'react';
-import { FiX } from 'react-icons/fi';
+import React from "react";
+import { FiDownload, FiX } from "react-icons/fi";
+import { motion } from "framer-motion";
 
+// Your downloads list
 const downloads = [
-  { name: "Company Profile.xlsx", size: "2 Mb", type: "X", link: "/files/company-profile.xlsx" },
-  { name: "Service List.docx", size: "1 Mb", type: "W", link: "/files/service-list.docx" },
-  { name: "Tax Calculator.xlsx", size: "2 Mb", type: "X", link: "/files/tax-calculator.xlsx" },
-  { name: "Brand Guidelines.ai", size: "600 Mb", type: "Ai", link: "/files/brand-guidelines.ai" },
-  { name: "Audit Form.xlsx", size: "8 Mb", type: "X", link: "/files/audit-form.xlsx" },
+  { name: "Company Profile.xlsx", size: "2 Mb", type: "XLSX", link: "/files/company-profile.xlsx" },
+  { name: "Service List.docx", size: "1 Mb", type: "DOCX", link: "/files/service-list.docx" },
+  { name: "Tax Calculator.xlsx", size: "2 Mb", type: "XLSX", link: "/files/tax-calculator.xlsx" },
+  { name: "Brand Guidelines.ai", size: "600 Mb", type: "AI", link: "/files/brand-guidelines.ai" },
+  { name: "Audit Form.xlsx", size: "8 Mb", type: "XLSX", link: "/files/audit-form.xlsx" },
 ];
 
 const Download = () => {
   return (
-<section className="min-h-screen bg-white flex justify-center items-center px-4 pt-28 pb-28">
+    <section
+      className="min-h-screen pt-28 pb-20 px-6 md:px-20 bg-cover bg-center bg-no-repeat relative"
+      style={{
+        backgroundImage: "url('/1business-RESOURCES-CA.jpg')", // Replace with your image path
+      }}
+    >
+      {/* Semi-transparent overlay for readability */}
+      <div className="absolute inset-0 bg-white/10 backdrop-blur-sm z-0"></div>
 
+      {/* Content Layer */}
+      <div className="relative z-10">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="text-center mb-20">
+            <h1 className="text-4xl md:text-4xl font-semibold text-black">RESOURCES</h1>
+            <p className="text-black mt-4 font-semibold text-xl">
+              Access our latest resources, reports, and official documents.
+            </p>
+          </div>
+        </motion.div>
 
-
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-center text-lg font-semibold py-4 rounded-t-xl">
-          Company Profile
-        </div>
-
-        <ul className="divide-y">
+        {/* Download Cards */}
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {downloads.map((file, index) => (
-            <li key={index} className="flex items-center justify-between px-6 py-4">
-              <div className="flex items-center space-x-4">
-                <div className="bg-blue-100 text-blue-600 font-bold px-3 py-2 rounded-md">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition p-6 flex justify-between items-center"
+            >
+              <div className="flex items-center gap-4">
+                <span className="bg-blue-100 text-blue-700 px-3 py-1 text-xs font-semibold rounded-full">
                   {file.type}
-                </div>
+                </span>
                 <div>
-                  <p className="text-sm font-medium text-gray-900">{file.name}</p>
-                  <p className="text-xs text-gray-400">{file.size}</p>
+                  <p className="text-lg font-medium text-gray-800">{file.name}</p>
+                  <p className="text-sm text-gray-500">{file.size}</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center gap-2">
                 <a
                   href={file.link}
                   download
-                  className="text-sm text-cyan-600 bg-cyan-100 px-3 py-1 rounded-full hover:bg-cyan-200 transition"
+                  className="flex items-center gap-1 text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"
                 >
-                  See in folder
+                  <FiDownload className="text-base" /> Download
                 </a>
                 <button className="text-gray-400 hover:text-red-500">
                   <FiX />
                 </button>
               </div>
-            </li>
+            </motion.div>
           ))}
-        </ul>
+        </div>
 
-        <div className="text-center py-6">
+        {/* Download All Button */}
+        <div className="text-center mt-16">
           <a
             href="#"
-            className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-md hover:from-blue-600 hover:to-cyan-500 transition"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-8 py-3 rounded-full text-base font-semibold shadow"
           >
-            download all
+            <FiDownload className="text-lg" /> Download All Files
           </a>
         </div>
       </div>

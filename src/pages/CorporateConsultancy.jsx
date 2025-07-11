@@ -1,120 +1,183 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import SendQueryForm from "../assets/components/SendQueryForm/SendQueryForm";
+
+// Animation Variant
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+// Services Grid Data
+const services = [
+  {
+    title: "Strategic Planning",
+    description:
+      "Developing strategic plans for businesses to achieve long-term growth and competitiveness, identifying opportunities for expansion, diversification, or market entry, implementing organizational changes to improve efficiency and effectiveness",
+    image: "/StrategicPlanning.jpg",
+    link: "/corporate-consulting/strategic-planning",
+  },
+  {
+    title: "Financial Budgeting and Forecasting",
+    description:
+      "Developing a comprehensive plan for the allocation and budgeting of financial resources over a specific period. The budget serves as a roadmap for guiding financial decision-making and performance evaluation. Forecasting by predicting future financial outcomes, performance, and cash flows based on historical data, market trends, and other relevant factors.",
+    image: "/financialBudgeting.webp",
+    link: "/corporate-consulting/financial-budgeting",
+  },
+  {
+    title: "Fixed Assets Management",
+    description:
+      "Management and optimization of a company's fixed assets throughout their lifecycle, from acquisition to disposal. Fixed assets SOP review, physical verification, accounting entries and treatment for fixed assets are provided.",
+    image: "/fixedAssets.jpg",
+    link: "/corporate-consulting/fixed-assets",
+  },
+  {
+    title: "Technology Consulting",
+    description:
+      "Digital transformation strategy development, Technology assessment and implementation based on the business operations and requirements to ease the compliances. Our core experience in IT helps our clients to reduce extensive manual efforts and generating reports within a click of seconds.",
+    image: "/TechnologyConsulting.jpg",
+    link: "/corporate-consulting/technology-consulting",
+  },
+  {
+    title: "CFO Services",
+    description:
+      "Our seasoned finance professional are members of IIM and ICAI who helps you in running your finance function with his expert advice and hands on involvement. Their niche experience with MNCs can help your business to a better future through getting them as a virtual CFO to revolutionize the finance on your behalf.",
+    image: "/CFOServices.webp",
+    link: "/corporate-consulting/cfo-services",
+  },
+];
 
 const CorporateConsultancy = () => {
-  const services = [
-    {
-      title: "Strategic Planning",
-      description:
-        "Developing strategic plans for businesses to achieve long-term growth and competitiveness, identifying opportunities for expansion, diversification, or market entry, implementing organizational changes to improve efficiency and effectiveness.",
-      image: "/StrategicPlanning.jpg",
-      link: "/services/corporate-consulting/strategic-planning",
-    },
-    {
-      title: "Financial Budgeting and Forecasting",
-      description:
-        "Developing a comprehensive plan for the allocation and budgeting of financial resources over a specific period. Forecasting by predicting future financial outcomes, performance, and cash flows based on historical data, market trends, and other relevant factors.",
-      image: "/financialBudgeting.webp",
-      link: "/services/corporate-consulting/financial-budgeting",
-      reverse: true,
-    },
-    {
-      title: "Fixed Assets Management",
-      description:
-        "Management and optimization of a company's fixed assets throughout their lifecycle, from acquisition to disposal. Fixed assets SOP review, physical verification, accounting entries and treatment for fixed assets are provided.",
-      image: "/fixedAssets.jpg",
-      link: "/services/corporate-consulting/fixed-assets",
-    },
-    {
-      title: "Technology Consulting",
-      description:
-        "Digital transformation strategy development, technology assessment and implementation based on business operations and requirements to ease compliance. Our core experience in IT helps our clients reduce extensive manual efforts and generate reports within seconds.",
-      image: "/TechnologyConsulting.jpg",
-      link: "/services/corporate-consulting/technology-consulting",
-      reverse: true,
-    },
-    {
-      title: "CFO Services",
-      description:
-        "Our seasoned finance professionals—members of IIM and ICAI—help run your finance function with expert advice and hands-on involvement. Their experience with MNCs can revolutionize your business finances as virtual CFOs.",
-      image: "/CFOServices.webp",
-      link: "/services/corporate-consulting/cfo-services",
-    },
-  ];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="w-full bg-white text-[#163c4f]">
+    <motion.section
+      className="pt-0 pb-20 bg-white"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
       {/* Banner */}
-      <div className="w-screen h-[70vh] overflow-hidden mt-10">
+      <motion.div
+        className="w-full h-[50vh] overflow-hidden"
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1 }}
+      >
         <img
           src="/CorporateConsultancy1.jpg"
           alt="Corporate Consultancy Banner"
           className="w-full h-full object-cover"
         />
+      </motion.div>
+
+      {/* Introduction */}
+      <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
+        <motion.div
+          className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 sm:px-6 lg:px-8 rounded-lg shadow-md"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          whileHover={{
+            scale: 1.02,
+            boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.15)",
+            transition: { duration: 0.4 },
+          }}
+        >
+          <h2 className="text-4xl md:text-4xl font-semibold mb-10 text-center">
+            CORPORATE CONSULTANCY
+          </h2>
+          <div className="text-xl leading-relaxed space-y-4 text-gray-700 max-w-6xl mx-auto">
+            <p>
+             Corporate consultancy provided by us at PRISH involves providing professional advice and guidance to businesses across various aspects of their operations, strategies, and management to outperform with immense effectiveness and efficiency in their operations.
+            </p>
+            <p>
+             Corporate consultancy services are tailored to the specific needs and objectives of each client, helping businesses address challenges, seize opportunities, and achieve sustainable growth and success.
+            </p>
+          </div>
+        </motion.div>
       </div>
 
-      <div className="max-w-screen-2xl mx-auto px-6 md:px-10 py-20 space-y-28 text-lg leading-relaxed">
-        {/* Section 1: Intro Text */}
-        <div className="w-full bg-gray-100 py-20 px-8 md:px-8">
-  {/* Centered Heading */}
-  <h2 className="text-6xl font-bold mb-16 text-center text-[#163c4f]">CORPORATE CONSULTANCY</h2>
+      {/* Grid Cards Section */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+        className="max-w-7xl mx-auto px-6 md:px-12 py-16"
+      >
+        <div className="grid md:grid-cols-2 gap-8">
+         {services.map((service, idx) => {
+  const isCenteredService = service.title === "CFO Services";
 
-  {/* Grid with Text and Image */}
-  <div className="max-w-screen-2xl mx-auto grid md:grid-cols-2 gap-14 items-center text-lg leading-relaxed text-[#163c4f]">
-    <div>
-      <p className="mb-5">
-        Corporate consultancy provided by us at <strong>PRISH</strong> involves providing professional advice and guidance to businesses across various aspects of their operations, strategies, and management to outperform with immense effectiveness and efficiency in their operations.
-      </p>
-      <p>
-        Corporate consultancy services are tailored to the specific needs and objectives of each client, helping businesses address challenges, seize opportunities, and achieve sustainable growth and success.
-      </p>
+  const card = (
+    <motion.div
+      key={idx}
+      variants={fadeInUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="relative rounded-lg overflow-hidden shadow-lg group w-full"
+    >
+      <img
+        src={service.image}
+        alt={service.title}
+        className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 flex flex-col justify-end">
+        <h2 className="text-xl font-bold text-white mb-2">
+          {service.title}
+        </h2>
+        <p className="text-white text-sm mb-3">{service.description}</p>
+        <Link
+          to={service.link}
+          className="text-blue-300 hover:underline text-sm font-medium"
+        >
+          Read more →
+        </Link>
+      </div>
+    </motion.div>
+  );
+
+  return isCenteredService ? (
+    <div key={idx} className="md:col-span-2 flex justify-center">
+      <div className="w-full md:w-[48%]">{card}</div>
     </div>
-    <img
-      src="/CorporateConsultancy.jpg"
-      alt="Corporate Strategy"
-      className="w-full h-full object-cover rounded-xl shadow-lg"
-    />
-  </div>
-</div>
+  ) : (
+    <div key={idx}>{card}</div>
+  );
+})}
 
-
-
-        {/* Section 2: Services */}
-        <div className="space-y-16">
-          {services.map((service, index) => (
-            <ServiceItem
-              key={index}
-              title={service.title}
-              description={service.description}
-              image={service.image}
-              link={service.link}
-              reverse={service.reverse}
-            />
-          ))}
         </div>
-      </div>
-    </div>
+      </motion.div>
+
+      {/* Send Query Form */}
+      <motion.div
+        className="mt-24 px-6 md:px-16 max-w-4xl mx-auto"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <motion.div
+               className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
+               variants={fadeInUp}
+               initial="hidden"
+               whileInView="visible"
+               viewport={{ once: true }}
+             >
+               <h2 className="text-4xl font-bold mb-6 text-center">Send a Query</h2>
+               <SendQueryForm />
+             </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
-
-const ServiceItem = ({ title, description, image, link, reverse }) => (
-  <div className="grid md:grid-cols-2 gap-14 items-center">
-    <div className={reverse ? "order-last md:order-last" : "order-first md:order-first"}>
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-64 object-cover rounded-xl shadow-md"
-      />
-    </div>
-    <div className={reverse ? "order-first md:order-first" : "order-last md:order-last"}>
-      <Link to={link}>
-        <h3 className="text-3xl font-semibold mb-4 text-[#0a2d45] hover:underline">
-          {title}
-        </h3>
-      </Link>
-      <p>{description}</p>
-    </div>
-  </div>
-);
 
 export default CorporateConsultancy;

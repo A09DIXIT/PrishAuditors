@@ -1,61 +1,175 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 
-const OurValues = () => {
+const fadeIn = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+};
+
+const VisionMissionValues = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const values = [
+    {
+      icon: "🎯",
+      title: "INTEGRITY",
+      description:
+        "We uphold the highest standards of integrity, honesty, and accountability in all our actions.",
+    },
+    {
+      icon: "🤝",
+      title: "CLIENT COMMITMENT",
+      description:
+        "We build lasting relationships by putting our clients’ success and satisfaction first.",
+    },
+    {
+      icon: "📈",
+      title: "EXCELLENCE",
+      description:
+        "We strive for excellence through continuous improvement, innovation, and attention to detail.",
+    },
+    {
+      icon: "💡",
+      title: "INSIGHT",
+      description:
+        "We turn data into insights to empower smarter, faster, and more confident decisions.",
+    },
+    {
+      icon: "👥",
+      title: "TEAMWORK",
+      description:
+        "We value collaboration and believe the best results come from working together.",
+    },
+    {
+      icon: "🚀",
+      title: "GROWTH & LEARNING",
+      description:
+        "We invest in talent, embrace learning, and foster an environment of growth and curiosity.",
+    },
+  ];
+
   return (
-    <section className="py-26 px-6 max-w-7xl mx-auto bg-cover bg-center">
-      <div className="bg-opacity-60 p-10 rounded-lg">
+    <section className="bg-[#e6f0fb] py-20 px-6">
+      <div className="max-w-7xl mx-auto">
 
-        {/* Centered Heading and Paragraph */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4" style={{ color: "#163c4f" }}>
-            Our Core Values at PRISH
-          </h2>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            To optimize our vision, we are guided by core values that shape our actions,
-            influence our culture, and inspire our purpose every day.
-          </p>
+        {/* Heading */}
+        <motion.h2
+          className="text-4xl font-bold text-center mb-16 text-[#163c4f]"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          VISION & MISSION
+        </motion.h2>
+
+        {/* Mission & Vision Cards */}
+        <div className="grid md:grid-cols-2 gap-10 mb-16">
+          <motion.div
+            className="bg-white rounded-xl shadow-md border-t-4 border-[#163c4f] p-6"
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <h3 className="text-[#163c4f] text-xl font-bold flex items-center gap-2 mb-2">
+              🚀 OUR MISSION
+            </h3>
+            <p className="text-gray-700 text-sm">
+              Our mission is to empower businesses with insightful financial
+              solutions, guiding them towards sustainable growth, informed
+              decision-making, and financial stability. Driven by a passion for
+              financial empowerment, our mission is to partner with businesses
+              of all sizes, providing them with the tools, expertise, and
+              support they need to achieve their financial goals and
+              aspirations.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="bg-white rounded-xl shadow-md border-t-4 border-[#163c4f] p-6"
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <h3 className="text-[#163c4f] text-xl font-bold flex items-center gap-2 mb-2">
+              💡 OUR VISION
+            </h3>
+            <p className="text-gray-700 text-sm">
+              Our vision is to lead the evolution of the financial services
+              industry, setting new standards of excellence in transparency,
+              integrity, and client satisfaction, while championing financial
+              literacy and empowerment on a global scale. We aim to be the
+              premier partner for businesses worldwide, revolutionizing the way
+              they approach finance.
+            </p>
+          </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* List Section */}
-          <div className="grid grid-cols-1 gap-6">
-            {[ 
-              "We Create Insight – Offering clarity that empowers decisions",
-              "We Work as a Team – Collaboration is our strength",
-              "We Care for Our Clients – Their goals are our priority",
-              "We Act with Integrity – Trust is at the heart of what we do",
-              "We Invest in Talent – Empowering people to grow and excel",
-              "We Deliver Excellence – Committed to perfection in all we do"
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="p-5 text-white font-semibold text-center rounded-lg shadow-lg bg-cover bg-center transition-transform duration-300 hover:scale-105"
-                style={{
-                  backgroundImage:
-                    "url('https://www.stuaham.com/public/images/shape/shape-66.png')",
-                  backgroundBlendMode: "overlay",
-                  backgroundColor: "#163c4f",
-                }}
-              >
-                {item}
-              </div>
-            ))}
-          </div>
+        {/* Vision Image */}
+        <motion.div
+          className="flex justify-center mb-24"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <img
+            src="/11OurValues.jpg"
+            alt="Vision"
+            className="rounded-xl shadow-xl border-4 border-white w-full max-w-4xl object-cover h-[350px]"
+          />
+        </motion.div>
 
-          {/* Image Section */}
-          <div className="relative w-full h-full flex justify-center">
-            <div className="absolute w-52 h-52 bg-[#163c4f] rounded-full opacity-20 animate-ping -top-8 -left-8"></div>
-            <div className="absolute w-40 h-40 bg-[#1e293b] rounded-full opacity-20 animate-ping -bottom-6 right-6"></div>
-            <img
-              src="/OurValues.jpg"
-              alt="Our Values"
-              className="w-full h-full max-w-xl object-cover rounded-2xl shadow-2xl border-4 border-white relative z-10 transform transition-all duration-300 ease-in-out hover:scale-95 hover:opacity-90"
-            />
-          </div>
+        {/* Our Values Section */}
+        <motion.h2
+          className="text-4xl font-bold text-center mb-16 text-[#163c4f]"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          OUR VALUES
+        </motion.h2>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
+          {values.map((item, index) => (
+            <motion.div
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-md border-t-4 border-[#163c4f] hover:shadow-lg transition duration-300"
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <h3 className="text-[#163c4f] text-xl font-bold flex items-center gap-2 mb-2">
+                <span className="text-2xl">{item.icon}</span> {item.title}
+              </h3>
+              <p className="text-gray-700 text-sm">{item.description}</p>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Values Image */}
+        <motion.div
+          className="flex justify-center"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <img
+            src="/1Our-Values.png"
+            alt="Our Values"
+            className="rounded-xl shadow-xl border-4 border-white w-full max-w-4xl object-cover h-[350px]"
+          />
+        </motion.div>
       </div>
     </section>
   );
 };
 
-export default OurValues;
+export default VisionMissionValues;
