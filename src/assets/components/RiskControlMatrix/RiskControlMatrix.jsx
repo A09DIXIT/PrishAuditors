@@ -1,23 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import { motion, AnimatePresence } from "framer-motion";
 import SendQueryForm from "../SendQueryForm/SendQueryForm";
 
 // Animation variant
-const fadeIn = (direction = "up", delay = 0.2) => {
-  return {
-    hidden: { opacity: 0, y: direction === "up" ? 40 : 0 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        delay,
-        ease: "easeInOut",
-      },
-    },
-  };
-};
+
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -31,6 +18,19 @@ const fadeInUp = {
     },
   }),
 };
+
+const RiskControlMatrix = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+
 
 const faqItems = [
   {
@@ -81,30 +81,21 @@ const faqItems = [
   },
 ];
 
-const RiskControlMatrix = () => {
-  const [openIndex, setOpenIndex] = useState(null);
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
-    <div className="w-full bg-white text-[#163c4f]">
+   <section className="pt-0 pb-20 bg-white max-w-8xl mx-auto">
       {/* Banner */}
      <motion.div
             className="w-screen h-[50vh] overflow-hidden"
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1 }}
+            initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
           >
         <img
           src="/RiskControlMatrixbanner.jpg"
           alt="Risk Control Matrix Banner"
-          className="w-full h-full object-cover"
+           className="w-full h-full object-cover object-center"
         />
       </motion.div>
 
@@ -118,9 +109,9 @@ const RiskControlMatrix = () => {
                 transition={{ duration: 0.8 }}
                 whileHover={{ scale: 1.02, boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.15)", transition: { duration: 0.4 } }}
               >
-          <h2 className="text-4xl font-semibold mb-6 text-center text-[#0a2d45]">
+          <motion.h1 className="text-black text-4xl md:text-4xl mb-10 font-semibold text-center px-4">
             RISK CONTROL MATRIX (RCM)
-          </h2>
+       </motion.h1>
            <div className="text-black-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
           <p className="mb-5 text-[#0a2d45]">
             Risk Control Matrix (RCM) is a valuable tool for organizations to systematically identify, assess, and manage risks, as well as evaluate the effectiveness of control measures in mitigating those risks. We will be providing a constant support system in developing, reviewing, and monitoring RCM based on your business operations for different processes.
@@ -191,52 +182,59 @@ const RiskControlMatrix = () => {
               {/* End Why Choose Us */}
 
         {/* FAQ Section */}
-        <motion.h2
-        className="text-4xl font-semibold text-center text-[#0a2d45] mb-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        Frequently Asked Questions
-      </motion.h2>
+         <div className="space-y-4 max-w-8xl mx-auto px-4 pb-20">
+       <motion.h2
+                      className="text-4xl font-semibold text-center text-[#0a2d45] mb-10"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      Frequently Asked Questions
+                    </motion.h2>
+              
+                   
+                      {faqItems.map((item, index) => (
+                        <div key={index} className="border border-[#d6e4ec] rounded-lg overflow-hidden">
+                          <button
+                            onClick={() => toggleFAQ(index)}
+                            className="w-full flex justify-between items-center px-6 py-4 text-left text-lg font-semibold bg-[#0d3c58] text-white hover:bg-[#09293d] transition-colors"
+                            aria-expanded={openIndex === index}
+                            aria-controls={`faq-${index}`}
+                          >
+                            {item.question}
+                            <span className="text-xl">{openIndex === index ? "▲" : "▼"}</span>
+                          </button>
+              
+                          <AnimatePresence initial={false}>
+                            {openIndex === index && (
+                             <motion.div
+  key={`faq-${index}`}
+  initial={{ opacity: 0, height: 0 }}
+  animate={{ opacity: 1, height: "auto" }}
+  exit={{ opacity: 0, height: 0 }}
+  transition={{ duration: 0.3 }}
+  className="overflow-hidden"
+>
+  <div id={`faq-${index}`} className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
+    {item.answer}
+  </div>
+</motion.div>
 
-      <div className="space-y-4 max-w-8xl mx-auto px-4 pb-20">
-        {faqItems.map((item, index) => (
-          <div key={index} className="border border-[#d6e4ec] rounded-lg overflow-hidden">
-            <button
-              onClick={() => toggle(index)}
-              className="w-full flex justify-between items-center px-6 py-4 text-left text-lg font-semibold bg-[#0d3c58] text-white hover:bg-[#09293d] transition-colors"
-            >
-              {item.question}
-              <span className="text-xl">{openIndex === index ? "▲" : "▼"}</span>
-            </button>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ))}
+                    </div>
+       
+       
 
-            <AnimatePresence initial={false}>
-              {openIndex === index && (
-                <motion.div
-                  key="content"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
-                    {item.answer}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        ))}
-      </div>
+
+
+
+
+
         {/* Form and Back Button */}
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={fadeIn("up", 0.5)}
-        >
-          <motion.div
+       <motion.div
         className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
         variants={fadeInUp}
         initial="hidden"
@@ -246,17 +244,8 @@ const RiskControlMatrix = () => {
         <h2 className="text-4xl font-bold mb-6 text-center">Send a Query</h2>
         <SendQueryForm />
       </motion.div>
-          <div className="mt-12 text-center">
-            <Link
-              to="/services/risk-assurance"
-              className="inline-block px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
-            >
-              Back to Risk Assurance
-            </Link>
-          </div>
-        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

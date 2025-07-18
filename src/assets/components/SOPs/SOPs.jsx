@@ -22,8 +22,8 @@ const SOPs = () => {
 
   const [openIndex, setOpenIndex] = useState(null);
 
-  const toggleIndex = (idx) => {
-    setOpenIndex(openIndex === idx ? null : idx);
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   const faqItems = [
@@ -175,43 +175,48 @@ const SOPs = () => {
 
            {/* FAQ Section */}
         <motion.h2
-             className="text-4xl font-semibold text-center text-[#0a2d45] mb-10"
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.6 }}
-           >
-             Frequently Asked Questions
-           </motion.h2>
-     
-           <div className="space-y-4 max-w-8xl mx-auto px-4 pb-20">
-             {faqItems.map((item, index) => (
-               <div key={index} className="border border-[#d6e4ec] rounded-lg overflow-hidden">
-                 <button
-                   onClick={() => toggle(index)}
-                   className="w-full flex justify-between items-center px-6 py-4 text-left text-lg font-semibold bg-[#0d3c58] text-white hover:bg-[#09293d] transition-colors"
-                 >
-                   {item.question}
-                   <span className="text-xl">{openIndex === index ? "▲" : "▼"}</span>
-                 </button>
-     
-                 <AnimatePresence initial={false}>
-                   {openIndex === index && (
-                     <motion.div
-                       key="content"
-                       initial={{ opacity: 0, height: 0 }}
-                       animate={{ opacity: 1, height: 'auto' }}
-                       exit={{ opacity: 0, height: 0 }}
-                       transition={{ duration: 0.3 }}
-                     >
-                       <div className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
-                         {item.answer}
-                       </div>
-                     </motion.div>
-                   )}
-                 </AnimatePresence>
-               </div>
-             ))}
-           </div>
+               className="text-4xl font-semibold text-center text-[#0a2d45] mb-10"
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.6 }}
+             >
+               Frequently Asked Questions
+             </motion.h2>
+       
+             <div className="space-y-4 max-w-8xl mx-auto px-4 pb-20">
+               {faqItems.map((item, index) => (
+                 <div key={index} className="border border-[#d6e4ec] rounded-lg overflow-hidden">
+                   <button
+                     onClick={() => toggleFAQ(index)}
+                     className="w-full flex justify-between items-center px-6 py-4 text-left text-lg font-semibold bg-[#0d3c58] text-white hover:bg-[#09293d] transition-colors"
+                     aria-expanded={openIndex === index}
+                     aria-controls={`faq-${index}`}
+                   >
+                     {item.question}
+                     <span className="text-xl">{openIndex === index ? "▲" : "▼"}</span>
+                   </button>
+       
+                   <AnimatePresence initial={false}>
+                     {openIndex === index && (
+                       <motion.div
+                         key={`faq-${index}`}
+                         initial={{ opacity: 0, height: 0 }}
+                         animate={{ opacity: 1, height: "auto" }}
+                         exit={{ opacity: 0, height: 0 }}
+                         transition={{ duration: 0.3 }}
+                       >
+                         <div id={`faq-${index}`} className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
+                           {item.answer}
+                         </div>
+                       </motion.div>
+                     )}
+                   </AnimatePresence>
+                 </div>
+               ))}
+             </div>
+
+
+
 
      <motion.div
         className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
