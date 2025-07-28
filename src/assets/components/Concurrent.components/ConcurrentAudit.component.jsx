@@ -28,47 +28,53 @@ export default function ConcurrentAudit() {
   };
 
   const faqItems = [
-    {
-      question: "What is a concurrent audit?",
-      answer:
-        "A concurrent audit is a real-time examination of financial transactions and processes conducted simultaneously with the occurrence of transactions to ensure accuracy, compliance, and effectiveness of internal controls.",
-    },
-    {
-      question: "Why is concurrent audit necessary?",
-      answer:
-        "Concurrent audits help organizations maintain control over their financial transactions, detect errors or irregularities promptly, prevent fraud, ensure compliance with regulations, and improve operational efficiency.",
-    },
-    {
-      question: "Who needs concurrent audit services?",
-      answer:
-        "Concurrent audit services are beneficial for businesses of all sizes and types, particularly those with high transaction volumes or complex financial operations.",
-    },
-    {
-      question: "What are the key objectives of a concurrent audit?",
-      answer:
-        "The main objectives of a concurrent audit include real-time monitoring of financial transactions, early detection of irregularities or fraud, assessment of compliance with internal policies and regulatory requirements, and improvement of operational efficiency.",
-    },
-    {
-      question: "How does concurrent audit differ from other types of audits?",
-      answer:
-        "Concurrent audit differs from other audits, such as internal audit and statutory audit, in that it is conducted simultaneously with the occurrence of transactions, providing real-time monitoring and assessment of controls and processes.",
-    },
-    {
-      question: "What are the benefits of concurrent audit services?",
-      answer:
-        "The benefits of concurrent audit services include fraud prevention, early detection of errors or irregularities, improved operational efficiency, compliance assurance, enhanced stakeholder confidence, and proactive risk management.",
-    },
-    {
-      question: "What does the concurrent audit process involve?",
-      answer:
-        "The process typically involves planning, risk assessment, real-time monitoring, control testing, detection of irregularities, reporting of findings, and improvement recommendations.",
-    },
-    {
-      question: "How frequently should concurrent audits be conducted?",
-      answer:
-        "The frequency depends on the organization's size and complexity. In general, they are conducted regularly—often daily or weekly—for timely detection and prevention.",
-    },
-  ];
+  {
+    question: "What is VAT?",
+    answer:
+      "Firstly, VAT (Value Added Tax) is a consumption tax, whichmeans that it is ultimately paid by the end consumer. Although, VAT is charged at each step of the ‘supply chain,’ it is the end user who bears the cost of Value Added Tax.\n\nVAT is collected by the businesses and then they pay it forward to the government. In case, a business has paid more tax to its suppliers than it has received, it can get a refund from the government. Ultimately, the tax receipts to government show ‘value add’ throughout the supply chain.",
+  },
+  {
+    question: "What is UAE VAT Registration?",
+    answer:
+      "By VAT Registration, we mean to register the company with the government for submitting Value Added Tax. Upon successful registration, the concerned tax authority in the UAE, namely Federal Tax Authority (FTA) issues a unique VAT identification to the company.",
+  },
+  {
+    question: "What is the difference between VAT and Sales Tax?",
+    answer:
+      "VAT and sales tax are both consumption taxes; these both are charged from the end-consumer. However, there are a few differences:\n\n- Sales tax is generally imposed on transactions involving goods, while VAT is applied on goods as well as services.\n- Furthermore, sales tax is imposed only on the final sale to end-consumer. However, VAT is charged on each step of the ‘supply chain.’\n\nIn VAT (Value Added Tax) based systems, businesses serve as tax-collectors on behalf of government, which helps reduce tax-evasion and misreporting.",
+  },
+  {
+    question: "Which Companies are Required to Register for VAT in the UAE?",
+    answer:
+      "The businesses having taxable imports and supplies that exceed the amount of 375,000 AED must register for VAT. Besides, companies exceeding the amount of 187,500 AED can also register for VAT voluntarily; it is not mandatory for them to register.\n\nIn case a company fails to register for VAT, they become liable to pay penalties and face legal consequences.",
+  },
+  {
+    question: "How Much VAT is Charged in the UAE?",
+    answer:
+      "The standard rate of VAT is 5% (Five Percent) in the UAE. However, there are a few sectors that are exempt from VAT. Additionally, there are also zero-rated supplies that are rated at 0% instead of 5%.",
+  },
+  {
+    question: "Which sectors are exempt from VAT?",
+    answer:
+      "The following categories of supplies are exempt from VAT. These supplies should be traded within The United Arab Emirates.\n\n- Financial Services\n- Residential properties\n- Bare land\n- Local passenger transport",
+  },
+  {
+    question: "Which are zero-rated sectors?",
+    answer:
+      "If you are trading in zero-rated supplies, you will be charged 0% VAT. However, it’s important to remember that these supplies must be declared properly in VAT returns submitted during every tax period. The following supplies are charged with 0% VAT.\n\n- Precious metals, such as gold and silver. Which are 99% pure and available in tradable form.\n- International transportation, and related supplies.\n- Supplies of certain sea, air, and land means of transportation (such as aircrafts and ships).\n- Certain investment grade precious metals (e.g. gold, silver, of 99% purity).\n- Newly constructed residential properties, that are supplied for the first time within three years of their construction.\n- Supply of certain education services, and the related goods and services.\n- Supply of certain healthcare services, and the of related goods and services.",
+  },
+  {
+    question: "How to Register for VAT in UAE?",
+    answer:
+      "To register for VAT, an application – along with required documents – is forwarded to the Federal Tax Authority (FTA). Upon successful submission of the request, FTA will issue a VAT Registration Certificate, which can be downloaded online from the applicant’s account.",
+  },
+  {
+    question: "What are the Required Documents for VAT Registration in the UAE?",
+    answer:
+      "The companies registering for VAT in the UAE are required to submit the following documents for the registration process:\n\n- Passport Copies – of business partners/owners (As mentioned on business license)\n- Emirates ID – of business partners/owners (As mentioned on the license)\n- Business License - (Trade/Commercial License)\n- Complete Address of the company\n- Details of any branches of the company if any\n- Memorandum of Association (MOA)\n- Company’s bank account details – with IBAN letter\n- Contact details of the authorized signatory, including email and phone number\n- Details of any branches, if applicable\n- Expected turnover, revenue and taxable expenses for the next 30 days\n- Turnover Declaration – with stamp and signature by the owner or the manager.\n- Custom code – along with a copy of Dubai Customs Letter.\n- GCC export or import details – if applicable\n- Preference for or against registration as a Tax Group\n\nDepending upon the jurisdictions or business activities, some additional documents may also be required for the VAT Registration process.",
+  },
+];
+
 
   return (
     <section className="pt-0 pb-20 bg-white max-w-8xl mx-auto">
@@ -99,10 +105,10 @@ export default function ConcurrentAudit() {
           </motion.h1>
           <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
             <p>
-              A concurrent audit is a real-time examination of financial transactions and processes conducted simultaneously with the occurrence of transactions to ensure accuracy, compliance, and effectiveness of internal controls.
+              It would be a real-time examination of financial transactions and processes conducted by us as an internal or external auditor to provide you with the timely feedback and ensure the effectiveness of internal controls and financial records.Unlike traditional audits, which are retrospective, concurrent audits are conducted concurrently with the transactions being processed.
             </p>
             <p>
-              Our experienced auditors work closely with your team to perform concurrent audits tailored to your organization's unique needs. We understand the importance of timely and proactive oversight of financial operations.
+              Our approach to understand the importance of timely and proactive oversight of your financial operations. Our experienced auditors work closely with your team to perform concurrent audits that are tailored to your organization's unique requirements.
             </p>
           </div>
         </motion.div>

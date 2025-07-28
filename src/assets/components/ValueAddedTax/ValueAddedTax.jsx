@@ -15,75 +15,128 @@ const VAT = () => {
   };
 
   const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i = 1) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.2,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
+    hidden: { opacity: 0, y: 30 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    }),
+  };
 
-  const faqs = [
+  const faqItems = [
     {
       question: "What is VAT?",
-      answer:
-        "VAT (Value Added Tax) is a consumption tax ultimately paid by the end consumer. Though charged at each step of the supply chain, the burden falls on the end user. Businesses collect and forward VAT to the government. If input tax exceeds output tax, refunds can be claimed.",
+      answer: (
+        <>
+          Firstly, VAT (Value Added Tax) is a consumption tax, which means that
+          it is ultimately paid by the end consumer. Although VAT is charged at
+          each step of the ‘supply chain,’ it is the end user who bears the cost.
+          <br />
+          VAT is collected by businesses and paid forward to the government.
+          If a business has paid more VAT than it has collected, it can receive
+          a refund from the government.
+        </>
+      ),
     },
     {
       question: "What is UAE VAT Registration?",
       answer:
-        "VAT Registration refers to registering a business with the UAE Federal Tax Authority. Upon successful registration, a unique VAT identification number is issued.",
+        "By VAT Registration, we mean registering the company with the government to submit VAT. Upon approval, the FTA issues a unique VAT identification number.",
     },
     {
       question: "What is the difference between VAT and Sales Tax?",
-      answer:
-        "VAT applies to both goods and services at each supply chain step, while sales tax is applied only at the final sale and generally only on goods.",
+      answer: (
+        <>
+          VAT and sales tax are both consumption taxes charged to the end-consumer.
+          Differences include:
+          <ul className="list-disc pl-5 mt-2">
+            <li>Sales tax usually applies only to goods; VAT applies to goods and services.</li>
+            <li>Sales tax is imposed only at the final sale; VAT is applied at each step of the supply chain.</li>
+          </ul>
+        </>
+      ),
     },
     {
       question: "Which Companies are Required to Register for VAT in the UAE?",
-      answer:
-        "Companies with taxable imports and supplies exceeding AED 375,000 must register. Those above AED 187,500 may register voluntarily.",
+      answer: (
+        <>
+          Businesses with taxable supplies/imports over AED 375,000 must register.
+          Those above AED 187,500 may register voluntarily.
+          <br />
+          Non-registration when required can lead to penalties and legal action.
+        </>
+      ),
     },
     {
       question: "How Much VAT is Charged in the UAE?",
       answer:
-        "The standard VAT rate in the UAE is 5%. However, certain sectors are either exempt or zero-rated.",
+        "The standard VAT rate is 5%. Some sectors are exempt or zero-rated (0%) based on FTA regulations.",
     },
     {
       question: "Which sectors are exempt from VAT?",
-      answer:
-        "Financial services, residential properties, bare land, and local passenger transport are exempt from VAT within the UAE.",
+      answer: (
+        <>
+          Exempt categories:
+          <ul className="list-disc pl-5 mt-2">
+            <li>Financial services</li>
+            <li>Residential properties</li>
+            <li>Bare land</li>
+            <li>Local passenger transport</li>
+          </ul>
+        </>
+      ),
     },
     {
       question: "Which are zero-rated sectors?",
-      answer:
-        "Sectors charged with 0% VAT include certain exports, international transport, select education and healthcare services, and specific precious metals.",
+      answer: (
+        <>
+          These are charged 0% VAT and must be properly declared:
+          <ul className="list-disc pl-5 mt-2">
+            <li>Gold/silver (99% purity)</li>
+            <li>International transport and related services</li>
+            <li>Certain ships, aircrafts, land transport</li>
+            <li>New homes within 3 years of construction</li>
+            <li>Certain education & healthcare services</li>
+          </ul>
+        </>
+      ),
     },
     {
       question: "How to Register for VAT in UAE?",
       answer:
-        "Businesses must submit an application with required documents to the Federal Tax Authority. A VAT registration certificate is then issued.",
+        "Submit an online application to the FTA with the required documents. Once approved, a VAT certificate is issued via the applicant’s FTA account.",
     },
     {
       question: "What are the Required Documents for VAT Registration in the UAE?",
-      answer:
-        "Documents include passport and Emirates ID copies, trade license, MOA, bank details, custom code, turnover declaration, and more depending on business activity.",
+      answer: (
+        <>
+          Required documents:
+          <ul className="list-disc pl-5 mt-2">
+            <li>Passports & Emirates IDs of owners/partners</li>
+            <li>Trade license, MOA, address, branch info</li>
+            <li>Bank details with IBAN letter</li>
+            <li>Signatory info, turnover estimates</li>
+            <li>Customs code & Dubai Customs Letter</li>
+            <li>Export/import details, if applicable</li>
+          </ul>
+        </>
+      ),
     },
   ];
 
   return (
     <div className="w-full">
       {/* Banner */}
-       <motion.div
-              className="w-screen h-[50vh] overflow-hidden"
-              initial={{ scale: 1.1 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1 }}
-            >
+      <motion.div
+        className="w-screen h-[50vh] overflow-hidden"
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1 }}
+      >
         <img
           src="/VAT1.jpg"
           alt="VAT Services Banner"
@@ -92,7 +145,7 @@ const VAT = () => {
       </motion.div>
 
       {/* Introduction */}
-        <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
+      <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
         <motion.div
           className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 mb-10 sm:px-6 lg:px-8 rounded-lg shadow-md"
           initial={{ opacity: 0, y: 20 }}
@@ -109,31 +162,17 @@ const VAT = () => {
           </motion.h1>
           <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
             <p>
-              Assisting businesses in the UAE with the VAT registration process,
-              providing support and guidance on compliance requirements such as
-              filing VAT returns, maintaining VAT records, and implementing VAT
-              accounting systems. We also provide VAT Advisory services for the
-              application of VAT to specific transactions, products, and services,
-              VAT planning, and optimization.
+              Assisting businesses in the UAE with VAT registration, compliance
+              support (returns, record keeping, accounting), and advisory on
+              VAT treatment and planning.
             </p>
             <p>
-              UAE VAT services encompass a range of activities aimed at helping
-              businesses understand, implement, and manage VAT compliance
-              requirements by the regulations set by the Federal Tax Authority
-              (FTA) of the UAE.
+              Our VAT experts help ensure full compliance with UAE FTA
+              regulations and minimize risk or penalties.
             </p>
             <p>
-              Our experienced team provides expert guidance and support to ensure
-              compliance with VAT regulations, optimize tax efficiency, and
-              mitigate risks associated with VAT implementation and reporting.
-            </p>
-            <p>
-              Our approach is to understand the complexities of VAT regulations
-              and the challenges businesses face in complying with them. Our
-              approach to UAE VAT services is tailored to meet the specific needs
-              and objectives of each client. We provide a comprehensive range of
-              services, including VAT registration, advisory, compliance, and
-              representation.
+              We customize our VAT services to meet client-specific needs across
+              registration, filing, representation, and strategic advisory.
             </p>
           </div>
         </motion.div>
@@ -162,17 +201,17 @@ const VAT = () => {
             {
               title: "VAT Advisory",
               description:
-                "Our expert advisors guide VAT compliance, including the classification of supplies, the VAT treatment of transactions, and implications for business operations.",
+                "Our expert advisors guide VAT compliance, including classification of supplies and VAT treatment of transactions.",
             },
             {
               title: "VAT Compliance",
               description:
-                "We help businesses prepare and submit accurate VAT returns, maintain proper records, and comply with filing deadlines to avoid penalties.",
+                "We help businesses prepare and submit VAT returns, maintain records, and comply with filing deadlines.",
             },
             {
               title: "VAT Representation",
               description:
-                "Our team can act as a liaison between businesses and the FTA, representing clients during tax audits, assessments, and disputes.",
+                "We represent clients before the FTA during audits, assessments, and disputes.",
             },
           ].map((item, idx) => (
             <motion.div
@@ -206,7 +245,7 @@ const VAT = () => {
         </motion.div>
 
         <div className="space-y-4">
-          {faqs.map((faq, idx) => (
+          {faqItems.map((item, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
@@ -219,31 +258,33 @@ const VAT = () => {
                 onClick={() => toggleFAQ(idx)}
                 className="flex justify-between items-center cursor-pointer px-5 py-4 font-medium text-[#f5fafd] text-lg bg-[#0d3c58] rounded-t-lg hover:bg-[#0d3c58] transition"
               >
-                <span>{faq.question}</span>
+                <span>{item.question}</span>
                 <span className="text-xl">
                   {openIndex === idx ? "▲" : "▼"}
                 </span>
               </div>
               {openIndex === idx && (
                 <div className="px-5 pb-4 text-gray-700 text-base leading-relaxed">
-                  {faq.answer}
+                  {item.answer}
                 </div>
               )}
             </motion.div>
           ))}
         </div>
 
+        {/* Send Query */}
         <div className="mt-10">
-            <motion.div
-        className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
-        variants={fadeInUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <h2 className="text-4xl font-bold mb-6 text-center">Send a Query</h2>
-        <SendQueryForm />
-      </motion.div>
+          <motion.div
+            className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl font-bold mb-6 text-center">Send a Query</h2>
+            <SendQueryForm />
+          </motion.div>
+
           <div className="mt-18 mb-10 text-center">
             <Link
               to="/services/taxation"

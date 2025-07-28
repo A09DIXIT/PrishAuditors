@@ -1,4 +1,4 @@
-// FULL UPDATED CODE
+// Navbar.jsx
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ const topMenu = [
   { name: "CAREERS", href: "/careers" },
 ];
 
-// Service menu (same as you provided earlier)
+// Services menu
 const servicesMenu = [
   {
     name: "AUDIT & ASSURANCE",
@@ -96,7 +96,7 @@ const servicesMenu = [
   },
 ];
 
-// Function to break specific service names into two lines
+// Line breaker
 const breakAfterTwoWords = (text) => {
   const targets = [
     "RESTRUCTURING AND REORGANIZATION SERVICES",
@@ -114,7 +114,7 @@ const breakAfterTwoWords = (text) => {
   return text;
 };
 
-// Dropdown nav for desktop
+// Desktop Dropdown Nav
 const ExtendedNav = ({ activeServiceIndex, setActiveServiceIndex }) => (
   <div className="w-full bg-white transition-all duration-300">
     <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -131,20 +131,30 @@ const ExtendedNav = ({ activeServiceIndex, setActiveServiceIndex }) => (
               className="inline-flex items-center px-2 py-2 hover:text-indigo-600"
             >
               {service.name}
-              {service.submenu && (
-                <svg
-                  className={`ml-1 ${
-                    service.name.toUpperCase() === "TAXATION"
-                      ? "w-4 h-4"
-                      : "w-5 h-5"
-                  } text-gray-600 group-hover:text-indigo-600 transition duration-200`}
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M5.5 7.5L10 12l4.5-4.5z" />
-                </svg>
-              )}
+             {service.submenu && (
+  service.name === "TAXATION" ? (
+    <svg
+      className="ml-2 w-3 h-3 text-gray-600 group-hover:text-indigo-600 transition duration-200"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      {/* Custom icon path for Taxation dropdown */}
+        <path d="M5.6 7.5L10 12l4.5-4.5z" />
+    </svg>
+  ) : (
+    <svg
+      className="ml-2 w-5 h-5 text-gray-600 group-hover:text-indigo-600 transition duration-200"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      {/* Default dropdown icon */}
+      <path d="M5.6 7.5L10 12l4.5-4.5z" />
+    </svg>
+  )
+)}
+
             </Link>
             {service.submenu && activeServiceIndex === index && (
               <div className="absolute -left-10 top-full mt-0 bg-white border border-gray-200 rounded-md shadow-lg min-w-[220px] z-50">
@@ -166,7 +176,7 @@ const ExtendedNav = ({ activeServiceIndex, setActiveServiceIndex }) => (
   </div>
 );
 
-// Full Navbar Component
+// Main Navbar
 export default function Navbar() {
   const [activeServiceIndex, setActiveServiceIndex] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -266,9 +276,7 @@ export default function Navbar() {
                 <div key={index} className="border-b border-gray-200">
                   <div
                     onClick={() =>
-                      service.submenu
-                        ? toggleMobileSubmenu(index)
-                        : closeMobileMenu()
+                      service.submenu ? toggleMobileSubmenu(index) : closeMobileMenu()
                     }
                     className="flex justify-between items-center cursor-pointer px-2 py-2 font-bold text-gray-800 hover:text-indigo-600"
                   >
@@ -290,7 +298,7 @@ export default function Navbar() {
                         type="button"
                       >
                         <svg
-                          className={`w-5 h-5 transform transition-transform duration-300 ${
+                          className={`w-4 h-4 transform transition-transform duration-300 ${
                             mobileServiceOpenIndex === index ? "rotate-180" : "rotate-0"
                           }`}
                           fill="none"

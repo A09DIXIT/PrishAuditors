@@ -57,6 +57,7 @@ const TransactionAudit = () => {
       question: "How can businesses benefit from transaction Audit services?",
       answer: (
         <div>
+          <p>PRISH Consultancy offers comprehensive Transaction Audit services designed to help businesses:</p>
           <ul className="list-disc pl-5 space-y-2">
             <li>
               Ensure the accuracy, compliance, and efficiency of financial
@@ -110,15 +111,16 @@ const TransactionAudit = () => {
             <motion.h1 className="text-black text-4xl md:text-4xl mb-10 font-semibold text-center px-4">
               TRANSACTION AUDIT
             </motion.h1>
+            
             <div className="text-black-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
               <p>
-                Transaction Audits involve the examination and review of specific financial transactions within an organization to ensure accuracy, compliance, and integrity.
+                Transaction Audits will involve the examination and review of specific financial transactions within an organization to ensure accuracy, compliance, and integrity. In this, we will focus on verifying the completeness, validity, and appropriateness of individual transactions recorded in the organization's financial records. It aims to ensure the integrity of financial data and processes.
               </p>
               <p>
                 Our experienced team conducts thorough audits to identify discrepancies, mitigate risks, and improve financial controls.
               </p>
               <p>
-                Our systematic process includes reviewing individual transactions, analyzing trends, and recommending enhancements to optimize financial operations and add value.
+                Our approach is to take a systematic approach to Transaction Audits. Our process involves reviewing individual transactions, analysing patterns and trends, and identifying areas for improvement. We focus on enhancing financial controls, reducing risks, and optimizing processes to add value to your organization.
               </p>
             </div>
           </motion.div>

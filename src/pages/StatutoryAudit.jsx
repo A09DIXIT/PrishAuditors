@@ -7,53 +7,53 @@ const faqItems = [
   {
     question: "What is a statutory audit?",
     answer:
-      "A statutory audit is a legally mandated examination of a company's financial records, transactions, and statements to ensure accuracy, compliance with accounting standards, and adherence to regulatory requirements.",
+      "A statutory audit is a legally mandated examination of a company's financial records, transactions, and statements to ensure accuracy, compliance with accounting standards, and adherence to regulatory requirements."
   },
   {
     question: "Who requires a statutory audit?",
     answer:
-      "Companies that meet certain criteria as per regulations require statutory audits.",
+      "Statutory audits are typically required for public companies, large private companies, and certain non-profit organizations. The requirement may vary based on the jurisdiction and the company's size and nature of business."
   },
   {
     question: "What are the objectives of a statutory audit?",
     answer:
-      "To ensure the accuracy and reliability of financial statements, compliance with laws, and to provide assurance to stakeholders.",
+      "The main objectives of a statutory audit include verifying the accuracy and reliability of financial statements, ensuring compliance with applicable laws and regulations, and providing assurance to stakeholders about the company's financial health and performance."
   },
   {
     question: "How often does a company need to undergo a statutory audit?",
     answer:
-      "Typically, statutory audits are conducted annually, but the frequency may vary depending on jurisdiction and company size.",
+      "The frequency of statutory audits varies depending on legal requirements and the company's size and type. In many jurisdictions, annual audits are required, but smaller businesses may undergo audits less frequently."
   },
   {
     question: "What is the role of the auditor in a statutory audit?",
     answer:
-      "The auditor independently examines financial records and provides an opinion on the fairness and accuracy of financial statements.",
+      "The auditor's role is to independently examine the company's financial records, transactions, and internal controls. They assess the reliability of financial reporting, identify any material misstatements or errors, and provide an opinion on the fairness and accuracy of the financial statements."
   },
   {
     question: "What are the benefits of a statutory audit for a company?",
     answer:
-      "Benefits include improved credibility with stakeholders, identification of control weaknesses, and enhanced transparency.",
+      "Statutory audits provide benefits such as improved credibility with stakeholders, identification of internal control weaknesses, compliance with legal requirements, enhanced transparency, and accountability."
   },
   {
     question: "How long does a statutory audit typically take?",
     answer:
-      "Duration varies by company size and complexity, ranging from weeks for small companies to months for larger organizations.",
+      "The duration of a statutory audit depends on factors such as the size and complexity of the company, the quality of its financial records, and the scope of the audit. Generally, audits for smaller companies may take a few weeks, while audits for larger organizations may take several months."
   },
   {
     question: "What is the process of a statutory audit?",
     answer:
-      "The process involves planning, risk assessment, testing controls, substantive procedures, and issuing the audit report.",
+      "The process typically involves planning, risk assessment, testing of controls and transactions, substantive procedures, communication of findings, and issuing the audit report. The specific steps may vary depending on the auditor's approach and the company's circumstances."
   },
   {
     question: "What documents are required for a statutory audit?",
     answer:
-      "Required documents include financial statements, bank records, invoices, contracts, payroll records, and tax returns.",
+      "Documents required for a statutory audit may include financial statements, bank statements, invoices, receipts, contracts, payroll records, tax returns, and any other relevant financial or accounting records."
   },
   {
     question: "Can a company change its auditor for statutory audits?",
     answer:
-      "Yes, companies can change auditors but must follow proper notification and transition procedures.",
-  },
+      "Yes, a company can change its auditor if necessary. However, the process may involve notifying relevant authorities and ensuring a smooth transition of audit responsibilities."
+  }
 ];
 
 const StatutoryAudit = () => {
@@ -109,9 +109,7 @@ const StatutoryAudit = () => {
           </motion.h1>
           <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
             <p>
-              We will be performing a thorough examination of financial records and
-              providing assurance on the accuracy and reliability of your company’s
-              financial statements.
+              We will be performing a thorough examination of financial records and providing assurance on the accuracy and reliability of your company’s financial statements. It provides assurance tostakeholders, including shareholders, investors, creditors, and regulators, about the accuracy and fairness of the company's financial statements. They help ensure transparency, accountability, and compliance with relevant laws and regulations.
             </p>
             <p>
               Our team of experienced auditors provides comprehensive statutory audit

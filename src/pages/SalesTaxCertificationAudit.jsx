@@ -31,39 +31,63 @@ const whyChoose = [
   },
 ];
 
-const faqItems = [
-  {
-    question: "What is a Sales Certification Audit?",
-    answer:
-      "A Sales Certification Audit is an examination of sales processes, documentation, and reporting to ensure compliance with sales tax regulations and obtain certification from tax authorities.",
-  },
-  {
-    question: "Why is a Sales Certification Audit important for businesses?",
-    answer:
-      "It ensures compliance with sales tax regulations, helps avoid penalties, and builds trust with customers, suppliers, and investors.",
-  },
-  {
-    question: "What does a Sales Certification Audit involve?",
-    answer:
-      "It involves evaluating sales transactions, reviewing documentation, assessing internal controls, and ensuring compliance with sales tax regulations.",
-  },
-  {
-    question: "How often should businesses conduct Sales Certification Audits?",
-    answer:
-      "The frequency depends on business size, sales volume, and regulatory requirements, but regular audits are recommended to maintain compliance.",
-  },
-  {
-    question: "What are the benefits of conducting a Sales Certification Audit?",
-    answer: (
-      <div className="space-y-2">
-        <p><strong>Compliance Assurance:</strong> Audits help ensure compliance with sales tax regulations, reducing the risk of penalties and legal issues.</p>
-        <p><strong>Accuracy and Efficiency:</strong> By identifying errors and inefficiencies, audits improve accuracy and efficiency in sales tax reporting.</p>
-        <p><strong>Cost Savings:</strong> Audits help businesses avoid overpayment or underpayment of sales taxes, leading to cost savings.</p>
-        <p><strong>Certification Readiness:</strong> Audits prepare businesses for sales tax certification, enhancing credibility with tax authorities and stakeholders.</p>
-      </div>
-    ),
-  },
-];
+ const faqItems = [
+    {
+      question: "What is a Sales Certification Audit?",
+      answer:
+        "A Sales Certification Audit is an examination of sales processes, documentation, and reporting to ensure compliance with sales tax regulations and obtain certification from tax authorities.",
+    },
+    {
+      question: "Why is a Sales Certification Audit important for businesses?",
+      answer:
+        "A Sales Certification Audit is important for businesses to ensure compliance with sales tax regulations, avoid penalties, and gain credibility with customers, suppliers, and investors.",
+    },
+    {
+      question: "What does a Sales Certification Audit involve?",
+      answer:
+        "A Sales Certification Audit involves evaluating sales transactions, reviewing documentation, assessing internal controls, and ensuring compliance with sales tax regulations.",
+    },
+    {
+      question: "How often should businesses conduct Sales Certification Audits?",
+      answer:
+        "The frequency of Sales Certification Audits depends on the size of the business, the volume of sales, and regulatory requirements. However, it is recommended to conduct audits regularly to maintain compliance.",
+    },
+    {
+      question: "What are the benefits of conducting a Sales Certification Audit?",
+      answer: (
+        <>
+          <p className="submenu-sub-header">
+            Compliance Assurance:
+            <span className="text">
+              {" "}
+              Audits help ensure compliance with sales tax regulations, reducing the risk of penalties and legal issues.
+            </span>
+          </p>
+          <p className="submenu-sub-header">
+            Accuracy and Efficiency:
+            <span className="text">
+              {" "}
+              By identifying errors and inefficiencies, audits improve accuracy and efficiency in sales tax reporting.
+            </span>
+          </p>
+          <p className="submenu-sub-header">
+            Cost Savings:
+            <span className="text">
+              {" "}
+              Audits help businesses avoid overpayment or underpayment of sales taxes, leading to cost savings.
+            </span>
+          </p>
+          <p className="submenu-sub-header">
+            Certification Readiness:
+            <span className="text">
+              {" "}
+              Audits prepare businesses for sales tax certification, enhancing credibility with tax authorities and stakeholders.
+            </span>
+          </p>
+        </>
+      ),
+    },
+  ];
 
 const SalesTaxCertificationAudit = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -123,10 +147,10 @@ const SalesTaxCertificationAudit = () => {
           </h1>
           <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto text-justify">
             <p>
-              Sales Certification refers to a process whereby companies obtain accreditation to engage in sales activities within specific industries. Obtaining sales certification demonstrates competence, professionalism, and compliance with regulatory standards.
+             Sales Certification refers to a process whereby companies obtain accreditation to engage in sales activities within specific industries. Obtaining sales certification demonstrates competence, professionalism, and compliance with regulatory standards, enhancing the credibility and trustworthiness of the organization's activities. Our experienced team conducts thorough audits to assess sales processes, documentation, and reporting, ensuring accuracy and compliance.
             </p>
             <p>
-              Our experienced team conducts thorough audits to assess sales processes, documentation, and reporting, ensuring accuracy and compliance. We evaluate transactions, documentation, and controls to identify areas for improvement.
+             Our process involves evaluating sales transactions, reviewing documentation, and assessing internal controls to ensure compliance and identify areas for improvement.
             </p>
           </div>
         </motion.div>

@@ -126,7 +126,7 @@ const SystemAudit = () => {
                 and provide recommendations for improvement.
               </p>
               <p>
-                Our System Audit approach is thorough, systematic, and tailored to the unique needs of each client. We focus on identifying weaknesses, assessing risks, and providing actionable recommendations to enhance the overall security and performance of your systems.
+               Our approach is to understand the critical importance of robust information systems in today's digital world. Our System Audit approach is thorough, systematic, and tailored to the unique needs of each client. We focus on identifying weaknesses, assessing risks, and providing actionable recommendations to enhance the overall security and performance of your systems.
               </p>
             </div>
           </motion.div>

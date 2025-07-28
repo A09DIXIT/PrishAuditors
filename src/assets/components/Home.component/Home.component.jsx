@@ -20,16 +20,22 @@ script.charset = "UTF-8";
 script.setAttribute("crossorigin", "*");
 document.body.appendChild(script);
 
-// ✅ Move chatbot to left and upward once it's added to the DOM
 const observer = new MutationObserver(() => {
   const tawk = document.getElementById("tawkchat-container");
   if (tawk) {
-    tawk.style.left = "20px";          // move to left
-    tawk.style.right = "auto";         // reset right
-    tawk.style.bottom = "40px";       // move upward (more space from bottom)
-    observer.disconnect();             // stop observing once applied
+    if (window.innerWidth <= 768) {
+      tawk.style.left = "20px";
+      tawk.style.right = "auto";
+      tawk.style.bottom = "80px";
+    } else {
+      tawk.style.left = "auto";
+      tawk.style.right = "20px";
+      tawk.style.bottom = "40px";
+    }
+    observer.disconnect();
   }
 });
+
 
 observer.observe(document.body, { childList: true, subtree: true });
 
@@ -48,7 +54,7 @@ observer.observe(document.body, { childList: true, subtree: true });
       {/* ✅ WhatsApp Floating Button */}
       <a
         href="https://wa.me/971567244122"
-        className="fixed bottom-25 right-5 z-50"
+        className="fixed bottom-25 right-15 z-50"
         target="_blank"
         rel="noopener noreferrer"
       >

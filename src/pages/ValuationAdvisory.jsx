@@ -163,18 +163,18 @@ const ValuationAdvisory = () => {
       </motion.div>
 
       {/* Intro */}
-      <div className="max-w-7xl mx-auto mt-10 px-4 pb-16">
-        <motion.div
-          className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 sm:px-6 lg:px-8 rounded-lg shadow-md max-w-8xl mx-auto mt-12"
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-          whileHover={{
-            scale: 1.01,
-            boxShadow: '0px 10px 28px rgba(0, 0, 0, 0.1)',
-            transition: { duration: 0.4 },
-          }}
-        >
+      <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
+                       <motion.div
+                         className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 sm:px-6 lg:px-8 rounded-lg shadow-md"
+                         initial={{ opacity: 0, y: 20 }}
+                         animate={{ opacity: 1, y: 0 }}
+                         transition={{ duration: 0.8 }}
+                         whileHover={{
+                           scale: 1.02,
+                           boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.15)",
+                           transition: { duration: 0.4 },
+                         }}
+                       >
           <motion.h1
             className="text-black text-4xl md:text-4xl mb-10 font-semibold text-center"
             custom={0}

@@ -10,35 +10,15 @@ const MysteryAudit = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const faqItems  = [
-{
+
+
+  
+ const faqItems = [
+    {
       question: "What is a mystery audit?",
       answer:
         "A mystery audit, also known as mystery shopping or secret shopping, is a method of evaluating the quality of service and compliance with company standards by sending anonymous evaluators to assess various aspects of a business from a customer's perspective.",
     },
-
-    {
-      question: "How frequently should a mystery audit be conducted?",
-      answer:
-        "The frequency of mystery audits depends on the business's needs, industry standards, and areas of concern. Some businesses conduct mystery audits quarterly, while others may do so monthly or annually.",
-    },
-    {
-      question: "What industries can benefit from mystery audit services?",
-      answer:
-        "Mystery audit services can benefit businesses in various industries, including retail, hospitality, healthcare, banking, automotive, and more, where customer service and experience are critical.",
-    },
-    {
-      question: "How can I use the findings from a mystery audit to improve my business?",
-      answer: (
-        <div>
-          <p><strong>Identify Improvement Areas:</strong> Pinpoint specific weaknesses in customer service or operations.</p>
-          <p><strong>Employee Training:</strong> Develop targeted training programs based on audit findings.</p>
-          <p><strong>Process Enhancements:</strong> Implement changes to streamline operations.</p>
-          <p><strong>Performance Measurement:</strong> Track progress over time by comparing audit results.</p>
-        </div>
-      ),
-    },
-    
     {
       question: "Why is a mystery audit necessary?",
       answer:
@@ -56,14 +36,29 @@ const MysteryAudit = () => {
     },
     {
       question: "What are the benefits of a mystery audit?",
-      answer: (
-        <div>
-          <p><strong>Customer Experience Improvement:</strong> Enhance the customer experience by identifying and addressing gaps in service quality.</p>
-          <p><strong>Operational Efficiency:</strong> Streamline processes and procedures to improve efficiency.</p>
-          <p><strong>Employee Development:</strong> Provide targeted training based on audit feedback.</p>
-          <p><strong>Quality Control:</strong> Ensure consistency in service delivery across locations.</p>
-        </div>
-      ),
+      answer: 
+      [
+            "Customer Experience Improvement: Enhance the customer experience by identifying and addressing gaps in service quality.",
+            "Operational Efficiency:  Streamline processes and procedures to improve efficiency and reduce costs.",
+            "Employee Training and Development:  Provide targeted training and coaching based on feedback from mystery audits to improve employee performance.",
+            "Quality Control: Ensure consistency in service delivery and maintain high standards across all locations."
+      ],
+    
+          },
+    {
+      question: "How frequently should a mystery audit be conducted?",
+      answer:
+        "The frequency of mystery audits depends on the business's needs, industry standards, and areas of concern. Some businesses conduct mystery audits quarterly, while others may do so monthly or annually.",
+    },
+    {
+      question: "What industries can benefit from mystery audit services?",
+      answer:
+        "Mystery audit services can benefit businesses in various industries, including retail, hospitality, healthcare, banking, automotive, and more, where customer service and experience are critical.",
+    },
+    {
+      question: "How can I use the findings from a mystery audit to improve my business?",
+      answer:
+        "The findings from a mystery audit can be used to identify specific areas for improvement, develop targeted training programs for employees, implement process enhancements, and measure progress over time.",
     },
   ];
 
@@ -120,7 +115,7 @@ const MysteryAudit = () => {
         <motion.h1 className="text-black text-4xl md:text-4xl mb-10 font-semibold text-center px-4">
           MYSTERY AUDIT
         </motion.h1>
-        <div className="text-black-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
+        <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
           <p>
             Core assessments are conducted by us as an independent evaluator to measure and evaluate the quality of service, compliance with policies and procedures, and overall customer experience with your company’s brand.
           </p>
@@ -229,9 +224,17 @@ const MysteryAudit = () => {
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
-                      {item.answer}
-                    </div>
+                   <div className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
+  {Array.isArray(item.answer) ? (
+    <ul className="list-disc pl-6 space-y-2">
+      {item.answer.map((line, idx) => (
+        <li key={idx}>{line}</li>
+      ))}
+    </ul>
+  ) : (
+    <p>{item.answer}</p>
+  )}
+</div>
                   </motion.div>
                 )}
               </AnimatePresence>

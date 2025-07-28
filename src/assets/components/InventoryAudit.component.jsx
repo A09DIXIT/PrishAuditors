@@ -9,46 +9,53 @@ const InventoryAudit = () => {
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+  
 
-  const faqItems  = [
-    {
-      question: "What is an inventory audit and verification?",
-      answer:
-        "An inventory audit and verification examines and assesses a company's physical inventory and related accounting records to ensure accuracy, completeness, and reliability.",
-    },
-    {
-      question: "Why is inventory audit and verification necessary?",
-      answer:
-        "It helps detect discrepancies, prevent theft, and ensure financial reporting is accurate.",
-    },
-    {
-      question: "What are the key objectives of inventory audit and verification?",
-      answer:
-        "To verify stock accuracy, evaluate internal controls, and identify obsolete or missing inventory.",
-    },
-    {
-      question: "How often should inventory audit and verification be conducted?",
-      answer: "Typically annually or quarterly, depending on the nature of the business.",
-    },
-    {
-      question: "What industries can benefit from inventory audit and verification services?",
-      answer: "Retail, manufacturing, logistics, and healthcare, among others.",
-    },
-    {
-      question: "How does inventory audit and verification differ from regular audits?",
-      answer:
-        "Inventory audits focus specifically on stock and inventory management, while regular audits cover all financial and operational areas.",
-    },
-    {
-      question: "What are some common methods used in inventory audit and verification?",
-      answer:
-        "Physical count, cycle counting, barcode scanning, and stock reconciliation.",
-    },
-    {
-      question: "What are the benefits of inventory audit and verification?",
-      answer:
-        "Improved accuracy, loss prevention, better decision-making, and compliance.",
-    },
+ const faqItems = [
+  {
+    question: "What is an inventory audit and verification?",
+    answer:
+      "An inventory audit and verification examine and assess a company's physical inventory and related accounting records to ensure accuracy, completeness, and reliability."
+  },
+  {
+    question: "Why is inventory audit and verification necessary?",
+    answer:
+      "Inventory audit and verification are necessary to ensure that the quantity, condition, and value of inventory items are accurately recorded and reported in the financial statements. It helps prevent errors, fraud, and discrepancies in inventory management."
+  },
+  {
+    question: "What are the key objectives of inventory audit and verification?",
+    answer:
+      "The main objectives of inventory audit and verification include verifying the existence and condition of inventory items, ensuring accurate valuation of inventory, identifying discrepancies or errors, and improving inventory management practices."
+  },
+  {
+    question: "How often should inventory audit and verification be conducted?",
+    answer:
+      "The frequency of inventory audits and verification depends on factors such as the industry, the business size, and the risk of inventory-related issues. Typically, it is conducted annually or quarterly."
+  },
+  {
+    question: "What industries can benefit from inventory audit and verification services?",
+    answer:
+      "Inventory audit and verification services are beneficial to businesses across various industries including retail, manufacturing, distribution, wholesale, and logistics."
+  },
+  {
+    question: "How does inventory audit and verification differ from regular audits?",
+    answer:
+      "While regular audits focus on verifying financial statements for accuracy and compliance, inventory audits and verification specifically focus on the accuracy and reliability of inventory records, physical counts, and valuation methods."
+  },
+  {
+    question: "What are some common methods used in inventory audit and verification?",
+    answer:
+      "Common methods used in inventory audit and verification include physical inventory counts, examination of supporting documentation such as purchase orders and receiving reports, review of inventory control procedures, and testing of inventory valuation methods."
+  },
+  {
+    question: "What are the benefits of inventory audit and verification?",
+    answer: [
+      "Accurate Financial Reporting: Ensures accurate reporting of inventory values in financial statements.",
+      "Risk Mitigation: Helps identify and mitigate risks of inventory shrinkage, obsolescence, and misstatement.",
+      "Compliance Assurance: Ensures compliance with regulatory requirements and accounting standards.",
+      "Operational Efficiency: Identifies opportunities for process improvement and efficiency gains in inventory management."
+    ]
+  },
   ];
 
   const fadeInUp = {
@@ -207,9 +214,17 @@ const InventoryAudit = () => {
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <div className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
-                            {item.answer}
-                          </div>
+                         <div className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
+  {Array.isArray(item.answer) ? (
+    <ul className="list-disc pl-6 space-y-2">
+      {item.answer.map((line, idx) => (
+        <li key={idx}>{line}</li>
+      ))}
+    </ul>
+  ) : (
+    <p>{item.answer}</p>
+  )}
+</div>
                         </motion.div>
                       )}
                     </AnimatePresence>

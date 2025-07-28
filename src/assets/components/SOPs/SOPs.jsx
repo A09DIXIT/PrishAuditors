@@ -104,13 +104,13 @@ const SOPs = () => {
         </motion.h1>
         <div className="text-black-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
           <p>
-            SOPs are detailed step-by-step guidelines that describe how tasks and processes should be conducted within an organization. These are essential for ensuring consistency, compliance, and operational excellence.
+            This would include a comprehensive range of services including preparation and development of detailed process SOPs with process flowcharts and narratives with Delegation of Authority (DOA) Matrix, review of established SOPs, implementation of established SOPs by providing employee training with an objective of overall organizational effectiveness.Standard Operating Procedures (SOPs) are documented step-by-step instructions that outline how specific tasks or processes should be performed within an organization which ensure consistency, efficiency, and compliance with established standards.
           </p>
           <p>
-            At PRISH, we help clients build robust SOPs by understanding internal workflows, defining roles and responsibilities through DOA Matrix, and incorporating regulatory needs.
+            Our experienced team works closely with clients to develop customized SOPs that align with industry best practices and meet regulatory requirements.
           </p>
           <p>
-            Our approach is consultative — we collaborate with teams, identify bottlenecks, and deliver customized SOPs that are practical, easy to implement, and aligned with industry best practices.
+           Our approach is to understand the importance of having well-defined SOPs to streamline operations and ensure quality and compliance. We work closely with your team to understand your processes, identify areas for improvement, and develop SOPs that are practical, clear, and easy to follow.
           </p>
         </div>
       </motion.div>
@@ -135,7 +135,7 @@ const SOPs = () => {
                  {
                    title: "Process Analysis:",
                    description:
-                     "Our team consists of highly skilled and experienced auditors with extensive knowledge across various industries.",
+                     "We conduct a thorough analysis of your existing processes to identify gaps, inefficiencies, and areas for improvement.",
                  },
                  {
                    title: "SOP Development:",

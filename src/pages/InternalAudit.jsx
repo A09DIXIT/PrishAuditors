@@ -114,13 +114,13 @@ export default function InternalAudit() {
           </h1>
           <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
             <p>
-              Internal auditing is a vital function within organizations that helps to enhance governance, risk management, and control processes. It provides independent assessments and consulting designed to add value and improve operations and financial controls.
+              Internal auditing is a vital function within organizations that helps to enhance governance, risk management, and control processes.Conducting an independent assessment, objective assurance, and consulting activity designed to add value and improve an organization's operational and financial controls as per the best industry practices.
             </p>
             <p>
-              Our experienced team of internal auditors works closely with clients to assess internal controls, identify areas for improvement, and provide valuable insights to support informed decision-making.
+             Our experienced team of internal auditors works closely with clients to assess internal controls, identify areas for improvement, and provide valuable insights to support informed decision-making.
             </p>
             <p>
-              We recognize that every organization is unique, with its own set of risks, challenges, and opportunities. Our internal audit approach is tailored to meet your specific needs, focusing on understanding your business, identifying key risks, and providing practical recommendations.
+              Our approach is to recognize that every organization is unique, with its own set of risks, challenges, and opportunities. Our approach to internal audit is tailored to meet the specific needs and objectives of each client. We focus on understanding your business, identifying key risks, and providing practical recommendations to enhance internal controls and processes.
             </p>
           </div>
         </motion.div>
@@ -147,17 +147,17 @@ export default function InternalAudit() {
             {
               title: "Internal Control Evaluation",
               description:
-                "Our auditors evaluate the design and effectiveness of internal controls to ensure they mitigate risks and support strategic goals.",
+                "Our auditors evaluate the design and effectiveness of internal controls to ensure they mitigate identified risks and support the achievement of organizational objectives.",
             },
             {
               title: "Process Improvement",
               description:
-                "We identify opportunities for process improvement and efficiency gains to help optimize your operations.",
+                "We identify opportunities for process improvement and efficiency gains to help optimize your organization's operations.",
             },
             {
               title: "Compliance Assurance",
               description:
-                "Our internal audit services help ensure compliance with laws, regulations, and internal policies.",
+                "Our internal audit services help ensure compliance with laws, regulations, and internal policies and procedures.",
             },
           ].map((item, idx) => (
             <motion.div

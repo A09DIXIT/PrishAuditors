@@ -29,53 +29,52 @@ const ForensicAudit = () => {
   }, []);
 
   const faqItems = [
-    {
-      question: "What is a forensic audit?",
-      answer:
-        "A forensic audit is an examination and analysis of financial records, transactions, and documentation to uncover fraud, financial irregularities, or misconduct. It involves gathering evidence that can be used in legal proceedings or internal investigations.",
-    },
-    {
-      question: "When is a forensic audit necessary?",
-      answer:
-        "Forensic audits are necessary when there are suspicions or allegations of fraud, embezzlement, corruption, or other financial misconduct within an organization.",
-    },
-    {
-      question: "What are the key objectives of a forensic audit?",
-      answer:
-        "The primary objectives of a forensic audit are to uncover fraudulent activities, gather evidence for legal proceedings, identify the perpetrators, quantify financial losses, and recommend measures to prevent future occurrences.",
-    },
-    {
-      question: "How does a forensic audit differ from a regular audit?",
-      answer:
-        "While regular audits focus on verifying financial statements for accuracy and compliance, forensic audits are investigative in nature and aim to uncover misconduct and fraud.",
-    },
-    {
-      question: "What are some common red flags that may indicate the need for a forensic audit?",
-      answer:
-        "Common red flags include unusual financial fluctuations, discrepancies in records, missing documents, suspicious transactions, or whistleblower complaints.",
-    },
-    {
-      question: "How long does a forensic audit typically take?",
-      answer:
-        "The duration varies based on the complexity and volume of data. It may take from a few weeks to several months.",
-    },
-    {
-      question: "What industries can benefit from forensic audit services?",
-      answer:
-        "Industries such as banking, finance, insurance, healthcare, manufacturing, government, and NGOs benefit from forensic audit services.",
-    },
-    {
-      question: "What are the benefits of a forensic audit?",
-      answer: (
-        <div className="space-y-2">
-          <p><strong>Fraud Detection and Prevention:</strong> Helps detect and prevent fraud.</p>
-          <p><strong>Evidence Gathering:</strong> Offers legally usable proof of wrongdoing.</p>
-          <p><strong>Compliance Assurance:</strong> Ensures adherence to laws and policies.</p>
-          <p><strong>Stakeholder Confidence:</strong> Increases transparency and trust.</p>
-          <p><strong>Operational Improvement:</strong> Enhances internal controls and risk mitigation.</p>
-        </div>
-      ),
-    },
+  {
+    question: "What is a forensic audit?",
+    answer:
+      "A forensic audit is an examination and analysis of financial records, transactions, and documentation to uncover fraud, financial irregularities, or misconduct. It involves gathering evidence that can be used in legal proceedings or internal investigations."
+  },
+  {
+    question: "When is a forensic audit necessary?",
+    answer:
+      "Forensic audits are necessary when there are suspicions or allegations of fraud, embezzlement, corruption, or other financial misconduct within an organization. They are often conducted in response to specific incidents or as a proactive measure to detect and prevent fraud."
+  },
+  {
+    question: "What are the key objectives of a forensic audit?",
+    answer:
+      "The primary objectives of a forensic audit are to uncover fraudulent activities, gather evidence for legal proceedings, identify the perpetrators, quantify financial losses, and recommend measures to prevent future occurrences."
+  },
+  {
+    question: "How does a forensic audit differ from a regular audit?",
+    answer:
+      "While regular audits focus on verifying financial statements for accuracy and compliance, forensic audits are more investigative in nature. Forensic audits delve deeper into financial records, transactions, and documentation to uncover fraudulent activities or misconduct."
+  },
+  {
+    question: "What are some common red flags that may indicate the need for a forensic audit?",
+    answer:
+      "Common red flags that may warrant a forensic audit include unusual or unexplained fluctuations in financial performance, discrepancies in accounting records, missing documentation, suspicious transactions, and whistleblower complaints."
+  },
+  {
+    question: "How long does a forensic audit typically take?",
+    answer:
+      "The duration of a forensic audit depends on the complexity of the case, the volume of data to be analyzed, and the scope of the investigation. It can range from a few weeks to several months, or even longer for highly complex cases."
+  },
+  {
+    question: "What industries can benefit from forensic audit services?",
+    answer:
+      "Forensic audit services are valuable to businesses and organizations across various industries, including banking, finance, insurance, healthcare, manufacturing, government agencies, and non-profit organizations."
+  },
+ {
+  question: "What are the benefits of a forensic audit?",
+  answer: [
+    "Fraud Detection and Prevention: Forensic audits help detect and prevent fraud, protecting the organization from financial losses and reputational damage.",
+    "Evidence Gathering: They gather evidence that can be used in legal proceedings or internal disciplinary actions against perpetrators.",
+    "Compliance Assurance: Forensic audits ensure compliance with legal and regulatory requirements, reducing the risk of penalties and sanctions.",
+    "Stakeholder Confidence: By demonstrating a commitment to integrity and transparency, forensic audits enhance stakeholder confidence in the organization.",
+    "Operational Improvement: They identify weaknesses in internal controls and operational processes, leading to improvements in efficiency and effectiveness."
+  ]
+}
+
   ];
 
   return (
@@ -107,13 +106,13 @@ const ForensicAudit = () => {
           </motion.h1>
           <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
             <p>
-              A forensic audit is a specialized examination of financial records, transactions, and documents conducted to uncover fraud, financial misconduct, or irregularities. It involves deep data analysis, tracing, and evidence gathering to support legal or internal actions.
+             It will be a specialized examination of financial records, transactions, and documents conducted to identify uncovering fraud, financial misconduct, or irregularities through gathering evidence, analyzing data, and identifying perpetrators of fraudulent activities.It involves detailed analysis, data tracing, and evidence gathering to support legal proceedings or internal investigations.
             </p>
             <p>
-              Our team of experienced forensic auditors uses advanced techniques and methodologies to investigate complex transactions and uncover hidden risks.
+             Our team of experienced forensic auditors employs advanced techniques and methodologies to investigate complex financial transactions and uncover hidden risks.
             </p>
             <p>
-              Our approach combines technical financial expertise with investigative skills to identify discrepancies, expose culprits, and provide actionable insights for risk mitigation.
+             Our approach to understanding the critical importance of thorough and accurate forensic audits. It combines technical expertise with investigative skills to uncover discrepancies, identify perpetrators, and provide actionable insights to mitigate future risks.
             </p>
           </div>
         </motion.div>
@@ -135,22 +134,22 @@ const ForensicAudit = () => {
             {
               title: "Fraud Detection",
               description:
-                "We use advanced data analysis to identify red flags and anomalies that may indicate fraudulent activity.",
+                "We utilize advanced data analysis techniques to identify red flags and anomalies that may indicate fraudulent activities within your organization.",
             },
             {
               title: "Evidence Collection",
               description:
-                "We gather and analyze admissible evidence meticulously to support legal or disciplinary action.",
+                "Our forensic auditors gather and analyze evidence meticulously, ensuring its admissibility and reliability for legal purposes.",
             },
             {
               title: "Interviews & Interrogation",
               description:
-                "Our auditors conduct formal interviews to obtain crucial insights from involved individuals.",
+                "We conduct interviews and interrogations to gather additional information and insights from relevant personnel, witnesses, and suspects.",
             },
             {
               title: "Expert Testimony",
               description:
-                "We offer expert testimony and litigation support during legal proceedings or arbitration.",
+                "Our team provides expert testimony and support during legal proceedings, arbitration, or dispute resolution processes.",
             },
           ].map((item, idx) => (
             <motion.div
@@ -207,8 +206,17 @@ const ForensicAudit = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <div className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
-                      {item.answer}
-                    </div>
+  {Array.isArray(item.answer) ? (
+    <ul className="list-disc pl-6 space-y-2">
+      {item.answer.map((line, idx) => (
+        <li key={idx}>{line}</li>
+      ))}
+    </ul>
+  ) : (
+    <p>{item.answer}</p>
+  )}
+</div>
+
                   </motion.div>
                 )}
               </AnimatePresence>
