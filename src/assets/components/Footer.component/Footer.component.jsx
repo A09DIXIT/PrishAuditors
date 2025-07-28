@@ -105,7 +105,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/services/other" className="hover:underline whitespace-nowrap">
+                  <Link to="services/mergers-acquisitions" className="hover:underline whitespace-nowrap">
                     MERGERS & ACQUISITIONS
                   </Link>
                 </li>
