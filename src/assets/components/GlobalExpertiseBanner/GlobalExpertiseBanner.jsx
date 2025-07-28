@@ -20,7 +20,7 @@ const InteractiveBanner = () => {
       }}
     >
       {/* Optional Image Layer */}
-      <div className="absolute inset-0 bg-[url('/1bannerinmiddle.jpg')] bg-cover bg-center opacity-20" />
+      <div className="absolute inset-0 bg-[url('/1GLOBALexperties.webp')] bg-cover bg-center opacity-20" />
 
       {/* Diagonal Shape */}
       <div className="absolute top-0 right-0 w-[250px] md:w-[300px] h-full bg-white opacity-20 transform rotate-[30deg] translate-x-[50%]" />

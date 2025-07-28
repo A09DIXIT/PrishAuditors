@@ -76,7 +76,7 @@ const AMLCFTPolicy = () => {
       </motion.div>
 
       {/* Intro Section */}
-      <div className="max-w-7xl mx-auto mt-10 px-4 pb-10">
+     <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
         <motion.div
           className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 sm:px-6 lg:px-8 rounded-lg shadow-md"
           initial={{ opacity: 0, y: 20 }}
@@ -89,7 +89,7 @@ const AMLCFTPolicy = () => {
           }}
         >
           <motion.h2 className="text-4xl text-center font-semibold mb-6 text-[#0a2d45]">
-            Anti-Money Laundering (AML/CFT) Policy & Procedures
+           AML/CFT POLICY, CONTROLS, AND PROCEDURES DOCUMENTATION
           </motion.h2>
           <p className="mb-5 text-[#0a2d45] max-w-4xl mx-auto">
             We help UAE businesses stay compliant with AML/CFT regulations by developing formalized policies, procedures, and control frameworks, ensuring operational integrity and legal alignment.

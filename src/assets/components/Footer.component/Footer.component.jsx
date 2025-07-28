@@ -44,7 +44,7 @@ export default function Footer() {
       className="relative bg-cover bg-center text-white py-10"
       style={{ backgroundImage: "url('/who-we-are.jpeg')" }}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      <div className="absolute inset-0  bg-[#0c344b] bg-opacity-50"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">

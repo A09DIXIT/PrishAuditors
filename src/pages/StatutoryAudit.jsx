@@ -241,7 +241,7 @@ const StatutoryAudit = () => {
       <div className="mt-10 mb-20 text-center">
         <Link
           to="/services/audit"
-          className="inline-block px-6 py-3 bg-[#0d3c58] text-white rounded-md hover:bg-blue-700 transition"
+          className="inline-block px-6 py-3 bg-[#010507] text-white rounded-md hover:bg-blue-700 transition"
         >
           Back to AUDITING AND ASSURANCE
         </Link>

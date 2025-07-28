@@ -57,23 +57,28 @@ const faqItems = [
   },
   {
     question: "Why should I start my company in UAE?",
-    answer: <>UAE is a perfectly located biggest market in the world...</>,
+    answer: <>UAE is a perfectly located biggest market in the world. It serves as a perfect destination to invest in different kinds of business. The business owners are free from taxes, and they can expect exceptional logistics in all the emirates. You don’t have any capital restrictions while starting your business. Financial freedom is an attractive point that brings in employees from foreign districts.
+UAE has mind-blowing business opportunities; a business setup firm in UAE can guide you through the entire company formation process.</>,
   },
   {
     question: "How long will it take to set up a free zone company?",
-    answer: <>Being a trustworthy and professional business consultant...</>,
+    answer: <>Being a trustworthy and professional business consultant, we ensure fast and reliable business setup in UAE-free zones. Usually, it takes around 3 to 10 days to set up your free zone company; it may differ according to the selected free zone. We make sure that all your documents are legal and that concerned authorities have attested to them.
+If you’re not consulting a business consultant, it will take up to a few weeks and it becomes difficult to clear all the legal procedures. So, consider PRISH for your free zone business setup.</>,
   },
   {
     question: "How to start an LLC company in UAE?",
-    answer: <>To establish your LLC Company in Dubai mainland...</>,
+    answer: <>To establish your LLC Company in Dubai mainland or anywhere else in UAE, you have to reserve a trade name and other necessary preliminary approvals from concerned authorities. You get an MOA from the company and also, submit the lease contract to the licensing authority. Also, find a local partner and rented office space to start your business.
+PRISH offer few inclusive and affordable packages according to your business setup requirements.</>,
   },
   {
     question: "What kind of company structure should I choose?",
-    answer: <>This depends on your needs, as well as the needs of your business...</>,
+    answer: <>This depends on your needs, as well as the needs of your business. You could set up your company as a Sole Establishment (this is the same as a Sole Proprietorship), as a Limited Liability Partnership, a Limited Liability Company, a Private Limited Company, or a Professional Services Company.
+You also have the option of setting up your company on the mainland, in a free zone (only limited liability company structures are permitted here), or offshore.</>,
   },
   {
     question: "Do I need to rent an office for my business?",
-    answer: <>A physical presence is mandatory for companies established on the mainland...</>,
+    answer: <>A physical presence is mandatory for companies established on the mainland and in free zones. However, an offshore company is not permitted to lease office space in the UAE.
+The good news is that there is affordable office space for everyone. If you want to keep your initial costs down, you could look at renting an office or any number of dedicated desks in a co-working space on the mainland. These are all fully furnished and ready to move in. In a free zone, you need to rent at least a desk in a shared office space. The added advantage is that some free zones allow you to rent a flexi-desk, that is a desk you will be using for say, ten hours in a week. You still get your dedicated PO Box so that you have a unique address.</>,
   },
 ];
 

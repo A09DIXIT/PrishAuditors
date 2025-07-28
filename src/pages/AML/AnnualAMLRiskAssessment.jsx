@@ -59,7 +59,7 @@ const AMLScreeningValidation = () => {
       </motion.div>
 
       {/* Gradient Intro */}
-      <div className="max-w-7xl mx-auto mt-10 px-4 pb-10 relative z-10">
+    <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
         <motion.div
           className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 sm:px-6 lg:px-8 rounded-xl shadow-lg"
           initial={{ opacity: 0, y: 20 }}

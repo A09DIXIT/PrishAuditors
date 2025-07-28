@@ -4,7 +4,7 @@ import Layout from './assets/components/Layout.assets';
 import Home from './assets/components/Home.component/Home.component';
 import ServicesSection from './assets/components/ServicesSection.component/ServicesSection.component';
 import ContactForm from './assets/components/ContactForm.component/ContactForm.component';
-import About from './Pages/about'; // Correct import for About Page
+import About from './Pages/about'; 
 import OurPeople from './assets/components/AboutUs.component/OurTeamMembers';
 import OurVision from './Pages/OurVision';
 import OurValues from './Pages/OurValues';
@@ -147,7 +147,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  // 🔐 ADMIN ROUTES WITHOUT LAYOUT
+  // ADMIN ROUTES WITHOUT LAYOUT
   { path: '/Login', element: <Login /> },
   { path: '/admin/dashboard', element: <Dashboard /> },
 ]);

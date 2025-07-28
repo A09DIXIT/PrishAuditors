@@ -17,14 +17,14 @@ const testimonials = [
   {
     text: `PRISH helped us navigate the regulatory AML landscape in the UAE. Their tools and guidance have ensured we remain compliant and audit-ready.`,
     extra: `We appreciate the hands-on support and look forward to more collaborations.`,
-    img: "/client2.jpg",
+    img: "/prish-icon.png",
     company: "Finance Corp",
     title: "Director",
   },
   {
     text: `Choosing PRISH for AML advisory was the best decision. They simplified the implementation process and answered every compliance query patiently.`,
     extra: `Their team’s depth of knowledge in Anti Money Laundering laws is commendable.`,
-    img: "/client3.jpg",
+    img: "/prish-icon.png",
     company: "Risk Solutions Ltd",
     title: "Manager",
   },

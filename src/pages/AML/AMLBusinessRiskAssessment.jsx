@@ -58,22 +58,22 @@ const AMLBusinessRiskAssessment = () => {
       </motion.div>
 
       {/* Intro Section */}
-      <div className="max-w-7xl mx-auto mt-10 px-4 pb-10">
-        <motion.div
-          className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 mt-5 px-4 sm:px-6 lg:px-8 rounded-lg shadow-md"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          whileHover={{
-            scale: 1.02,
-            boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.15)",
-            transition: { duration: 0.4 },
-          }}
-        >
+     <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
+                  <motion.div
+                    className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 sm:px-6 lg:px-8 rounded-lg shadow-md"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    whileHover={{
+                      scale: 1.02,
+                      boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.15)",
+                      transition: { duration: 0.4 },
+                    }}
+                  >
           <motion.h1 className="text-black text-4xl font-semibold text-center mb-10">
             AML BUSINESS RISK ASSESSMENT
           </motion.h1>
-          <div className="text-black-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
+          <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
             <p>
               Designated Non-Financial Businesses and Professions (DNFBPs) and Financial Institutions (FIs) in UAE are required to carry out Anti-Money Laundering (AML) Business Risk Assessment (BRA). It is also referred to as EWRA, FWRA, or ML/TF Risk Assessment.
             </p>

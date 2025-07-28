@@ -85,7 +85,7 @@ export default function SpecialAudit() {
       </motion.div>
 
       {/* Intro Text */}
-      <div className="container max-w-7xl mt-10 mx-auto w-full">
+     <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
         <motion.div
           className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-12 px-4 sm:px-6 lg:px-10 rounded-lg shadow-md"
           initial={{ opacity: 0, y: 20 }}

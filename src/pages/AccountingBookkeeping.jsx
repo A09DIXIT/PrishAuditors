@@ -92,29 +92,32 @@ const AccountingBookkeeping = () => {
             </motion.div>
       
       {/* Intro Section with Gradient Background (No Image) */}
-       <div className="max-w-7xl mx-auto mt-10 px-4 pb-10">
-
-      <motion.div
-              className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 sm:px-6 lg:px-8 rounded-lg shadow-md"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              whileHover={{ scale: 1.02, boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.15)", transition: { duration: 0.4 } }}
-            >
-        <motion.h2
-          className="text-4xl text-center font-semibold mb-6 text-[#0a2d45]"
-        >
+       <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
+             <motion.div
+               className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 sm:px-6 lg:px-8 rounded-lg shadow-md"
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8 }}
+               whileHover={{
+                 scale: 1.02,
+                 boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.15)",
+                 transition: { duration: 0.4 },
+               }}
+             >
+        <h1 className="text-black text-4xl font-semibold text-center mb-10">
           ACCOUNTING AND BOOKKEEPING
-        </motion.h2>
-        <p className="mb-5 text-[#0a2d45] max-w-4xl mx-auto">
+        </h1>
+          <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
+        <p>
           Accounting and bookkeeping services play a crucial role in helping businesses maintain accurate financial records, comply with regulatory requirements, and make informed financial decisions to support their growth and success.
         </p>
-        <p className="mb-5 text-[#0a2d45] max-w-4xl mx-auto">
+       <p>
           While providing accounting and bookkeeping services, we ensure that financial statements comply with the International Financial Reporting Standards (IFRS) and we are committed to providing the services with the highest standards of integrity and quality.
         </p>
-        <p className="mb-5 text-[#0a2d45] max-w-4xl mx-auto">
+       <p>
           Our team is fully capable with most of accounting software like Tally, QuickBooks, ZOHO, Xero, Microsoft Dynamics 365, SAP, etc. Our approach is proactive, detail-oriented, and focused on high-quality services that meet client needs.
         </p>
+        </div>
       </motion.div>
       </div>
 
