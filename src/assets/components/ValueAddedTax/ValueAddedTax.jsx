@@ -32,31 +32,45 @@ const VAT = () => {
       question: "What is VAT?",
       answer: (
         <>
-          Firstly, VAT (Value Added Tax) is a consumption tax, which means that
-          it is ultimately paid by the end consumer. Although VAT is charged at
-          each step of the ‘supply chain,’ it is the end user who bears the cost.
-          <br />
-          VAT is collected by businesses and paid forward to the government.
-          If a business has paid more VAT than it has collected, it can receive
-          a refund from the government.
+          Firstly, VAT (Value Added Tax) is a consumption tax,
+                  whichmeans that it is ultimately paid by the end consumer.
+                  Although, VAT is charged at each step of the ‘supply chain,’
+                  it is the end user who bears the cost of Value Added Tax.
+                  <br />
+                  VAT is collected by the businesses and then they pay it
+                  forward to the government. In case, a business has paid more
+                  tax to its suppliers than it has received, it can get a refund
+                  from the government. Ultimately, the tax receipts to
+                  government show ‘value add’ throughout the supply chain.
         </>
       ),
     },
     {
       question: "What is UAE VAT Registration?",
       answer:
-        "By VAT Registration, we mean registering the company with the government to submit VAT. Upon approval, the FTA issues a unique VAT identification number.",
+        "By VAT Registration, we mean to register the company with the government for submitting Value Added Tax. Upon successful registration, the concerned tax authority in the UAE, namely Federal Tax Authority (FTA) issues a unique VAT identification to the company.",
     },
     {
       question: "What is the difference between VAT and Sales Tax?",
       answer: (
         <>
-          VAT and sales tax are both consumption taxes charged to the end-consumer.
-          Differences include:
-          <ul className="list-disc pl-5 mt-2">
-            <li>Sales tax usually applies only to goods; VAT applies to goods and services.</li>
-            <li>Sales tax is imposed only at the final sale; VAT is applied at each step of the supply chain.</li>
-          </ul>
+          VAT and sales tax are both consumption taxes; these both are
+                  charged from the end-consumer. However, there are a few
+                  differences
+                  <ul>
+                    <li>
+                      Sales tax is generally imposed on transactions involving
+                      goods, while VAT is applied on goods as well as services.
+                    </li>
+                    <li>
+                      Furthermore, sales tax is imposed only on the final sale
+                      to end-consumer. However, VAT is charged on each step of
+                      the ‘supply chain.’
+                    </li>
+                  </ul>
+                  In VAT (Value Added Tax) based systems, businesses serve as
+                  tax-collectors on behalf of government, which helps reduce
+                  tax-evasion and misreporting.
         </>
       ),
     },
@@ -64,29 +78,37 @@ const VAT = () => {
       question: "Which Companies are Required to Register for VAT in the UAE?",
       answer: (
         <>
-          Businesses with taxable supplies/imports over AED 375,000 must register.
-          Those above AED 187,500 may register voluntarily.
-          <br />
-          Non-registration when required can lead to penalties and legal action.
+          The businesses having taxable imports and supplies that exceed
+                  the amount of 375,000 AED must register for VAT. Besides,
+                  companies exceeding the amount of 187,500 AED can also
+                  register for VAT voluntarily; it is not mandatory for them to
+                  register.
+                  <br />
+                  In case a company fails to register for VAT, they become
+                  liable to pay penalties and face legal consequences.
         </>
       ),
     },
     {
       question: "How Much VAT is Charged in the UAE?",
       answer:
-        "The standard VAT rate is 5%. Some sectors are exempt or zero-rated (0%) based on FTA regulations.",
+        "The standard rate of VAT is 5% (Five Percent) in the UAE. However, there are a few sectors that are exempt from VAT. Additionally, there are also zero-rated supplies that are rated at 0% instead of 5%.",
     },
     {
       question: "Which sectors are exempt from VAT?",
       answer: (
         <>
-          Exempt categories:
-          <ul className="list-disc pl-5 mt-2">
-            <li>Financial services</li>
-            <li>Residential properties</li>
-            <li>Bare land</li>
-            <li>Local passenger transport</li>
-          </ul>
+          <div class="accordion-body">
+                  The following categories of supplies are exempt from VAT.
+                  These supplies should be traded within The United Arab
+                  Emirates.
+                  <ul>
+                    <li>Financial Services</li>
+                    <li>Residential properties</li>
+                    <li>Bare land</li>
+                    <li>Local passenger transport</li>
+                  </ul>
+                </div>
         </>
       ),
     },
@@ -94,35 +116,95 @@ const VAT = () => {
       question: "Which are zero-rated sectors?",
       answer: (
         <>
-          These are charged 0% VAT and must be properly declared:
-          <ul className="list-disc pl-5 mt-2">
-            <li>Gold/silver (99% purity)</li>
-            <li>International transport and related services</li>
-            <li>Certain ships, aircrafts, land transport</li>
-            <li>New homes within 3 years of construction</li>
-            <li>Certain education & healthcare services</li>
-          </ul>
+         <div class="accordion-body">
+                  If you are trading in zero-rated supplies, you will be charged
+                  0% VAT. However, it’s important to remember that these
+                  supplies must be declared properly in VAT returns submitted
+                  during every tax period. The following supplies are charged
+                  with 0% VAT.
+                  <ul>
+                    <li>
+                      Precious metals, such as gold and silver. Which are 99%
+                      pure and available in tradable form.
+                    </li>
+                    <li>International transportation, and related supplies.</li>
+                    <li>
+                      Supplies of certain sea, air, and land means of
+                      transportation (such as aircrafts and ships).
+                    </li>
+                    <li>
+                      Certain investment grade precious metals (e.g. gold,
+                      silver, of 99% purity).
+                    </li>
+                    <li>
+                      Newly constructed residential properties, that are
+                      supplied for the first time within three years of their
+                      construction.
+                    </li>
+                    <li>
+                      Supply of certain education services, and the related
+                      goods and services.
+                    </li>
+                    <li>
+                      Supply of certain healthcare services, and the of related
+                      goods and services.
+                    </li>
+                  </ul>
+                </div>
         </>
       ),
     },
     {
       question: "How to Register for VAT in UAE?",
       answer:
-        "Submit an online application to the FTA with the required documents. Once approved, a VAT certificate is issued via the applicant’s FTA account.",
+        "To register for VAT, an application – along with required documents – is forwarded to the Federal Tax Authority (FTA). Upon successful submission of the request, FTA will issue a VAT Registration Certificate, which can be downloaded online from the applicant’s account.",
     },
     {
       question: "What are the Required Documents for VAT Registration in the UAE?",
       answer: (
         <>
-          Required documents:
-          <ul className="list-disc pl-5 mt-2">
-            <li>Passports & Emirates IDs of owners/partners</li>
-            <li>Trade license, MOA, address, branch info</li>
-            <li>Bank details with IBAN letter</li>
-            <li>Signatory info, turnover estimates</li>
-            <li>Customs code & Dubai Customs Letter</li>
-            <li>Export/import details, if applicable</li>
-          </ul>
+          <div class="accordion-body">
+                  The companies registering for VAT in the UAE are required to
+                  submit the following documents for the registration process:
+                  <ul>
+                    <li>
+                      Passport Copies – of business partners/owners (As
+                      mentioned on business license)
+                    </li>
+                    <li>
+                      Emirates ID – of business partners/owners (As mentioned on
+                      the license)
+                    </li>
+                    <li>Business License - (Trade/Commercial License)</li>
+                    <li>Complete Address of the company</li>
+                    <li>Details of any branches of the company if any</li>
+                    <li>Memorandum of Association (MOA)</li>
+                    <li>Company’s bank account details – with IBAN letter</li>
+                    <li>
+                      Contact details of the authorized signatory, including
+                      email and phone number
+                    </li>
+                    <li>Details of any branches, if applicable</li>
+                    <li>
+                      Expected turnover, revenue and taxable expenses for the
+                      next 30 days
+                    </li>
+                    <li>
+                      Turnover Declaration – with stamp and signature by the
+                      owner or the manager.
+                    </li>
+                    <li>
+                      Custom code – along with a copy of Dubai Customs Letter.
+                    </li>
+                    <li>GCC export or import details – if applicable</li>
+                    <li>
+                      Preference for or against registration as a Tax Group
+                    </li>
+                  </ul>
+                  Depending upon the jurisdictions or business activities, some
+                  additional documents may also be required for the VAT
+                  Registration process.
+                </div>
         </>
       ),
     },
@@ -162,17 +244,29 @@ const VAT = () => {
           </motion.h1>
           <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
             <p>
-              Assisting businesses in the UAE with VAT registration, compliance
-              support (returns, record keeping, accounting), and advisory on
-              VAT treatment and planning.
+              Assisting businesses in the UAE with the VAT registration process,
+              providing support and guidance on compliance requirements such as
+              filing VAT returns, maintaining VAT records, and implementing VAT
+              accounting systems. We also provide VAT Advisory services for the
+              application of VAT to specific transactions, products, and
+              services, VAT planning, and optimization.UAE VAT services
+              encompass a range of activities aimed at helping businesses
+              understand, implement, and manage VAT compliance requirements by
+              the regulations set by the Federal Tax Authority (FTA) of the UAE.
             </p>
             <p>
-              Our VAT experts help ensure full compliance with UAE FTA
-              regulations and minimize risk or penalties.
+             Our experienced team provides expert guidance and support to
+              ensure compliance with VAT regulations, optimize tax efficiency,
+              and mitigate risks associated with VAT implementation and
+              reporting.
             </p>
             <p>
-              We customize our VAT services to meet client-specific needs across
-              registration, filing, representation, and strategic advisory.
+              Our approach is to understand the complexities of VAT regulations
+              and the challenges businesses face in complying with them. Our
+              approach to UAE VAT services is tailored to meet the specific
+              needs and objectives of each client. We provide a comprehensive
+              range of services, including VAT registration, advisory,
+              compliance, and representation.
             </p>
           </div>
         </motion.div>
@@ -201,17 +295,17 @@ const VAT = () => {
             {
               title: "VAT Advisory",
               description:
-                "Our expert advisors guide VAT compliance, including classification of supplies and VAT treatment of transactions.",
+                "Our expert advisors guide VAT compliance, including the classification of supplies, the VAT treatment of transactions, and implications for business operations.",
             },
             {
               title: "VAT Compliance",
               description:
-                "We help businesses prepare and submit VAT returns, maintain records, and comply with filing deadlines.",
+                " We help businesses prepare and submit accurate VAT returns, maintain proper records, and comply with filing deadlines to avoid penalties.",
             },
             {
               title: "VAT Representation",
               description:
-                "We represent clients before the FTA during audits, assessments, and disputes.",
+                "Our team can act as a liaison between businesses and the FTA, representing clients during tax audits, assessments, and disputes.",
             },
           ].map((item, idx) => (
             <motion.div

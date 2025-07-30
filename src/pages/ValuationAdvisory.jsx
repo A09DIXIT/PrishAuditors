@@ -40,7 +40,7 @@ const ValuationAdvisory = () => {
     },
     {
       title: 'Financial Reporting Valuation',
-      desc: 'We provide valuation services for financial reporting purposes, including fair value measurements, purchase price allocations, and impairment testing under ASC 820, ASC 805, and ASC 350.',
+      desc: 'We provide valuation services for financial reporting purposes, including fair value measurements, purchase price allocations, and impairment testing under accounting standards such as ASC 820 (formerly FAS 157), ASC 805 (formerly SFAS 141R), and ASC 350 (formerly FAS 142).',
     },
     {
       title: 'Transaction Support',
@@ -48,7 +48,7 @@ const ValuationAdvisory = () => {
     },
     {
       title: 'Litigation Support',
-      desc: 'We provide expert witness testimony and litigation support for valuation-related disputes, including shareholder disputes, marital dissolution, economic damages, and bankruptcy.',
+      desc: 'We provide expert witness testimony and litigation support services for disputes involving valuation matters, including shareholder disputes, marital dissolution, economic damages, and bankruptcy proceedings.',
     },
   ];
 
@@ -95,9 +95,10 @@ const ValuationAdvisory = () => {
       question: "What are the approaches that can be adopted for business valuation?",
       answer: (
         <div>
-          <p className="font-semibold">Asset-based valuation: <span className="font-normal">The asset-based valuation considers the basic business assets in order to estimate the value of the overall business enterprise...</span></p>
-          <p className="font-semibold">Market-based valuation: <span className="font-normal">Under the Market-based valuation, the marketplace is considered for the business value...</span></p>
-          <p className="font-semibold">Income-based valuation: <span className="font-normal">The Income-based valuation method is based on the economic principle of expectation to determine the value of a business...</span></p>
+          <p className="font-semibold">Asset-based valuation: <span className="font-normal">The asset-based valuation considers the basic business assets in order to estimate the value of the overall business enterprise. This technique is good for corporations, but it will be challenging if applied to a sole proprietorship, because, since the assets belong to the same owner, it will be difficult to separate the same for personal use and business purposes.</span></p>
+          <p className="font-semibold">Market-based valuation: <span className="font-normal">Under the Market-based valuation, the marketplace is considered for the business value. It compares the value of one’s business to another similar business which is sold recently.</span></p>
+          <p className="font-semibold">Income-based valuation: <span className="font-normal">The Income-based valuation method is based on the economic principle of expectation to determine the value of a business, i.e. the real value of a business lies in building wealth for the future. Based on this fact, an evaluator ascertains the upcoming cash flow by examining the records and assesses the upcoming financial risk.
+All these approaches may bring different estimates of value for the same asset at the same time. If you want to know the real estimate, you have to use all these approaches to reach a conclusion.</span></p>
         </div>
       )
     },
@@ -105,14 +106,15 @@ const ValuationAdvisory = () => {
       question: "What are the various situations that lead to valuation of business?",
       answer: (
         <div>
-          <p className="font-semibold">Funding or financing: <span className="font-normal">Helps in raising funds while negotiating with banks.</span></p>
-          <p className="font-semibold">Goodwill impairment: <span className="font-normal">Helps understand impairment loss when purchase value exceeds fair value.</span></p>
-          <p className="font-semibold">Buy or sell contracts: <span className="font-normal">Supports decisions related to acquisitions or selling a business.</span></p>
-          <p className="font-semibold">Mergers or purchases: <span className="font-normal">Assesses fairness of acquisition price.</span></p>
-          <p className="font-semibold">Litigation and ownership disputes: <span className="font-normal">Used by court to resolve valuation-related cases.</span></p>
-          <p className="font-semibold">Shareholder oppression cases: <span className="font-normal">Independent valuation for fair settlement.</span></p>
-          <p className="font-semibold">Reorganization and bankruptcies: <span className="font-normal">Assists with creditor negotiations and restructuring.</span></p>
-          <p className="font-semibold">Business planning: <span className="font-normal">Location and planning factors influence business valuation.</span></p>
+          <p>A Businesses valuation is done based on various reasons, of which some of the common reasons are discussed below: -</p>
+          <p className="font-semibold">Funding or financing: <span className="font-normal">An objective of your business will help you raise funds for your business while negotiating with banks.</span></p>
+          <p className="font-semibold">Goodwill impairment: <span className="font-normal">Goodwill impairment happens when the purchase value is greater than its implied fair value. A goodwill valuation will help you understand the impairment loss of the business.</span></p>
+          <p className="font-semibold">Buy or sell contracts: <span className="font-normal">A business valuation will make sure that you reach the right decision on whether to sell your business or grow your business through acquisition.</span></p>
+          <p className="font-semibold">Mergers or purchases: <span className="font-normal">At the time of buying or merging with another company, a business valuation will help you determine if the price you have to pay is a fair one or not.</span></p>
+          <p className="font-semibold">Litigation and ownership disputes: <span className="font-normal">If there is a court case against the value of the business, it will be settled by the court based on the valuation of the business.</span></p>
+          <p className="font-semibold">Shareholder oppression cases: <span className="font-normal">An independent valuation of the business is required for a fair settlement of ownership issues once any one of the owners decides to quit.</span></p>
+          <p className="font-semibold">Reorganization and bankruptcies: <span className="font-normal">A valuation report provides your company with certification that can assist with creditor negotiations and provide the basis for a financial restructuring plan at the time of bankruptcy.</span></p>
+          <p className="font-semibold">Business planning: <span className="font-normal">Your company’s location is a major factor when it comes to valuation because if you are in a prime location, it can be a major advantage for your business.</span></p>
         </div>
       )
     },
@@ -129,18 +131,23 @@ const ValuationAdvisory = () => {
     {
       question: "What are the general valuation procedures that need to be followed?",
       answer: (
-        <ul className="list-disc pl-5 space-y-1">
-          <li>Know the purpose of the valuation</li>
-          <li>Review historical and forecasted information</li>
-          <li>Analyse balance sheets, income statements and cash flow</li>
-          <li>Conduct meetings with management</li>
-          <li>Assess budgets, contracts, and market conditions</li>
-          <li>Understand the client’s objective and context</li>
-          <li>Fix the standard of value and define it</li>
-          <li>Check all approaches of value and choose the most appropriate</li>
-          <li>Ensure compliance with professional standards</li>
-          <li>Provide reliable reports to support financial decisions</li>
-        </ul>
+       <ul className="list-disc pl-6 space-y-2 text-gray-700">
+  <li>Know the purpose of the action</li>
+  <li>Review historical and forecasted information</li>
+  <li>Analyse balance sheets, income statements and cash flow</li>
+  <li>Conduct meetings with management and discuss company history, operations, employees, customers and competitors and other relevant items</li>
+  <li>Analyse and compare company performance to similar businesses within the industry</li>
+  <li>Assess the budgets, leases, sales contracts, purchase agreements, customer lists, local and national economies and management capabilities.</li>
+  <li>Know the client and the client’s use of the valuation</li>
+  <li>Fix the standard of value and its definition</li>
+  <li>Determine whether discounts and premiums are to be considered</li>
+  <li>Collect information about the industry and economy</li>
+  <li>Check all approaches of value and select the most appropriate method</li>
+  <li>Put into practice the approaches to value through the various methodologies</li>
+  <li>Ensure compliance with professional standards, if pertinent</li>
+  <li>Provide authentic and accurate reports for getting your financial decisions well-done.</li>
+</ul>
+
       )
     }
   ];

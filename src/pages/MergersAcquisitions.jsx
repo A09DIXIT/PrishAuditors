@@ -43,23 +43,19 @@ const MergersAcquisitions = () => {
   const services = [
     {
       title: "Due Diligence",
-      description: `Financial, tax, and legal due diligence services are essential components of the M&A process,
-        providing valuable insights and risk assessments to potential buyers or investors. At PRISH, we exceed expectations
-        in conducting thorough due diligence and achieving successful M&A outcomes.`,
+      description: `Financial, tax, and legal due diligence services are essential components of the mergers and acquisitions (M&A) process, providing valuable insights and risk assessments to potential buyers or investors. Thus, businesses are inclined towards engaging experienced professionals and we at PRISH stand beyond our clients expectation in conducting a thorough due diligence and achieving successful outcomes in M&A transactions.`,
       link: "/Mergers-Acquisitions/due-diligence",
       bg: "/1DueDiligence.webp",
     },
     {
       title: "Valuation Advisory Services",
-      description: `We provide Valuation Advisory Services covering feasibility studies, fairness opinions, transaction advisory,
-        valuation modeling, sensitivity analysis, and expert testimony. Our objective assessments empower clients to make informed decisions.`,
+      description: `Valuation Advisory services encompass a range of consulting and advisory services related to business and asset valuation. These services provided by us includes valuation feasibility studies, fairness opinions, transaction advisory, due diligence support, valuation modelling, sensitivity analysis, and expert witness testimony. We provide independent, objective assessments and recommendations to help our clients make informed decisions for mergers & acquisitions.`,
       link: "/Mergers-Acquisitions/valuation-advisory",
       bg: "/1ValuationAdvisory.jpg", // ← Add your image path here
     },
     {
       title: "Restructuring and Reorganization Services",
-      description: `These services are essential for businesses facing financial, operational, or strategic challenges. Our experienced professionals
-        guide companies through complex restructuring, unlocking value and ensuring long-term sustainability.`,
+      description: `These are the essential services for businesses facing financial, operational, or strategic challenges to adapt, evolve, and thrive in dynamic and competitive markets. We have experienced restructuring professionals in our team who can help companies to navigate complex restructuring processes, unlock value, and position themselves for long-term success and sustainability.`,
       link: "/Mergers-Acquisitions/restructuring-reorganization",
       bg: "/1Restructuring.jpeg", // ← Add your image path here
     },

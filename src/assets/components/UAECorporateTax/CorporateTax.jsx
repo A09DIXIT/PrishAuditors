@@ -40,84 +40,156 @@ const CorporateTax = () => {
   {
     question: "What is Corporate Tax?",
     answer:
-      "Corporate Tax is a form of direct tax levied on the net income or profit of corporations and other businesses. It is also referred to as 'Corporate Income Tax' or 'Business Profits Tax' in other jurisdictions.",
+      " Corporate Tax is a form of direct tax levied on the net income or profit of corporations and other businesses. Corporate Tax is sometimes also referred to as “Corporate Income Tax” or “Business Profits Tax” in other jurisdictions.",
   },
   {
     question: "Why is the UAE introducing Corporate Tax?",
     answer:
-      "A competitive Corporate Tax regime based on international best practices strengthens the UAE’s position as a global business hub and supports its strategic goals. It also affirms the UAE’s commitment to international tax transparency.",
+      "A competitive Corporate Tax regime based on international best practices is expected to cement the UAE’s position as a leading global hub for business and investment and accelerate the UAE’s development and transformation to achieve its strategic objectives. <br /> Introducing a Corporate Tax regime also reaffirms the UAE’s commitment in meeting international standards for tax transparency and preventing harmful tax practices.",
   },
   {
     question: "Is the UAE the first country to introduce Corporate Tax?",
     answer:
-      "No, most countries—including those in the Middle East—already have Corporate Tax regimes in place.",
+      "Most countries in the world have a comprehensive Corporate Tax regime, including most of the countries in the Middle East.",
   },
   {
     question: "When is the UAE Corporate Tax regime effective?",
     answer:
-      "It is effective for financial years starting on or after 1 June 2023. For example:\n• A business with a financial year from 1 July 2023 to 30 June 2024 is subject from 1 July 2023.\n• A business with a year starting 1 January 2023 is subject from 1 January 2024.",
+      <div class="accordion-body">
+                  The UAE Corporate Tax regime is effective for Financial Years
+                  starting on or after 1 June 2023. Examples:
+                  <ul>
+                    <li>
+                      A Business that has a Financial Year starting on 1 July
+                      2023 and ending on 30 June 2024 is subject to UAE
+                      Corporate Tax from 1 July 2023 (which is the beginning of
+                      the first Financial Year that starts on or after 1 June
+                      2023).
+                    </li>
+                    <li>
+                      A Business that has a Financial Year starting on 1 January
+                      2023 and ending on 31 December 2023 will become subject to
+                      UAE Corporate Tax from 1 January 2024 (which is the
+                      beginning of the first Financial Year that starts on or
+                      after 1 June 2023).
+                    </li>
+                  </ul>
+                </div>
   },
   {
     question: "Who is subject to UAE Corporate Tax?",
     answer:
-      "UAE-incorporated juridical persons, foreign juridical persons effectively managed in the UAE, and foreign entities with a UAE Permanent Establishment or taxable nexus. Natural persons are subject only if engaged in business activities.",
+       <div class="accordion-body">
+                  UAE Corporate Tax applies to juridical persons incorporated in
+                  the UAE and to foreign juridical persons that are effectively
+                  managed and controlled in the UAE (see question 20: ‘Who is
+                  considered a Resident Person for UAE Corporate Tax
+                  purposes?’). A foreign juridical person that operates in the
+                  UAE through a Permanent Establishment or that has a taxable
+                  nexus in the UAE would also be subject to Corporate Tax (see
+                  Section M “Foreign persons”).
+                  <br />
+                  Natural persons will be subject to Corporate Tax only if they
+                  are engaged in a Business or Business Activity in the UAE,
+                  either directly or through an Unincorporated Partnership or
+                  sole proprietorship. Cabinet Decision No. 49 of 2023 specifies
+                  further information on what would bring a natural person
+                  within the scope of UAE Corporate Tax.
+                </div>
   },
   {
     question:
       "Will UAE entities owned by UAE or GCC nationals be subject to UAE Corporate Tax?",
     answer:
-      "Yes. All juridical persons resident or incorporated in the UAE, or with a permanent establishment or taxable nexus, are subject regardless of ownership.",
+      <div class="accordion-body">
+                  Yes. The application of UAE Corporate Tax does not
+                  differentiate between entities that are locally or
+                  internationally owned.
+                  <br />
+                  Juridical persons that are incorporated or resident in the
+                  UAE, or foreign entities that have a Permanent Establishment
+                  or taxable nexus in the UAE, will be subject to UAE Corporate
+                  Tax irrespective of the residence and nationality of the
+                  individual founders or (ultimate) owners of the entity.
+                </div>
   },
   {
     question:
       "Will UAE Corporate Tax be applicable to businesses in all Emirates?",
     answer:
-      "Yes. Corporate Tax is a federal tax and applies uniformly across all Emirates.",
+      "Yes. The UAE Corporate Tax is a federal tax and will therefore apply across all the Emirates.",
   },
   {
     question:
       "Will I have to pay UAE Corporate Tax alongside Emirate level taxes?",
     answer:
-      "Yes, for some businesses. However, entities involved in natural resource extraction and certain exempt activities may only pay Emirate-level tax. Emirate taxes can't offset Corporate Tax liabilities.",
+      <div class="accordion-body">
+                  Businesses engaged in the extraction of the UAE’s Natural
+                  Resources and in certain non-extractive activities that are
+                  subject to Emirate level taxation will be outside the scope of
+                  UAE Corporate Tax, subject to meeting certain conditions.
+                  <br />
+                  Other businesses may be subject to both Corporate Tax and
+                  Emirate level taxation. Emirate level taxes paid will not be
+                  able to be credited against or otherwise reduce the amount of
+                  Corporate Tax Payable.
+                </div>
   },
   {
     question: "Will UAE Corporate Tax replace VAT in the UAE?",
     answer:
-      "No. Both Corporate Tax and VAT will apply separately in the UAE.",
+      " No, Corporate Tax and VAT are two different types of taxes. Both will apply in the UAE.",
   },
   {
     question:
       "Will I have to pay UAE Corporate Tax alongside VAT in the UAE?",
     answer:
-      "Yes. If you're VAT-registered, you'll need to pay both taxes separately. Non-VAT businesses may still be liable for Corporate Tax.",
+      " If you are a registered business for VAT, you will have to pay VAT and Corporate Tax separately. If your business is not registered for VAT you may still have to pay Corporate Tax.",
   },
   {
     question: "Will UAE Corporate Tax replace Excise Tax in the UAE?",
     answer:
-      "No. Corporate Tax and Excise Tax are separate taxes and both will remain applicable.",
+      "  No, Corporate Tax and Excise Tax are two different types of taxes. Both will apply in the UAE.",
   },
   {
     question:
       "Will I continue to pay service fees to the Federal and Emirate Governments now that the UAE has introduced Corporate Tax?",
     answer:
-      "Yes. Service fees (e.g., license renewal, registration) will still apply. These may be deductible business expenses for Corporate Tax purposes.",
+     <div class="accordion-body">
+                  Yes. Applicable service fees will continue to be payable to
+                  the Federal or relevant Emirate Government.
+                  <br />
+                  Business set up, licence renewal and other Government fees and
+                  charges that are incurred in the ordinary course of business
+                  should generally be deductible expenses for UAE Corporate Tax
+                  purposes.
+                </div>
   },
   {
     question:
       "Will I need to consider the UAE’s international agreements for UAE Corporate Tax purposes?",
     answer:
-      "Yes. International tax treaties and agreements (like double taxation agreements) may override aspects of the UAE’s Corporate Tax law.",
+       <div class="accordion-body">
+                  In-force international agreements (including international
+                  agreements for the avoidance of double taxation) to which the
+                  UAE is a party should be considered under the UAE Corporate
+                  Tax regime.
+                  <br />
+                  In case of a conflict between the Corporate Tax Law and an
+                  international agreement with respect to the right to tax a
+                  certain item of income, the relevant international agreement
+                  may limit the application of UAE Corporate Tax.
+                </div>
   },
   {
     question: "What will be the role of the Federal Tax Authority?",
     answer:
-      "The FTA will handle the administration, collection, and enforcement of Corporate Tax, including issuing guides and clarifications.",
+      "The Federal Tax Authority will be responsible for the administration, collection and enforcement of UAE Corporate Tax and other federal taxes. For the purpose of the administration, collection and enforcement of Corporate Tax, the Federal Tax Authority will issue guides, respond to clarifications and provide awareness sessions as required.",
   },
   {
     question: "What will be the role of the Ministry of Finance?",
     answer:
-      "The Ministry oversees tax treaties, international tax cooperation, and can issue regulations for the Corporate Tax regime.",
-  },
+      "The Ministry of Finance is the competent authority for the purposes of bilateral/multilateral tax agreements and the international exchange of information for tax purposes. The Ministry of Finance also has the authority to issue further implementing regulations for UAE Corporate Tax and other federal taxes.", },
 ];
 
   return (
@@ -154,17 +226,15 @@ const CorporateTax = () => {
           </motion.h1>
           <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
             <p>
-              Corporate Tax has been introduced for the very first time in UAE with effect from 1st June 2023. Since the emerging law requires a vibrant understanding for our clients, we provide UAE Corporate Tax Impact Assessment and Analysis, Registration, return filing, and Corporate Tax Consultancy based on specific business operations.
-            </p>
-            <p>
-              UAE Corporate Services encompass a variety of services designed to assist businesses with company formation, compliance, governance, and other corporate matters.
+              Corporate Tax has been introduced for the very first time in UAE with effect from 1st June 2023 and since the emerging law requires a vibrant understanding for our clients, we hereby provide UAE Corporate Tax Impact Assessment and Analysis, Registration, return filing, Corporate Tax Consultancy based on the specific businesses and their operations. UAE Corporate Services encompass a variety of services designed to assist businesses with company formation, compliance, governance, and other corporate matters. These services help businesses establish and maintain their presence in the UAE while ensuring compliance with local regulations.
             </p>
             <p>
               Our expert team provides comprehensive support to help businesses navigate the complex regulatory landscape and achieve their corporate objectives efficiently and effectively.
             </p>
             <p>
-              Our approach is tailored to the specific needs and objectives of each client. We provide personalized assistance, expert advice, and practical solutions to help businesses succeed in the UAE market.
+              Our approach is to understand the unique challenges and opportunities that businesses face in the UAE. It's tailored to meet the specific needs and objectives of each client. We provide personalized assistance, expert advice, and practical solutions to help businesses succeed in the UAE market.
             </p>
+            
           </div>
         </motion.div>
       </div>
@@ -187,22 +257,22 @@ const CorporateTax = () => {
             {
               title: "Company Formation",
               description:
-                "We assist businesses with company setup, selecting legal structures, documentation, licenses, and registrations.",
+                "We assist businesses with company setup, including choosing the right legal structure, preparing documentation, obtaining necessary licenses, and completing registration with relevant authorities.",
             },
             {
               title: "Corporate Governance",
               description:
-                "We guide businesses on best practices and frameworks for transparency, accountability, and legal compliance.",
+                "We guide corporate governance best practices and help businesses establish effective corporate governance frameworks to ensure transparency, accountability, and compliance with regulations.",
             },
             {
               title: "Compliance Management",
               description:
-                "We help businesses comply with UAE laws related to tax, employment, and company operations, minimizing legal risks.",
+                "Our team helps businesses navigate the complex regulatory environment in the UAE, ensuring compliance with company laws, tax regulations, employment laws, and other applicable regulations.",
             },
             {
               title: "Corporate Restructuring",
               description:
-                "We support businesses during mergers, acquisitions, and reorganizations to achieve strategic goals efficiently.",
+                "We assist businesses with corporate restructuring activities such as mergers, acquisitions, reorganizations, and liquidations, helping them optimize their corporate structure and achieve their strategic objectives.",
             },
           ].map((item, idx) => (
             <motion.div

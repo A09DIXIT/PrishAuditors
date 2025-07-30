@@ -45,12 +45,15 @@ const faqItems = [
  {
     question: "What are the key benefits of financial budgeting and forecasting services?",
     answer: (
+      <>
+      <p>The key benefits of financial budgeting and forecasting services include:</p>
       <ul className="list-disc pl-5 space-y-2">
         <li>Improved decision-making based on accurate financial data and insights</li>
         <li>Efficient allocation of resources to maximize profitability</li>
         <li>Identification and mitigation of potential risks through scenario analysis</li>
         <li>Facilitation of strategic planning by aligning short-term actions with long-term goals</li>
       </ul>
+      </>
     ),
   },
   {

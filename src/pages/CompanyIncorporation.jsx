@@ -122,61 +122,39 @@ const CompanyIncorporation = () => {
                        transition: { duration: 0.4 },
                      }}
                    >
-          <div className="max-w-6xl mx-auto">
-            <h1 className="text-4xl font-semibold mb-8 text-center text-[#0a2d45]">
-              COMPANY INCORPORATION SERVICES
-            </h1>
-            <p className="text-xl text-gray-700 leading-relaxed mb-4">
-              Based on understanding our clients' requirements, we at <strong className="text-[#0a2d45]">PRISH</strong> advise clients on the most suitable business structure, ownership preferences, operating environments such as freezone, mainland, and other regulatory requirements.
-            </p>
-            <p className="text-xl text-gray-700 leading-relaxed">
-              Through our professional expertise team members, we navigate the complex legal and regulatory landscape more effectively, streamline the incorporation process, and establish a strong legal foundation for operations for our various clients in the country.
-            </p>
-          </div>
+          <div className="max-w-6xl mx-auto px-4 md:px-0">
+  <h1 className="text-4xl font-semibold mb-8 text-center text-[#0a2d45]">
+    COMPANY INCORPORATION SERVICES
+  </h1>
+  <p className="text-xl text-gray-700 leading-relaxed mb-4">
+    Company incorporation services in the United Arab Emirates (UAE) involve assisting businesses and entrepreneurs in establishing legal entities to conduct business activities within the country.
+  </p>
+  <p className="text-xl text-gray-700 leading-relaxed mb-4">
+    Based on understanding our clients' requirements, we at <strong className="text-[#0a2d45]">PRISH</strong> advise clients on the most suitable business structure, ownership preferences, operating environments such as freezone, mainland, and other regulatory requirements.
+  </p>
+  <p className="text-xl text-gray-700 leading-relaxed mb-6">
+    Through our professional expertise team members, we navigate the complex legal and regulatory landscape more effectively, streamline the incorporation process, and establish a strong legal foundation for operations for our various clients in the country.
+  </p>
+
+  <ul className="list-disc pl-6 text-lg text-gray-800 space-y-2">
+    <li>Business Structure and Ownership Consultation</li>
+    <li>Document Preparation and Submission</li>
+    <li>Trade Name Reservation and Approval</li>
+    <li>License Application and Processing</li>
+    <li>Office Space and Facilities</li>
+    <li>Visa and Immigration Services</li>
+    <li>Bank Account Opening</li>
+    <li>Ongoing Compliance and Support including trademark, copyright etc.</li>
+  </ul>
+</div>
+
         </motion.div>
       </div>
-
-
-       <div className="max-w-6xl mt-10 mx-auto px-4 pb-20">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-3xl font-semibold text-[#163c4f] mb-6 text-center">
-                  Why Choose PRISH for AML Risk Assessment Filing?
-                </h3>
-              </motion.div>
-      
-              <div className="grid md:grid-cols-2 gap-8">
-                {["Business Structure and Ownership Consultation",
-                "Document Preparation and Submission",
-                  "Trade Name Reservation and Approval",
-                  "License Application and Processing",
-                  "Office Space and Facilities",
-                "Visa and Immigration Services",
-              "Bank Account Opening",
-            "Ongoing Compliance and Support including trademark, copyright, etc."].map((text, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    viewport={{ once: true }}
-                    className="bg-white shadow-md p-6 rounded-xl border-l-4 border-[#163c4f]"
-                  >
-                    <p className="text-gray-700 text-base">{text}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-      
 
       
       {/* FAQ Section */}
       <motion.h2
-             className="text-4xl font-semibold text-center text-[#0a2d45] mb-10"
+             className="text-4xl font-semibold text-center text-[#0a2d45] mb-10 mt-10"
              initial={{ opacity: 0, y: 20 }}
              whileInView={{ opacity: 1, y: 0 }}
              transition={{ duration: 0.6 }}

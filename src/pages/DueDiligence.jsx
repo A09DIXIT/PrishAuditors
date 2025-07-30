@@ -64,15 +64,15 @@ const DueDiligence = () => {
     },
     {
       title: 'Commercial Due Diligence',
-      desc: 'We evaluate market dynamics, competitors, and growth opportunities to assess the commercial viability and risks of a business or investment.',
+      desc: 'We evaluate market dynamics, competitors, and growth opportunities to assess the commercial viability and potential risks of a business or investment opportunity.',
     },
     {
       title: 'Vendor Due Diligence',
-      desc: 'We assess suppliers to ensure reliability, quality, and compliance with contractual and regulatory requirements.',
+      desc: 'We assess suppliers or vendors to ensure reliability, quality, and compliance with contractual obligations, regulatory requirements, and industry standards.',
     },
     {
       title: 'Customer Due Diligence',
-      desc: 'We verify the identity and background of customers to prevent fraud, comply with AML laws, and assess creditworthiness.',
+      desc: 'We verify the identity and background of customers to prevent fraud, comply with regulations such as anti-money laundering (AML) laws, and assess creditworthiness.',
     },
   ];
 
@@ -200,9 +200,9 @@ const DueDiligence = () => {
 
           <div className="text-black text-base md:text-xl leading-relaxed space-y-5">
             {[
-              "Financial, tax, and legal due diligence services are essential components of the mergers and acquisitions (M&A) process, providing valuable insights and risk assessments to potential buyers or investors. Thus, businesses are inclined towards engaging experienced professionals and we at PRISH stand beyond our client's expectations in conducting thorough due diligence and achieving successful outcomes in M&A transactions.",
+              "Financial, tax, and legal due diligence services are essential components of the mergers and acquisitions (M&A) process, providing valuable insights and risk assessments to potential buyers or investors. Thus, businesses are inclined towards engaging experienced professionals and we at PRISH stand beyond our client'sexpectations in conducting thorough due diligence and achieving successful outcomes in M&A transactions. It helps businesses mitigate risks, make informed decisions, and ensure compliance with regulations.",
               "Our experienced team conducts thorough investigations and assessments to provide valuable insights and recommendations tailored to our client's specific needs.",
-              "Our approach is to understand the importance of due diligence in protecting our clients' interests and ensuring the success of their business endeavors. We are detail-oriented, compliance-focused, and deliver high-quality due diligence reports that provide actionable insights.",
+              "Our approach is to understand the importance of due diligence in protecting our clients' interests and ensuring the success of their business endeavors which is detail-oriented, compliance-focused, and designed to deliver high-quality due diligence reports that provide actionable insights.",
             ].map((text, i) => (
               <motion.p key={i} custom={i + 1} variants={fadeInUpLocal}>
                 {text}

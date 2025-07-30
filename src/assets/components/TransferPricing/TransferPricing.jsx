@@ -36,44 +36,44 @@ const TransferPricing = () => {
   {
     question: "Why is transfer pricing important?",
     answer:
-      "It ensures that transactions between related parties are conducted at arm's length, preventing tax evasion and ensuring fair taxation and regulatory compliance.",
+      " Transfer pricing is important because it ensures that transactions between related parties are conducted at arm's length, as if they were between independent parties. This helps to prevent tax evasion, ensure fair taxation, and comply with regulations.",
   },
   {
     question: "What are the risks associated with transfer pricing?",
     answer:
-      "Risks include double taxation, penalties for non-compliance, reputational harm, and disputes with tax authorities.",
+      " The risks associated with transfer pricing include double taxation, penalties for non-compliance, reputational damage, and disputes with tax authorities.",
   },
   {
     question: "What is the arm's length principle?",
     answer:
-      "It's an international standard requiring related-party transactions to be priced as if they were between unrelated, independent parties in an open market.",
+      " The arm's length principle is the international standard for determining transfer prices, which requires that the price charged for a transaction between related parties be the same as it would be between unrelated parties in an open market",
   },
   {
     question: "What documentation is required for transfer pricing compliance?",
     answer:
-      "Typically includes a master file, local file, and country-by-country report outlining the company’s policies, transactions, and financial data.",
+      " Documentation typically includes a master file, local file, and country-by-country report, detailing the company's transfer pricing policies, intercompany transactions, and related financial information.",
   },
   {
     question:
       "Are there any transfer pricing methods used for determining arm's length prices?",
     answer:
-      "Yes. Common methods include the CUP method, cost-plus method, resale price method, and transactional net margin method (TNMM).",
+      " Yes, common transfer pricing methods include the comparable uncontrolled price (CUP) method, cost-plus method, resale price method, and transactional net margin method (TNMM), among others.",
   },
   {
     question: "What is the process for implementing a transfer pricing policy?",
     answer:
-      "It involves conducting a pricing study, selecting appropriate methods, documenting procedures, and ensuring ongoing compliance.",
+      "The process typically involves conducting a transfer pricing study to assess intercompany transactions, determining appropriate transfer pricing methods, documenting policies and procedures, and monitoring compliance.",
   },
   {
     question: "What are the benefits of implementing a transfer pricing policy?",
     answer:
-      "Benefits include lower audit risk, tax efficiency, better documentation, operational consistency, and enhanced regulatory compliance.",
+      " Benefits include reducing the risk of penalties and assessments from tax authorities, optimizing the company's tax position, improving operational efficiency, and ensuring compliance with regulations.",
   },
   {
     question:
       "How often should transfer pricing policies be reviewed and updated?",
     answer:
-      "They should be reviewed regularly, especially when business models, regulations, or market conditions change.",
+      " Transfer pricing policies should be reviewed and updated regularly to reflect changes in the company's business operations, regulatory requirements, and market conditions.",
   },
 ];
 

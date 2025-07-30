@@ -36,12 +36,15 @@ const CFOServices = () => {
     {
       question: "How can CFO services benefit business?",
       answer: (
+        <>
+        <p>The benefits of CFO services include:</p>
         <ul className="list-disc pl-5 space-y-2">
           <li>Access to experienced financial professionals</li>
           <li>Cost savings compared to hiring a full-time CFO</li>
           <li>Improved financial performance and profitability</li>
           <li>Enhanced governance and compliance with financial regulations</li>
         </ul>
+        </>
       ),
     },
     {
@@ -114,13 +117,14 @@ const CFOServices = () => {
             </motion.h1>
             <div className="text-black-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
               <p>
-                Our seasoned finance professionals are members of IIM and ICAI who help you in running your finance function with their expert advice and hands-on involvement. Their niche experience with MNCs can help your business to a better future by getting them as a virtual CFO to revolutionize the finance on your behalf.
+                Our seasoned finance professionals are members of IIM and ICAI who help you in running your finance function with their expert advice and hands-on involvement. Their niche experience with MNCs can help your business to a better future by getting them as a virtual CFO to revolutionize the finance on your behalf.These services cover a wide range of financial management functions, including financial planning, budgeting, reporting, analysis, and strategic decision-making.
+              </p>
+             
+              <p>
+                Our experienced team of financial experts provides tailored solutions to address the unique needs and challenges of each client.
               </p>
               <p>
-                These services cover a wide range of financial management functions, including financial planning, budgeting, reporting, analysis, and strategic decision-making.
-              </p>
-              <p>
-                Our approach is to understand the critical role that financial management plays in driving business success. It's focused on providing strategic insights, actionable recommendations, and hands-on support to help businesses achieve their financial goals.
+                Our approach is to understand the critical role that financial management plays in driving business success. It'sfocused on providing strategic insights, actionable recommendations, and hands-on support to help businesses achieve their financial goals.
               </p>
             </div>
           </motion.div>

@@ -55,11 +55,11 @@ const RestructuringReorganization = () => {
     },
     {
       title: "Organizational Design",
-      desc: "We redesign organizational structure, roles, and responsibilities to align with strategic goals and improve agility."
+      desc: "We work with our clients to redesign their organizational structure, roles, and responsibilities to align with strategic objectives and improve agility and efficiency."
     },
     {
       title: "Change Management",
-      desc: "We support the transition process through communication, training, and stakeholder engagement to ensure smooth implementation."
+      desc: "We provide support and guidance to manage the transition process, including communication, training, and stakeholder engagement, to ensure smooth implementation and minimize disruption."
     }
   ];
 
@@ -98,32 +98,62 @@ const RestructuringReorganization = () => {
     });
   };
 
-  const faqItems = [
-    {
-      question: "What is restructuring and reorganization?",
-      answer: "Restructuring and reorganization involve making significant changes to a company's organizational structure, processes, and resources to improve performance, adapt to market conditions, or address financial challenges."
-    },
-    {
-      question: "Why would a company need restructuring and reorganization?",
-      answer: "Companies may need restructuring and reorganization for various reasons such as adapting to market changes, improving efficiency, addressing financial distress, aligning with strategic goals, or integrating acquisitions."
-    },
-    {
-      question: "What are the key benefits of restructuring and reorganization?",
-      answer: "Improved efficiency, enhanced performance, adaptability to market changes, and improved financial stability."
-    },
-    {
-      question: "What does the restructuring and reorganization process involve?",
-      answer: "It includes strategic assessment, operational review, financial analysis, organizational design, and change management."
-    },
-    {
-      question: "Can restructuring and reorganization services be customized?",
-      answer: "Yes, we tailor our services to the unique needs and objectives of each client."
-    },
-    {
-      question: "How long does the restructuring and reorganization process take?",
-      answer: "The timeline depends on the organization's size, complexity, and extent of required changes."
-    }
-  ];
+const faqItems = [
+  {
+    question: "What is restructuring and reorganization?",
+    answer:
+      "Restructuring and reorganization involve making significant changes to a company's organizational structure, processes, and resources to improve performance, adapt to market conditions, or address financial challenges."
+  },
+  {
+    question: "Why would a company need restructuring and reorganization?",
+    answer: `
+      Companies may need restructuring and reorganization for various reasons, such as:
+      <ul>
+        <li>Adapting to changes in the market or industry.</li>
+        <li>Improving operational efficiency and reducing costs.</li>
+        <li>Addressing financial challenges or distress.</li>
+        <li>Aligning the organization with strategic objectives.</li>
+        <li>Integrating acquisitions or divesting non-core assets.</li>
+      </ul>
+    `
+  },
+  {
+    question: "What are the key benefits of restructuring and reorganization?",
+    answer: `
+      <ul>
+        <li><strong>Improved Efficiency:</strong> Streamlining processes and reallocating resources can lead to improved operational efficiency and cost savings.</li>
+        <li><strong>Enhanced Performance:</strong> Restructuring can refocus the business on core strengths, improving performance and competitiveness.</li>
+        <li><strong>Adaptability:</strong> A well-designed organizational structure can make the business more agile and responsive to market changes and opportunities.</li>
+        <li><strong>Financial Stability:</strong> Addressing financial challenges and optimizing financial resources can improve cash flow and ensure long-term financial stability.</li>
+      </ul>
+    `
+  },
+  {
+    question: "What does the restructuring and reorganization process involve?",
+    answer: 
+    `
+      The process typically includes:
+      <ul>
+        <li>Strategic assessment to identify areas for improvement.</li>
+        <li>Operational review to analyze processes, workflows, and resource allocation.</li>
+        <li>Financial analysis to evaluate performance and identify financial challenges.</li>
+        <li>Organizational design to redesign structure, roles, and responsibilities.</li>
+        <li>Change management to manage the transition process and ensure smooth implementation.</li>
+      </ul>
+    `
+  },
+  {
+    question: "Can restructuring and reorganization services be customized to meet our company's needs?",
+    answer:
+      "Yes, these services can be customized to meet the unique needs and objectives of each client. Every business is different, and we tailor our approach to ensure maximum effectiveness and value."
+  },
+  {
+    question: "How long does the restructuring and reorganization process take?",
+    answer:
+      "The duration depends on the size and complexity of the organization, the extent of the changes needed, and other factors."
+  }
+];
+
 
   return (
     <section className="bg-white max-w-8xl">
@@ -166,13 +196,13 @@ const RestructuringReorganization = () => {
             animate="visible"
           >
             <motion.p variants={fadeInUp}>
-              These services are essential for businesses facing financial, operational, or strategic challenges to adapt, evolve, and thrive in dynamic and competitive markets. Our experienced restructuring professionals help companies navigate complex restructuring processes, unlock value, and position themselves for long-term success.
+              These are the essential services for businesses facing financial, operational, or strategic challenges to adapt, evolve, and thrive in dynamic and competitive markets. We have experienced restructuring professionals in our team who can help companies to navigate complex restructuring processes, unlock value, and position themselves for long-term success and sustainability. It is designed to help businesses adapt to changing market conditions, improve operational efficiency, and maximize value.
             </motion.p>
             <motion.p variants={fadeInUp}>
-              We provide strategic guidance and hands-on support throughout the restructuring process to achieve sustainable results. Our team tailors each engagement to the unique needs and objectives of every client.
+              Our experienced team provides strategic guidance and hands-on support throughout the restructuring process to achieve sustainable results.
             </motion.p>
             <motion.p variants={fadeInUp}>
-              Our focus is on identifying opportunities for improvement, implementing strategic changes, and supporting our clients through every stage of the process.
+             Our approach is to understand that every business is unique and tailor our approach to meet the specific needs and objectives of our clients. We are focusing on identifying opportunities for improvement, implementing strategic changes, and supporting our clients through every stage of the process.
             </motion.p>
           </motion.div>
         </motion.div>
@@ -229,9 +259,11 @@ const RestructuringReorganization = () => {
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
-                    {item.answer}
-                  </div>
+                  <div
+  className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base"
+  dangerouslySetInnerHTML={{ __html: item.answer }}
+></div>
+
                 </motion.div>
               )}
             </AnimatePresence>

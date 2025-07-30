@@ -96,7 +96,7 @@ export default function SpecialAudit() {
             SPECIAL AUDITS
           </motion.h2>
           <p className="text-gray-800 text-base md:text-xl leading-relaxed max-w-5xl mx-auto text-center">
-            Special audits referred to as an extraordinary audit, is a type of audit that is conducted in response to specific circumstances or events that warrant closer examination beyond the scope of regular audits. It typically involves a detailed examination of specific financial records, transactions, systems or procedures within an organization.
+            Special audits referred to as an extraordinary audit, is a type of audit that is conducted in response to specific circumstances or events that warrant closer examination beyond the scope of regular audits. It typically involves a detailed examination of specific financial records, transactions, systems or procedures within an organization. Unlike regular audits, which are routine and cover broader aspects of financial reporting, special audits are targeted and focused on particular areas of concern or interest.
           </p>
         </motion.div>
       </div>

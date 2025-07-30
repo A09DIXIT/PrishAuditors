@@ -42,6 +42,7 @@ const StrategicPlanning = () => {
       question: "What are the benefits of strategic planning for businesses?",
       answer: (
         <div>
+          <p>The benefits of strategic planning for businesses include:</p>
           <ul className="list-disc pl-5 space-y-2">
             <li>Clear direction and focus on long-term goals</li>
             <li>Improved decision-making based on data and analysis</li>

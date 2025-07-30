@@ -36,38 +36,41 @@ const FixedAssetsManagement = () => {
     {
       question: "What does fixed assets management involve?",
       answer:
-        "It involves tracking, maintaining, and optimizing fixed assets throughout their lifecycle, including acquisition, depreciation, maintenance, and disposal.",
+        "Fixed assets management involves tracking, maintaining, and optimizing fixed assets throughout their lifecycle, including acquisition, depreciation, maintenance, and disposal.",
     },
     {
       question: "What are the benefits of fixed assets management services?",
       answer: (
+        <>
+        <p>The benefits of fixed assets management services include:</p>
         <ul className="list-disc pl-5 space-y-2">
           <li>Improved asset utilization and productivity</li>
           <li>Accurate financial reporting and compliance</li>
           <li>Cost savings through optimized maintenance and replacement strategies</li>
           <li>Reduced risk of errors, penalties, and financial misstatements</li>
         </ul>
+        </>
       ),
     },
     {
       question: "How does fixed assets management help in optimizing asset lifecycle?",
       answer:
-        "It ensures proper maintenance, timely replacements, and efficient utilization—maximizing the value of assets over time.",
+        "Fixed assets management helps in optimizing asset lifecycle by ensuring proper maintenance, timely replacements, and efficient utilization, thereby maximizing the value of assets over time.",
     },
     {
       question: "Can fixed assets management services help in reducing costs?",
       answer:
-        "Yes, by identifying cost-saving opportunities, minimizing asset downtime, and optimizing maintenance and replacement schedules.",
+        "Yes, fixed assets management services can help in reducing costs by identifying cost-saving opportunities, minimizing asset downtime, and optimizing maintenance and replacement schedules.",
     },
     {
       question: "What types of businesses can benefit from fixed assets management services?",
       answer:
-        "Industries like manufacturing, construction, healthcare, hospitality, and transportation can all benefit from these services.",
+        "Businesses across various industries, including manufacturing, construction, healthcare, hospitality, and transportation, can benefit from fixed assets management services.",
     },
     {
       question: "How often should fixed assets be evaluated and updated?",
       answer:
-        "They should be evaluated and updated regularly—at least annually—to ensure accurate reporting and compliance.",
+        "Fixed assets should be evaluated and updated regularly to ensure accurate financial reporting and compliance with accounting standards. This could be done annually or more frequently as required.",
     },
   ];
 
