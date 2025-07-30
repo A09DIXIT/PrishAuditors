@@ -37,7 +37,7 @@ const MeetOurCEO = () => {
             </p>
             <div className="flex gap-5 mt-4 text-2xl">
               <a
-                href=""
+                href="https://www.linkedin.com/company/prish-accounting-auditing-llc/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-700 hover:text-blue-900"
