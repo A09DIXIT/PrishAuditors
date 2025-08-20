@@ -8,25 +8,25 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    text: `AML UAE has proved to be a good AML business partner for our business in Dubai. Their AML consultants and technology experts guided us through the entire journey of selecting the right AML software for our business and answered our basic questions like what is AML compliance.`,
-    extra: `The sanctions screening software has proven to be highly valuable for our AML compliance requirements, and we are thankful to AML UAE for this.`,
-    img: "/prish-icon.png",
-    company: "Auditing company",
-    title: "CEO",
+    text: `We truly value our partnership with Prish. Their team is honest, responsive, and supportive, always there when we need them. Their professionalism and deep expertise in both their field and the gold industry are second to none. Thanks to their unwavering integrity and exceptional service, our finance and accounting operations have flourished.`,
+    img: "/Lamer-Gems.jpeg",
+    company: "Lamer Gems Jewellery Trading LLC",
+    title: "Owner",
   },
   {
-    text: `PRISH helped us navigate the regulatory AML landscape in the UAE. Their tools and guidance have ensured we remain compliant and audit-ready.`,
-    extra: `We appreciate the hands-on support and look forward to more collaborations.`,
-    img: "/prish-icon.png",
-    company: "Finance Corp",
-    title: "Director",
-  },
-  {
-    text: `Choosing PRISH for AML advisory was the best decision. They simplified the implementation process and answered every compliance query patiently.`,
-    extra: `Their team’s depth of knowledge in Anti Money Laundering laws is commendable.`,
-    img: "/prish-icon.png",
-    company: "Risk Solutions Ltd",
+    text: `it has been a great experience working with Shubham Jain the Co - founder and head of buisness The Prish accounting & Auditing Co The team has been handling all the matters very professionally related to Accounts and have been very Co operative and helpful 
+I wish them all the best have a successful career in future 
+Zahid Qureshi`,
+    img: "/AL-AZAH.jpeg",
+    company: "AL AZAH GOLD & DIAMONDS",
     title: "Manager",
+  },
+  {
+    text: `We have been working with PRISH Auditors for a year now across all our businesses, and the experience has been nothing short of exceptional. From handling our AML compliance to managing our tax filings and financial audits, their team has consistently demonstrated deep industry knowledge, professionalism, and unwavering reliability.`,
+    extra: `What sets PRISH apart is their proactive approach - they are always on their toes, quick to respond, and genuinely invested in our success. Their guidance has been instrumental in keeping our operations compliant and efficient, especially in a highly regulated sector like ours. Beyond their technical expertise, they are trustworthy, approachable, and a pleasure to work with.`,
+    img: "/prish-icon.png",
+    company: "Swar Gold Ind LLC",
+    title: "Owner",
   },
 ];
 

@@ -2,19 +2,32 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../../../firebase';
 import { ref, push } from 'firebase/database';
-import emailjs from '@emailjs/browser';// ...import statements remain same
+import emailjs from '@emailjs/browser';
 
 export default function Footer() {
   const [subscriberEmail, setSubscriberEmail] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
+  
+  const handleChange = (e) => {
+    setSubscriberEmail(e.target.value);
+    if (error) setError('');
+  };
 
-  const handleChange = (e) => setSubscriberEmail(e.target.value);
+  // Simple email regex for validation
+  const isValidEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
+
     if (!subscriberEmail) {
-      setError(true);
+      setError('Email cannot be empty.');
+      return;
+    }
+
+    if (!isValidEmail(subscriberEmail)) {
+      setError('Please enter a valid email address.');
       return;
     }
 
@@ -30,35 +43,87 @@ export default function Footer() {
       );
 
       setShowPopup(true);
-      setError(false);
+      setError('');
       setSubscriberEmail('');
-      setTimeout(() => setShowPopup(false), 1000);
+
+      setTimeout(() => setShowPopup(false), 3000); // 3 seconds to read success message
     } catch (err) {
       console.error('Error submitting form:', err);
-      setError(true);
+      setError('Subscription failed. Please try again.');
+      setShowPopup(false);
     }
   };
 
   return (
     <footer
-      className="relative bg-cover bg-center text-white py-10"
-      style={{ backgroundImage: "url('/who-we-are.jpeg')" }}
-    >
-      <div className="absolute inset-0  bg-[#0c344b] bg-opacity-50"></div>
+  className="relative bg-cover bg-center text-white py-10 animate-slow-fade-in"
+  style={{ backgroundImage: "url('/who-we-are.jpeg')" }}
+>
+  
+
+      <div className="absolute inset-0 bg-[#0c344b] bg-opacity-50"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
           {/* Logo */}
           <div className="space-y-4">
-            <img src="/white-logo.png" alt="Prish Logo" className="h-15 w-auto " />
+            <img src="/white-logo.png" alt="Prish Logo" className="h-16 w-auto" />
             <div>
               <h4 className="text-lg md:text-2xl font-bold mb-1">
                 PRISH AUDITORS
-                <hr className="w-1/2" />
+                <hr className="w-1/2 border-white" />
               </h4>
               <p className="text-gray-200 text-base md:text-xl">
                 Your trusted partner in financial <br /> and business advisory.
               </p>
+              {/* Social Icons */}
+              <div className="flex space-x-3 mt-4">
+                <a
+                  href="https://www.facebook.com/dubaicharteredaccountants/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon facebook"
+                  title="Facebook"
+                >
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a
+                  href="https://twitter.com/stuahamuae"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon twitter"
+                  title="Twitter"
+                >
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/prish-accounting-auditing-llc/posts/?feedView=all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon linkedin"
+                  title="LinkedIn"
+                >
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/dubaicharteredaccountants/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon instagram"
+                  title="Instagram"
+                >
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a
+                  href="https://www.youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon youtube"
+                  title="YouTube"
+                >
+                  <i className="fab fa-youtube"></i>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -105,7 +170,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="services/mergers-acquisitions" className="hover:underline whitespace-nowrap">
+                  <Link to="/services/mergers-acquisitions" className="hover:underline whitespace-nowrap">
                     MERGERS & ACQUISITIONS
                   </Link>
                 </li>
@@ -116,24 +181,26 @@ export default function Footer() {
           {/* Subscribe */}
           <div className="space-y-4 w-2/3 mx-auto">
             <h4 className="text-lg md:text-2xl font-bold">JOIN US & INCREASE YOUR BUSINESS</h4>
-            <input
-              type="email"
-              name="email"
-              placeholder="Your email address"
-              className="w-full p-3 rounded bg-gray-800 text-white text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={subscriberEmail}
-              onChange={handleChange}
-            />
-            <div className="flex justify-start">
-              <button
-                onClick={handleSubscribe}
-                className="px-5 py-3 bg-white text-gray-800 rounded font-semibold hover:bg-gray-600 transition duration-300 text-base"
-              >
-                Subscribe
-              </button>
-            </div>
+            <form onSubmit={handleSubscribe}>
+              <input
+                type="email"
+                name="email"
+                placeholder="Your email address"
+                className="w-full p-3 rounded bg-gray-800 text-white text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={subscriberEmail}
+                onChange={handleChange}
+              />
+              <div className="flex justify-start mt-3">
+                <button
+                  type="submit"
+                  className="px-5 py-3 bg-white text-gray-800 rounded font-semibold hover:bg-gray-600 transition duration-300 text-base"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </form>
             {showPopup && <p className="text-green-400 mt-2">Subscribed successfully!</p>}
-            {error && <p className="text-red-500 mt-2">Subscription failed. Please try again.</p>}
+            {error && <p className="text-red-500 mt-2">{error}</p>}
           </div>
         </div>
 

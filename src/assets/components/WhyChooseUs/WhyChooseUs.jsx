@@ -1,25 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const listVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
+// ✅ Typing Hook — re-runs when key changes
+const useTypingText = (text = "", speed = 30, restartKey = "") => {
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    if (!text || typeof text !== "string") return;
+
+    let index = 0;
+    let interval;
+
+    const startTyping = () => {
+      interval = setInterval(() => {
+        index++;
+        setDisplayedText(text.slice(0, index));
+
+        if (index >= text.length) clearInterval(interval);
+      }, speed);
+    };
+
+    setDisplayedText("");
+    startTyping();
+
+    return () => clearInterval(interval);
+  }, [text, speed, restartKey]);
+
+  return displayedText;
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, x: 30 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
-};
+// ✅ One animated item
+const TypingListItem = ({ char, rest, restartKey }) => {
+  const typedText = useTypingText(rest, 30, restartKey);
 
-const WhyChooseUs = () => {
   return (
-    <section className="bg-white mt-0 mb-10 py-10 px-4 sm:px-6">
+    <motion.li
+      initial={{ opacity: 0, x: 30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.4 }}
+      className="text-sm sm:text-base"
+    >
+      <span className="text-blue-900 font-bold text-lg sm:text-xl mr-1">{char}</span>
+      {typedText}
+    </motion.li>
+  );
+};
+
+// ✅ Full section
+const WhyChooseUs = () => {
+  const [restartKey, setRestartKey] = useState(Date.now());
+
+  const items = [
+    { char: "P", rest: "erfection beyond imagination" },
+    { char: "R", rest: "eliability and Consistency in delivering our promises" },
+    { char: "I", rest: "nnovative Solutions to meet business needs" },
+    { char: "S", rest: "olution Driven Approach to your business challenges" },
+    { char: "H", rest: "ighly qualified and experienced professionals" },
+  ];
+
+  const handleMouseEnter = () => {
+    setRestartKey(Date.now()); // Update key to trigger retyping
+  };
+
+  return (
+    <section
+      className="bg-white mt-0 mb-10 py-10 px-4 sm:px-6"
+      onMouseEnter={handleMouseEnter}
+    >
       <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row-reverse gap-10 md:gap-16 items-center">
-        {/* Right: Image */}
+        {/* Image */}
         <motion.div
           className="w-full md:w-1/2"
           initial="hidden"
@@ -38,7 +87,7 @@ const WhyChooseUs = () => {
           />
         </motion.div>
 
-        {/* Left: Text */}
+        {/* Text */}
         <motion.div
           className="w-full md:w-1/2"
           initial="hidden"
@@ -66,24 +115,17 @@ const WhyChooseUs = () => {
             Here's why choosing PRISH can be the best decision for you:
           </p>
 
-          <motion.ul
-            className="text-gray-800 space-y-2 text-sm sm:text-base"
-            variants={listVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            {["P", "R", "I", "S", "H"].map((char) => (
-              <motion.li key={char} variants={itemVariants}>
-                <span className="text-blue-900 font-bold text-lg sm:text-xl mr-1">{char}</span>
-                {char === "P" && "erfection beyond imagination"}
-                {char === "R" && "eliability and Consistency in delivering our promises"}
-                {char === "I" && "nnovative Solutions to meet business needs"}
-                {char === "S" && "olution Driven Approach to your business challenges"}
-                {char === "H" && "ighly qualified and experienced professionals"}
-              </motion.li>
+          {/* Typing items */}
+          <ul className="text-gray-800 space-y-2">
+            {items.map(({ char, rest }, index) => (
+              <TypingListItem
+                key={index}
+                char={char}
+                rest={rest}
+                restartKey={restartKey + index} // unique key per line
+              />
             ))}
-          </motion.ul>
+          </ul>
         </motion.div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import Layout from './assets/components/Layout.assets';
 import Home from './assets/components/Home.component/Home.component';
 import ServicesSection from './assets/components/ServicesSection.component/ServicesSection.component';

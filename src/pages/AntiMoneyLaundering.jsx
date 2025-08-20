@@ -197,9 +197,9 @@ export default function InternalAudit() {
           </h2>
           <p className="text-xl mb-4">
            AML (Anti-Money Laundering) compliance refers to the set of regulations, policies, and procedures that financial institutions and certain businesses must implement to prevent and detect money laundering, terrorist financing, and other illicit activities.
-          </p>
+           </p>
           <p className="text-xl mb-4">
-           It is another compliance requirement in UAE introduced by Federal Decree-Law No. 20 of 2018 and related regulations issued by various cabinet and ministerial decisions.
+          It is another compliance requirement in UAE introduced by Federal Decree-Law No. 20 of 2018 and related regulations issued by various cabinet and ministerial decisions.
           </p>
           <p className="text-xl">
            The goAML software solution was developed by the United Nations Office on Drugs and Crime (UNODC) to support the implementation of anti-money laundering (AML) and counter-terrorism financing (CTF) measures by financial intelligence units (FIUs) and other competent authorities.
