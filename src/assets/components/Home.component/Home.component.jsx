@@ -8,43 +8,11 @@ import AMLBanner from '../ONEforallbanner/AMLBanner';
 import GlobalExpertiseBanner from '../GlobalExpertiseBanner/GlobalExpertiseBanner';
 import WhyChooseUs from '../WhyChooseUs/WhyChooseUs';
 import SocialSidebar from '../SocialSidebar/SocialSidebar';
+import BotpressChat from '../BotpressChat/BotpressChat';
 
 export default function Home() {
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // ✅ Equivalent of your HTML <script> block
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/68572620c8f520190f1e5ad6/1iua6psjn';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
-    })();
-
-    // ✅ Optional: Adjust chat bubble position based on screen width
-    const observer = new MutationObserver(() => {
-      const tawk = document.getElementById('tawkchat-container');
-      if (tawk) {
-        if (window.innerWidth <= 768) {
-          tawk.style.left = '20px';
-          tawk.style.right = 'auto';
-          tawk.style.bottom = '80px';
-        } else {
-          tawk.style.left = 'auto';
-          tawk.style.right = '20px';
-          tawk.style.bottom = '40px';
-        }
-        observer.disconnect();
-      }
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // ✅ Cleanup on unmount
-    return () => observer.disconnect();
   }, []);
 
   return (
@@ -58,22 +26,8 @@ export default function Home() {
       <ServicesSection />
       <GlobalExpertiseBanner />
 
-      {/* ✅ WhatsApp Floating Button (commented out) */}
-      {/*
-      <a
-        href="https://wa.me/971567244122"
-        className="fixed bottom-[25px] left-[25px] z-50"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp"
-      >
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-          alt="WhatsApp"
-          className="w-14 h-14 md:w-16 md:h-16 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
-        />
-      </a>
-      */}
+      {/* ✅ Botpress Chat */}
+      <BotpressChat />
 
       {/* ✅ Cookie Consent */}
       <CookieConsent

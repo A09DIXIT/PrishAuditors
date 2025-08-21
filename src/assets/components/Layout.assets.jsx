@@ -12,7 +12,7 @@ export default function Layout() {
   return (
     <div className="min-h-screen max-w-full justify-center m-auto shadow-md relative">
       <Navbar />
-
+   
       {/* Add SocialSidebar here */}
       <SocialSidebar />
 

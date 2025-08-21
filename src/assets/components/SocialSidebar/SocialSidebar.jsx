@@ -7,7 +7,7 @@ const SocialSidebar = () => {
       <ul>
         <li>
           <a
-            href="https://www.facebook.com/dubaicharteredaccountants/"
+            href=""
             target="_blank"
             rel="noopener noreferrer"
             className="facebook"
