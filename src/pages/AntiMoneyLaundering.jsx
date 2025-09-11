@@ -1,29 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SendQueryForm from "../assets/components/SendQueryForm/SendQueryForm";
+
+/* ===== Shared easing & variants (consistent across pages) ===== */
+const easeOutExpo = [0.16, 1, 0.3, 1];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOutExpo } },
+};
+
+const container = {
+  hidden: { opacity: 1 },
+  show:   { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.1 } },
+};
+
+const slideLtoR = {
+  hidden: { opacity: 0, x: -40 },
+  show:   { opacity: 1, x: 0, transition: { duration: 0.7, ease: easeOutExpo } },
+};
+
+const slideRtoL = {
+  hidden: { opacity: 0, x: 40 },
+  show:   { opacity: 1, x: 0, transition: { duration: 0.7, ease: easeOutExpo } },
+};
+
+/* Replay intro when user scrolls back to the very top */
+const TOP_REPLAY_THRESHOLD = 12;
+const AWAY_THRESHOLD = 160;
 
 export default function InternalAudit() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    }),
-  };
-
   const [openIndex, setOpenIndex] = useState(null);
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const toggleFAQ = (index) => setOpenIndex(openIndex === index ? null : index);
+
+  // soft remount key for replay-on-top
+  const [replayKey, setReplayKey] = useState(0);
+  const wasAwayRef = useRef(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY || window.pageYOffset;
+      if (y > AWAY_THRESHOLD) wasAwayRef.current = true;
+      if (y <= TOP_REPLAY_THRESHOLD && wasAwayRef.current) {
+        wasAwayRef.current = false;
+        setReplayKey((k) => k + 1);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const faqItems = [
     {
@@ -73,12 +102,12 @@ export default function InternalAudit() {
       question: "What is Designated Non-Financial Businesses and Professions (DNFBPs)?",
       answer: (
         <>
-        <p>Following categories of businesses are included in this category:</p>
+          <p>Following categories of businesses are included in this category:</p>
           <p><strong>Brokers & Real Estate Agents:</strong>Real Estate Firm that carries out transactions with customers involving the buying or selling of real property For example, real estate developers, brokers and agents.</p>
           <p><strong>Dealers in Precious Stones & Metals:</strong>Dealer of precious metals or stones who are are involved in the production of precious metals or precious stones, an intermediate buyer or broker, precious stone cutter and polisher, precious metal refiners, and/or jewelry manufacturer who use precious metals and precious stones to retail sellers to the public or buyers and sellers in the secondary and scrap markets. These include gold, silver, platinum, diamonds etc. For example, jewelry stores.</p>
           <p><strong>Brokers & Real Estate Agents:</strong>Now, black money is transacted multiple times through sales and purchases. For instance, the fraudster might convert some amount of money into bank drafts or invest in real estate as well.</p>
           <p><strong>Independent Legal Professionals & Accountants:</strong>Auditing, accounting or tax consultancy Firm that provide professional services and assurance to third parties on the financial and tax soundness of them and/or their business. For example, chartered accountants, accountants, tax specialists etc.</p>
-           <p><strong>Providers of Corporate Service and Trusts:</strong>Trust or Company Service Provider who is involved in providing business services and consulting to third parties.</p>
+          <p><strong>Providers of Corporate Service and Trusts:</strong>Trust or Company Service Provider who is involved in providing business services and consulting to third parties.</p>
         </>
       ),
     },
@@ -96,11 +125,11 @@ export default function InternalAudit() {
       question: "What are the main regulations?",
       answer: (
         <>
-        <p>There are a variety of laws on AML/CFT activities in the UAE. The most important are:</p>
-        <ul>
-          <li>Federal Decree-Law No. (20) of 2018 On Anti-Money Laundering and Combating the Financing of Terrorism and Financing of Illegal Organizations (the “AML-CFT Law” or “the Law”)</li>
-          <li>Cabinet Decision No. (10) of 2019 Concerning the Implementing Regulation of Decree-Law No. (20) of 2018 On Anti-Money Laundering and Combating the Financing of Terrorism and Illegal Organizations (the “AML-CFT Decision” or “the Cabinet Decision”).</li>
-        </ul>
+          <p>There are a variety of laws on AML/CFT activities in the UAE. The most important are:</p>
+          <ul>
+            <li>Federal Decree-Law No. (20) of 2018 On Anti-Money Laundering and Combating the Financing of Terrorism and Financing of Illegal Organizations (the “AML-CFT Law” or “the Law”)</li>
+            <li>Cabinet Decision No. (10) of 2019 Concerning the Implementing Regulation of Decree-Law No. (20) of 2018 On Anti-Money Laundering and Combating the Financing of Terrorism and Illegal Organizations (the “AML-CFT Decision” or “the Cabinet Decision”).</li>
+          </ul>
         </>
       ),
     },
@@ -116,24 +145,20 @@ export default function InternalAudit() {
     {
       question: "What is an Anti-Money Laundering Program?",
       answer: (
-        <>       
-        <p>An anti-money laundering (AML) program is a set of procedures designed to guard against someone using the firm to facilitate money laundering or terrorist financing. The main components that must be included are:</p>
-        
-         <ul>
-          <li>Internal policies, procedures, and controls reasonably designed to achieve compliance.</li>
-          <li>Appointment of a designated compliance officer to oversee the program’s day-to-day operations.</li>
-          <li>Ongoing training program.</li>
-          <li>Independent audit; and</li>
-          
-        </ul>
-        <p>Appropriate risk-based procedures for conducting customer due diligence including, but not limited to:</p>
-        <ul>
-          <li>understanding the nature and the purpose of developing a customer risk profile; and
-</li>
-<li>conducting ongoing monitoring to detect and report suspicious transactions and on a risk basis to maintain and update customer information including identifying and verifying beneficial owners.</li>
-        </ul>
+        <>
+          <p>An anti-money laundering (AML) program is a set of procedures designed to guard against someone using the firm to facilitate money laundering or terrorist financing. The main components that must be included are:</p>
+          <ul>
+            <li>Internal policies, procedures, and controls reasonably designed to achieve compliance.</li>
+            <li>Appointment of a designated compliance officer to oversee the program’s day-to-day operations.</li>
+            <li>Ongoing training program.</li>
+            <li>Independent audit; and</li>
+          </ul>
+          <p>Appropriate risk-based procedures for conducting customer due diligence including, but not limited to:</p>
+          <ul>
+            <li>understanding the nature and the purpose of developing a customer risk profile; and</li>
+            <li>conducting ongoing monitoring to detect and report suspicious transactions and on a risk basis to maintain and update customer information including identifying and verifying beneficial owners.</li>
+          </ul>
         </>
-
       ),
     },
     {
@@ -168,77 +193,99 @@ export default function InternalAudit() {
     },
   ];
 
+  const whyCards = [
+    { title: "AML Registration", description: "We help businesses register under AML regulations." },
+    { title: "AML Implementation", description: "We assist in setting up effective AML frameworks." },
+    { title: "Development of AML Standard Operating Procedures (SOPs)", description: "We design custom SOPs for efficient AML practices." },
+    { title: "Corporate AML Training and Awareness", description: "We educate staff about AML laws and red flags." },
+    { title: "Impact Assessment and Analysis of AML on Business", description: "We analyze how AML affects your operations." },
+    { title: "AML Auditing", description: "We perform internal audits to ensure compliance." },
+    { title: "AML Survey & Reporting", description: "We create reports that demonstrate AML readiness." },
+  ];
+
   return (
-    <section className="pt-0 pb-20 bg-white max-w-8xl mx-auto">
-      {/* Banner */}
-       <motion.div
-              className="w-screen h-[50vh] overflow-hidden"
-              initial={{ scale: 1.1 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1 }}
-            >
-        <img
+    <section key={replayKey} className="pt-0 pb-20 bg-white max-w-8xl mx-auto">
+      {/* Banner — PURE ZOOM ONLY */}
+      <div className="w-screen h-[50vh] overflow-hidden">
+        <motion.img
           src="/sefessdcd.jpg"
           alt="AML Compliance Banner"
           className="w-full h-full object-cover object-center"
+          initial={{ scale: 1.08, transformOrigin: "center center" }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 5.5, ease: easeOutExpo }}
+          style={{ willChange: "transform", transform: "translateZ(0)" }}
         />
-      </motion.div>
+      </div>
 
-      {/* Intro Section */}
+      {/* Intro — plays immediately and on replay-to-top */}
       <div className="px-6 md:px-16 mt-10">
         <motion.div
           className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-6 rounded-lg shadow-md"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={container}
+          initial="hidden"
+          animate="show"
+          viewport={{ once: false }}
+          style={{ willChange: "transform, opacity" }}
         >
-          <h2 className="text-4xl font-semibold text-center text-[#0a2d45] mb-6">
+          <motion.h2
+            className="text-4xl font-semibold text-center text-[#0a2d45] mb-6"
+            variants={slideLtoR}
+          >
             AML (ANTI-MONEY LAUNDERING)
-          </h2>
-          <p className="text-xl mb-4">
-           AML (Anti-Money Laundering) compliance refers to the set of regulations, policies, and procedures that financial institutions and certain businesses must implement to prevent and detect money laundering, terrorist financing, and other illicit activities.
-           </p>
-          <p className="text-xl mb-4">
-          It is another compliance requirement in UAE introduced by Federal Decree-Law No. 20 of 2018 and related regulations issued by various cabinet and ministerial decisions.
-          </p>
-          <p className="text-xl">
-           The goAML software solution was developed by the United Nations Office on Drugs and Crime (UNODC) to support the implementation of anti-money laundering (AML) and counter-terrorism financing (CTF) measures by financial intelligence units (FIUs) and other competent authorities.
-          </p>
+          </motion.h2>
+
+          <motion.div
+            className="text-xl space-y-4 max-w-6xl mx-auto text-[#0a2d45]"
+            variants={container}
+          >
+            <motion.p variants={slideRtoL}>
+              AML (Anti-Money Laundering) compliance refers to the set of regulations, policies, and procedures that
+              financial institutions and certain businesses must implement to prevent and detect money laundering,
+              terrorist financing, and other illicit activities.
+            </motion.p>
+            <motion.p variants={slideLtoR}>
+              It is another compliance requirement in UAE introduced by Federal Decree-Law No. 20 of 2018 and related
+              regulations issued by various cabinet and ministerial decisions.
+            </motion.p>
+            <motion.p variants={slideRtoL}>
+              The goAML software solution was developed by the United Nations Office on Drugs and Crime (UNODC) to
+              support the implementation of anti-money laundering (AML) and counter-terrorism financing (CTF) measures
+              by financial intelligence units (FIUs) and other competent authorities.
+            </motion.p>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* Why Choose PRISH */}
+      {/* Why Choose PRISH — alternating slide directions; last odd card centered */}
       <div className="max-w-6xl mt-10 mx-auto px-4 pb-20">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.25 }}
         >
           <h3 className="text-3xl font-semibold text-[#163c4f] mb-6 text-center">
             Why Choose PRISH?
           </h3>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {[
-            { title: "AML Registration", description: "We help businesses register under AML regulations." },
-            { title: "AML Implementation", description: "We assist in setting up effective AML frameworks." },
-            { title: "Development of AML Standard Operating Procedures (SOPs)", description: "We design custom SOPs for efficient AML practices." },
-            { title: "Corporate AML Training and Awareness", description: "We educate staff about AML laws and red flags." },
-            { title: "Impact Assessment and Analysis of AML on Business", description: "We analyze how AML affects your operations." },
-            { title: "AML Auditing", description: "We perform internal audits to ensure compliance." },
-            { title: "AML Survey & Reporting", description: "We create reports that demonstrate AML readiness." },
-          ].map((item, idx, arr) => {
+        <motion.div
+          className="grid md:grid-cols-2 gap-8"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          {whyCards.map((item, idx, arr) => {
             const isLastOdd = arr.length % 2 !== 0 && idx === arr.length - 1;
+
             const card = (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                viewport={{ once: true }}
                 className="bg-white shadow-md p-6 rounded-xl border-l-4 border-[#163c4f]"
+                variants={idx % 2 === 0 ? slideLtoR : slideRtoL}
+                style={{ willChange: "transform, opacity" }}
               >
                 <h4 className="text-xl font-semibold text-[#163c4f] mb-2">{item.title}</h4>
                 <p className="text-gray-700 text-base">{item.description}</p>
@@ -246,62 +293,76 @@ export default function InternalAudit() {
             );
 
             return isLastOdd ? (
-              <div key={idx} className="md:col-span-2 flex justify-center">
+              <div key={`wrap-${idx}`} className="md:col-span-2 flex justify-center">
                 <div className="md:w-[48%] w-full">{card}</div>
               </div>
             ) : (
-              <div key={idx}>{card}</div>
+              <div key={`cell-${idx}`}>{card}</div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
 
-      {/* FAQ Section */}
-      <motion.h2
-        className="text-4xl font-semibold text-center text-[#0a2d45] mb-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+      {/* FAQ — fade up + accordion with AnimatePresence & auto-height */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.2 }}
+        className="max-w-8xl mx-auto px-4 pb-20"
       >
-        Frequently Asked Questions
-      </motion.h2>
+        <motion.h2
+          className="text-4xl font-semibold text-center text-[#0a2d45] mb-10"
+          variants={fadeUp}
+        >
+          Frequently Asked Questions
+        </motion.h2>
 
-      <div className="space-y-4 max-w-8xl mx-auto px-4 pb-20">
-        {faqItems.map((item, index) => (
-          <div key={index} className="border border-[#d6e4ec] rounded-lg overflow-hidden">
-            <button
-              onClick={() => toggleFAQ(index)}
-              className="w-full flex justify-between items-center px-6 py-4 text-left text-lg font-semibold bg-[#0d3c58] text-white hover:bg-[#09293d]"
+        <motion.div className="space-y-4" variants={container}>
+          {faqItems.map((item, index) => (
+            <motion.div
+              key={index}
+              className="border border-[#d6e4ec] rounded-lg overflow-hidden"
+              variants={fadeUp}
             >
-              {item.question}
-              <span className="text-xl">{openIndex === index ? "▲" : "▼"}</span>
-            </button>
-            <AnimatePresence initial={false}>
-              {openIndex === index && (
-                <motion.div
-                  key="content"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
-                    {item.answer}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        ))}
-      </div>
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full flex justify-between items-center px-6 py-4 text-left text-lg font-semibold bg-[#0d3c58] text-white hover:bg-[#09293d] transition-colors"
+                aria-expanded={openIndex === index}
+                aria-controls={`faq-${index}`}
+              >
+                {item.question}
+                <span className="text-xl">{openIndex === index ? "▲" : "▼"}</span>
+              </button>
 
-      {/* Contact Form */}
+              <AnimatePresence initial={false}>
+                {openIndex === index && (
+                  <motion.div
+                    key={`faq-${index}`}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
+                    <div id={`faq-${index}`} className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
+                      {typeof item.answer === "string" ? <p>{item.answer}</p> : item.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      {/* Contact Form — bottom -> top */}
       <motion.div
         className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
-        variants={fadeInUp}
+        variants={fadeUp}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+        style={{ willChange: "transform, opacity" }}
       >
         <h2 className="text-4xl font-bold mb-6 text-center">Send a Query</h2>
         <SendQueryForm />

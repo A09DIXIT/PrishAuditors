@@ -9,6 +9,7 @@ import GlobalExpertiseBanner from '../GlobalExpertiseBanner/GlobalExpertiseBanne
 import WhyChooseUs from '../WhyChooseUs/WhyChooseUs';
 import SocialSidebar from '../SocialSidebar/SocialSidebar';
 import BotpressChat from '../BotpressChat/BotpressChat';
+import BlogSection from '../BlogSection/BlogSection';
 
 export default function Home() {
   useEffect(() => {
@@ -17,14 +18,22 @@ export default function Home() {
 
   return (
     <>
-      <SocialSidebar />
-      <HeaderBanner />
-      <AboutUs />
-      <AMLBanner />
-      <VisionAndValues />
-      <WhyChooseUs />
-      <ServicesSection />
-      <GlobalExpertiseBanner />
+      {/* Sidebar hidden on mobile */}
+      <div className="hidden md:block">
+        <SocialSidebar />
+      </div>
+
+      {/* Responsive spacing between sections */}
+      <div className="flex flex-col space-y-6 sm:space-y-8 lg:space-y-12">
+        <HeaderBanner />
+        <AboutUs />
+        <AMLBanner />
+        <VisionAndValues />
+        <WhyChooseUs />
+        <ServicesSection />
+        <GlobalExpertiseBanner />
+        <BlogSection />
+      </div>
 
       {/* ✅ Botpress Chat */}
       <BotpressChat />
@@ -36,9 +45,11 @@ export default function Home() {
         style={{
           background: '#2B373B',
           display: 'flex',
-          justifyContent: 'space-between',
+          flexDirection: 'column',
+          justifyContent: 'center',
           alignItems: 'center',
-          padding: '0 2rem',
+          padding: '1rem',
+          textAlign: 'center',
         }}
         buttonStyle={{
           color: '#fff',
@@ -46,7 +57,7 @@ export default function Home() {
           fontSize: '14px',
           borderRadius: '5px',
           padding: '8px 16px',
-          marginRight: '40px',
+          marginTop: '10px',
         }}
         contentStyle={{
           flex: '1',

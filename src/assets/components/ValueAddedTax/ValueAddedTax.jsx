@@ -1,396 +1,360 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import SendQueryForm from "../SendQueryForm/SendQueryForm";
 
-const VAT = () => {
+/* ===== Shared easing & variants (consistent across pages) ===== */
+const easeOutExpo = [0.16, 1, 0.3, 1];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOutExpo } },
+};
+
+const container = {
+  hidden: { opacity: 1 },
+  show:   { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.1 } },
+};
+
+const slideLtoR = {
+  hidden: { opacity: 0, x: -40 },
+  show:   { opacity: 1, x: 0, transition: { duration: 0.7, ease: easeOutExpo } },
+};
+
+const slideRtoL = {
+  hidden: { opacity: 0, x: 40 },
+  show:   { opacity: 1, x: 0, transition: { duration: 0.7, ease: easeOutExpo } },
+};
+
+/* Replay intro when user scrolls back to the very top */
+const TOP_REPLAY_THRESHOLD = 12;
+const AWAY_THRESHOLD = 160;
+
+export default function VAT() {
+  const [openIndex, setOpenIndex] = useState(null);
+  const toggleFAQ = (index) => setOpenIndex(openIndex === index ? null : index);
+
+  // soft remount key for replay-on-top
+  const [replayKey, setReplayKey] = useState(0);
+  const wasAwayRef = useRef(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    }),
-  };
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY || window.pageYOffset;
+      if (y > AWAY_THRESHOLD) wasAwayRef.current = true;
+      if (y <= TOP_REPLAY_THRESHOLD && wasAwayRef.current) {
+        wasAwayRef.current = false;
+        setReplayKey((k) => k + 1);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const faqItems = [
     {
       question: "What is VAT?",
       answer: (
         <>
-          Firstly, VAT (Value Added Tax) is a consumption tax,
-                  whichmeans that it is ultimately paid by the end consumer.
-                  Although, VAT is charged at each step of the ‘supply chain,’
-                  it is the end user who bears the cost of Value Added Tax.
-                  <br />
-                  VAT is collected by the businesses and then they pay it
-                  forward to the government. In case, a business has paid more
-                  tax to its suppliers than it has received, it can get a refund
-                  from the government. Ultimately, the tax receipts to
-                  government show ‘value add’ throughout the supply chain.
+          Firstly, VAT (Value Added Tax) is a consumption tax, which means it is ultimately paid by the end consumer.
+          Although VAT is charged at each step of the supply chain, it is the end user who bears the cost of VAT.
+          <br />
+          VAT is collected by businesses and then remitted to the government. If a business has paid more tax to its
+          suppliers than it has received, it can obtain a refund from the government. Ultimately, tax receipts reflect
+          the “value add” throughout the supply chain.
         </>
       ),
     },
     {
       question: "What is UAE VAT Registration?",
       answer:
-        "By VAT Registration, we mean to register the company with the government for submitting Value Added Tax. Upon successful registration, the concerned tax authority in the UAE, namely Federal Tax Authority (FTA) issues a unique VAT identification to the company.",
+        "VAT Registration means registering the company with the government for VAT filings. Upon successful registration, the Federal Tax Authority (FTA) issues a unique VAT identification to the company.",
     },
     {
       question: "What is the difference between VAT and Sales Tax?",
       answer: (
         <>
-          VAT and sales tax are both consumption taxes; these both are
-                  charged from the end-consumer. However, there are a few
-                  differences
-                  <ul>
-                    <li>
-                      Sales tax is generally imposed on transactions involving
-                      goods, while VAT is applied on goods as well as services.
-                    </li>
-                    <li>
-                      Furthermore, sales tax is imposed only on the final sale
-                      to end-consumer. However, VAT is charged on each step of
-                      the ‘supply chain.’
-                    </li>
-                  </ul>
-                  In VAT (Value Added Tax) based systems, businesses serve as
-                  tax-collectors on behalf of government, which helps reduce
-                  tax-evasion and misreporting.
+          VAT and sales tax are both consumption taxes charged to the end consumer. Key differences:
+          <ul className="list-disc pl-5 space-y-1 mt-2">
+            <li>Sales tax commonly applies to goods only, while VAT applies to goods and services.</li>
+            <li>Sales tax is usually charged only on the final sale; VAT is levied at each step of the supply chain.</li>
+          </ul>
+          In VAT systems, businesses act as tax collectors for the government, which reduces tax evasion and misreporting.
         </>
       ),
     },
     {
-      question: "Which Companies are Required to Register for VAT in the UAE?",
+      question: "Which companies are required to register for VAT in the UAE?",
       answer: (
         <>
-          The businesses having taxable imports and supplies that exceed
-                  the amount of 375,000 AED must register for VAT. Besides,
-                  companies exceeding the amount of 187,500 AED can also
-                  register for VAT voluntarily; it is not mandatory for them to
-                  register.
-                  <br />
-                  In case a company fails to register for VAT, they become
-                  liable to pay penalties and face legal consequences.
+          Businesses with taxable supplies and imports exceeding AED 375,000 must register for VAT.
+          Those exceeding AED 187,500 may register voluntarily.
+          <br />
+          Failure to register (when required) can lead to penalties and legal consequences.
         </>
       ),
     },
     {
-      question: "How Much VAT is Charged in the UAE?",
+      question: "How much VAT is charged in the UAE?",
       answer:
-        "The standard rate of VAT is 5% (Five Percent) in the UAE. However, there are a few sectors that are exempt from VAT. Additionally, there are also zero-rated supplies that are rated at 0% instead of 5%.",
+        "The standard VAT rate is 5% in the UAE. Some sectors are exempt from VAT, and some supplies are zero-rated at 0%.",
     },
     {
       question: "Which sectors are exempt from VAT?",
       answer: (
-        <>
-          <div class="accordion-body">
-                  The following categories of supplies are exempt from VAT.
-                  These supplies should be traded within The United Arab
-                  Emirates.
-                  <ul>
-                    <li>Financial Services</li>
-                    <li>Residential properties</li>
-                    <li>Bare land</li>
-                    <li>Local passenger transport</li>
-                  </ul>
-                </div>
-        </>
+        <div className="space-y-2">
+          <p>The following UAE supplies are generally exempt from VAT:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Financial services</li>
+            <li>Residential properties</li>
+            <li>Bare land</li>
+            <li>Local passenger transport</li>
+          </ul>
+        </div>
       ),
     },
     {
       question: "Which are zero-rated sectors?",
       answer: (
-        <>
-         <div class="accordion-body">
-                  If you are trading in zero-rated supplies, you will be charged
-                  0% VAT. However, it’s important to remember that these
-                  supplies must be declared properly in VAT returns submitted
-                  during every tax period. The following supplies are charged
-                  with 0% VAT.
-                  <ul>
-                    <li>
-                      Precious metals, such as gold and silver. Which are 99%
-                      pure and available in tradable form.
-                    </li>
-                    <li>International transportation, and related supplies.</li>
-                    <li>
-                      Supplies of certain sea, air, and land means of
-                      transportation (such as aircrafts and ships).
-                    </li>
-                    <li>
-                      Certain investment grade precious metals (e.g. gold,
-                      silver, of 99% purity).
-                    </li>
-                    <li>
-                      Newly constructed residential properties, that are
-                      supplied for the first time within three years of their
-                      construction.
-                    </li>
-                    <li>
-                      Supply of certain education services, and the related
-                      goods and services.
-                    </li>
-                    <li>
-                      Supply of certain healthcare services, and the of related
-                      goods and services.
-                    </li>
-                  </ul>
-                </div>
-        </>
+        <div className="space-y-2">
+          <p>These supplies are typically zero-rated (0%) but must still be reported in VAT returns:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>International transportation and related supplies</li>
+            <li>Supplies of certain sea, air, and land means of transportation (e.g., aircraft & ships)</li>
+            <li>Investment-grade precious metals (e.g., gold/silver of 99% purity)</li>
+            <li>Newly constructed residential properties supplied for the first time within three years</li>
+            <li>Certain education services and related goods/services</li>
+            <li>Certain healthcare services and related goods/services</li>
+          </ul>
+        </div>
       ),
     },
     {
-      question: "How to Register for VAT in UAE?",
+      question: "How to register for VAT in UAE?",
       answer:
-        "To register for VAT, an application – along with required documents – is forwarded to the Federal Tax Authority (FTA). Upon successful submission of the request, FTA will issue a VAT Registration Certificate, which can be downloaded online from the applicant’s account.",
+        "Submit an application with the required documents to the FTA. After approval, the FTA issues a VAT Registration Certificate (downloadable from the applicant’s account).",
     },
     {
-      question: "What are the Required Documents for VAT Registration in the UAE?",
+      question: "What are the required documents for VAT registration in the UAE?",
       answer: (
-        <>
-          <div class="accordion-body">
-                  The companies registering for VAT in the UAE are required to
-                  submit the following documents for the registration process:
-                  <ul>
-                    <li>
-                      Passport Copies – of business partners/owners (As
-                      mentioned on business license)
-                    </li>
-                    <li>
-                      Emirates ID – of business partners/owners (As mentioned on
-                      the license)
-                    </li>
-                    <li>Business License - (Trade/Commercial License)</li>
-                    <li>Complete Address of the company</li>
-                    <li>Details of any branches of the company if any</li>
-                    <li>Memorandum of Association (MOA)</li>
-                    <li>Company’s bank account details – with IBAN letter</li>
-                    <li>
-                      Contact details of the authorized signatory, including
-                      email and phone number
-                    </li>
-                    <li>Details of any branches, if applicable</li>
-                    <li>
-                      Expected turnover, revenue and taxable expenses for the
-                      next 30 days
-                    </li>
-                    <li>
-                      Turnover Declaration – with stamp and signature by the
-                      owner or the manager.
-                    </li>
-                    <li>
-                      Custom code – along with a copy of Dubai Customs Letter.
-                    </li>
-                    <li>GCC export or import details – if applicable</li>
-                    <li>
-                      Preference for or against registration as a Tax Group
-                    </li>
-                  </ul>
-                  Depending upon the jurisdictions or business activities, some
-                  additional documents may also be required for the VAT
-                  Registration process.
-                </div>
-        </>
+        <div className="space-y-2">
+          <p>Commonly required documents (may vary by activity/jurisdiction):</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Passport copies & Emirates IDs of owners/partners (as per license)</li>
+            <li>Trade/Commercial License</li>
+            <li>Company address & branch details (if any)</li>
+            <li>Memorandum of Association (MOA)</li>
+            <li>Bank account details with IBAN letter</li>
+            <li>Authorized signatory contact details (email & phone)</li>
+            <li>Expected turnover/revenue & taxable expenses for the next 30 days</li>
+            <li>Turnover declaration (stamped & signed)</li>
+            <li>Customs code with supporting letter (if applicable)</li>
+            <li>GCC export/import details (if applicable)</li>
+            <li>Preference for/against Tax Group registration</li>
+          </ul>
+          <p>Additional documents may be requested depending on your business activity.</p>
+        </div>
       ),
     },
   ];
 
   return (
-    <div className="w-full">
-      {/* Banner */}
-      <motion.div
-        className="w-screen h-[50vh] overflow-hidden"
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <img
+    <section key={replayKey} className="pt-0 pb-20 bg-white max-w-8xl mx-auto">
+      {/* Banner — PURE ZOOM ONLY (no left/right movement) */}
+      <div className="w-screen h-[50vh] overflow-hidden">
+        <motion.img
           src="/VAT1.jpg"
           alt="VAT Services Banner"
           className="w-full h-full object-cover"
+          initial={{ scale: 1.08, transformOrigin: "center center" }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 5.5, ease: easeOutExpo }}
+          style={{ willChange: "transform", transform: "translateZ(0)" }}
         />
-      </motion.div>
+      </div>
 
-      {/* Introduction */}
+      {/* Intro — plays immediately on load and when returning to top */}
       <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
         <motion.div
           className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 mb-10 sm:px-6 lg:px-8 rounded-lg shadow-md"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={container}
+          initial="hidden"
+          animate="show"
+          viewport={{ once: false }}
           whileHover={{
             scale: 1.02,
             boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.15)",
             transition: { duration: 0.4 },
           }}
+          style={{ willChange: "transform, opacity" }}
         >
-          <motion.h1 className="text-black text-4xl md:text-4xl mb-10 font-semibold text-center px-4">
+          <motion.h1
+            className="text-black text-4xl md:text-4xl mb-10 font-semibold text-center px-4"
+            variants={slideLtoR}
+          >
             VALUE ADDED TAX (VAT)
           </motion.h1>
-          <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
-            <p>
-              Assisting businesses in the UAE with the VAT registration process,
-              providing support and guidance on compliance requirements such as
-              filing VAT returns, maintaining VAT records, and implementing VAT
-              accounting systems. We also provide VAT Advisory services for the
-              application of VAT to specific transactions, products, and
-              services, VAT planning, and optimization.UAE VAT services
-              encompass a range of activities aimed at helping businesses
-              understand, implement, and manage VAT compliance requirements by
-              the regulations set by the Federal Tax Authority (FTA) of the UAE.
-            </p>
-            <p>
-             Our experienced team provides expert guidance and support to
-              ensure compliance with VAT regulations, optimize tax efficiency,
-              and mitigate risks associated with VAT implementation and
-              reporting.
-            </p>
-            <p>
-              Our approach is to understand the complexities of VAT regulations
-              and the challenges businesses face in complying with them. Our
-              approach to UAE VAT services is tailored to meet the specific
-              needs and objectives of each client. We provide a comprehensive
-              range of services, including VAT registration, advisory,
-              compliance, and representation.
-            </p>
-          </div>
+
+          <motion.div
+            className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto"
+            variants={container}
+          >
+            <motion.p variants={slideRtoL}>
+              Assisting businesses in the UAE with VAT registration, filing VAT returns, maintaining VAT records, and
+              implementing VAT accounting systems. We also provide VAT advisory on specific transactions, products, and
+              services, plus VAT planning and optimization.
+            </motion.p>
+            <motion.p variants={slideLtoR}>
+              UAE VAT services help businesses understand, implement, and manage VAT compliance in line with the Federal
+              Tax Authority (FTA) regulations.
+            </motion.p>
+            <motion.p variants={slideRtoL}>
+              Our team provides guidance to ensure compliance with VAT regulations, optimize tax efficiency, and mitigate
+              risks associated with VAT implementation and reporting.
+            </motion.p>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* Why Choose PRISH Section */}
-      <div className="max-w-7xl mx-auto px-4 pb-20">
+      {/* Why Choose PRISH — alternating slide directions */}
+      <div className="max-w-6xl mt-10 mx-auto px-4 pb-20">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.25 }}
         >
-          <h3 className="text-3xl font-semibold text-[#163c4f] mb-6 text-center">
+          <h3 className="text-3xl font-semibold text-center text-[#163c4f] mb-10">
             Why Choose PRISH?
           </h3>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <motion.div
+          className="grid md:grid-cols-2 gap-8"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+        >
           {[
             {
               title: "VAT Registration",
               description:
-                "We assist businesses with VAT registration, ensuring they meet all requirements and deadlines set by the FTA.",
+                "We assist with VAT registration, ensuring all FTA requirements and deadlines are met.",
             },
             {
               title: "VAT Advisory",
               description:
-                "Our expert advisors guide VAT compliance, including the classification of supplies, the VAT treatment of transactions, and implications for business operations.",
+                "Guidance on VAT compliance, supply classification, and VAT treatment of transactions.",
             },
             {
               title: "VAT Compliance",
               description:
-                " We help businesses prepare and submit accurate VAT returns, maintain proper records, and comply with filing deadlines to avoid penalties.",
+                "Preparation and submission of accurate VAT returns, record-keeping, and on-time filings.",
             },
             {
               title: "VAT Representation",
               description:
-                "Our team can act as a liaison between businesses and the FTA, representing clients during tax audits, assessments, and disputes.",
+                "We liaise with the FTA during audits, assessments, and disputes on your behalf.",
             },
           ].map((item, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              viewport={{ once: true }}
               className="bg-white shadow-md p-6 rounded-xl border-l-4 border-[#163c4f]"
+              variants={idx % 2 === 0 ? slideLtoR : slideRtoL}
+              style={{ willChange: "transform, opacity" }}
             >
-              <h4 className="text-xl font-semibold text-[#163c4f] mb-2">
-                {item.title}
-              </h4>
+              <h4 className="text-xl font-semibold text-[#163c4f] mb-2">{item.title}</h4>
               <p className="text-gray-700 text-base">{item.description}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
-      {/* FAQ Section */}
-      <div className="mt-16 max-w-8xl mx-auto px-4 pb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-3xl font-semibold text-[#163c4f] mb-6 text-center">
-            Frequently Asked Questions
-          </h3>
-        </motion.div>
+      {/* FAQ — fade up + accordion (AnimatePresence with height auto) */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.2 }}
+        className="max-w-8xl mx-auto px-4 pb-20"
+      >
+        <motion.h2 className="text-4xl font-semibold text-center text-[#0a2d45] mb-10" variants={fadeUp}>
+          Frequently Asked Questions
+        </motion.h2>
 
-        <div className="space-y-4">
-          {faqItems.map((item, idx) => (
+        <motion.div className="space-y-4" variants={container}>
+          {faqItems.map((item, index) => (
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-lg shadow-md border border-[#163c4f]/20"
+              key={index}
+              className="border border-[#d6e4ec] rounded-lg overflow-hidden"
+              variants={fadeUp}
             >
-              <div
-                onClick={() => toggleFAQ(idx)}
-                className="flex justify-between items-center cursor-pointer px-5 py-4 font-medium text-[#f5fafd] text-lg bg-[#0d3c58] rounded-t-lg hover:bg-[#0d3c58] transition"
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full flex justify-between items-center px-6 py-4 text-left text-lg font-semibold bg-[#0d3c58] text-white hover:bg-[#09293d] transition-colors"
+                aria-expanded={openIndex === index}
+                aria-controls={`faq-${index}`}
               >
-                <span>{item.question}</span>
-                <span className="text-xl">
-                  {openIndex === idx ? "▲" : "▼"}
-                </span>
-              </div>
-              {openIndex === idx && (
-                <div className="px-5 pb-4 text-gray-700 text-base leading-relaxed">
-                  {item.answer}
-                </div>
-              )}
+                {item.question}
+                <span className="text-xl">{openIndex === index ? "▲" : "▼"}</span>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {openIndex === index && (
+                  <motion.div
+                    key={`faq-${index}`}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
+                    <div
+                      id={`faq-${index}`}
+                      className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base"
+                    >
+                      {item.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
+      </motion.div>
 
-        {/* Send Query */}
-        <div className="mt-10">
-          <motion.div
-            className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-6 text-center">Send a Query</h2>
-            <SendQueryForm />
-          </motion.div>
+      {/* Query Form — bottom -> top */}
+      <motion.div
+        className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+        style={{ willChange: "transform, opacity" }}
+      >
+        <h2 className="text-4xl font-bold mb-6 text-center">Send a Query</h2>
+        <SendQueryForm />
+      </motion.div>
 
-          <div className="mt-18 mb-10 text-center">
-            <Link
-              to="/services/taxation"
-              className="inline-block px-6 py-3 bg-[#0d3c58] text-white rounded-md hover:bg-blue-700 transition"
-            >
-              Back to TAXATION
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
+      {/* Back Button */}
+      <motion.div
+        className="mt-16 text-center"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+      >
+        <Link
+          to="/services/taxation"
+          className="inline-block px-6 py-3 bg-[#0d3c58] text-white rounded-md hover:bg-blue-700 transition"
+        >
+          Back to TAXATION
+        </Link>
+      </motion.div>
+    </section>
   );
-};
-
-export default VAT;
+}

@@ -2,6 +2,13 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import WhyChooseUs from "../assets/components/WhyChooseUs/WhyChooseUs";
 import VisionMissionValues from "./OurValues";
+import AMLBanner from "../assets/components/ONEforallbanner/AMLBanner";
+import ServicesSection from "../assets/components/ServicesSection.component/ServicesSection.component";
+
+import GlobalExpertiseBanner from '../assets/components/GlobalExpertiseBanner/GlobalExpertiseBanner';
+import BlogSection from "../assets/components/BlogSection/BlogSection";
+import CustomerReviews from "../assets/components/CustomerReviews.component/CustomerReviews.component";
+import ContactForm from "../assets/components/ContactForm.component/ContactForm.component";
 
 
 const fadeInUp = {
@@ -71,8 +78,19 @@ const OurPeople = () => {
    
 
       {/* Why Choose Us Section */}
+      <AMLBanner />
       <WhyChooseUs />
+      
       <VisionMissionValues />
+      <ServicesSection />
+             <GlobalExpertiseBanner />
+             <BlogSection />
+             <CustomerReviews />
+             <ContactForm />
+
+             
+      
+      
 
       
       

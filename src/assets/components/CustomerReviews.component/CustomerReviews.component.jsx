@@ -14,11 +14,11 @@ const testimonials = [
     title: "Owner",
   },
   {
-    text: `it has been a great experience working with Shubham Jain the Co - founder and head of buisness The Prish accounting & Auditing Co The team has been handling all the matters very professionally related to Accounts and have been very Co operative and helpful 
+    text: `It has been a great experience working with Shubham Jain the Co - founder and head of buisness The Prish accounting & Auditing Co The team has been handling all the matters very professionally related to Accounts and have been very Co operative and helpful 
 I wish them all the best have a successful career in future 
 Zahid Qureshi`,
     img: "/AL-AZAH.jpeg",
-    company: "AL AZAH GOLD & DIAMONDS",
+    company: "Al Azah Gold & Diamonds",
     title: "Manager",
   },
   {
@@ -59,7 +59,7 @@ const CustomerReviews = () => {
           modules={[Pagination, Autoplay]}
           slidesPerView={1}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 2000 }}
+          autoplay={{ delay: 3000 }}
         >
           {testimonials.map((review, index) => (
             <SwiperSlide key={index}>
@@ -81,7 +81,7 @@ const CustomerReviews = () => {
                 />
                 <div className="items-center">
                   <p className="text-blue-900 font-semibold text-sm">{review.company}</p>
-                  <p className="text-yellow-600 font-semibold text-sm">{review.title}</p>
+                  <p className="text-blue-600 font-semibold text-sm">{review.title}</p>
                 </div>
               </div>
             </SwiperSlide>
@@ -99,7 +99,7 @@ const CustomerReviews = () => {
       >
         <div className="rounded-lg overflow-hidden shadow-md border">
           <img
-            src="/testimonials.png"
+            src="/1C.png"
             alt="Testimonial Team"
             className="w-full h-full object-cover"
           />

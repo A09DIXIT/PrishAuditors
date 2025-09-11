@@ -1,174 +1,120 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-};
-
 const VisionMissionValues = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const values = [
     {
-      icon: "🎯",
-      title: "INTEGRITY",
+      title: "Integrity",
       description:
-        "We uphold the highest standards of integrity, honesty, and accountability in all our actions.",
+        "We uphold the highest standards of honesty and transparency in all our actions.",
     },
     {
-      icon: "🤝",
-      title: "CLIENT COMMITMENT",
+      title: "Excellence",
       description:
-        "We build lasting relationships by putting our clients’ success and satisfaction first.",
+        "We strive for the best in everything we do, delivering quality and value to our clients.",
     },
     {
-      icon: "📈",
-      title: "EXCELLENCE",
+      title: "Innovation",
       description:
-        "We strive for excellence through continuous improvement, innovation, and attention to detail.",
+        "We embrace change and encourage creativity to deliver forward-thinking solutions.",
     },
     {
-      icon: "💡",
-      title: "INSIGHT",
+      title: "Collaboration",
       description:
-        "We turn data into insights to empower smarter, faster, and more confident decisions.",
-    },
-    {
-      icon: "👥",
-      title: "TEAMWORK",
-      description:
-        "We value collaboration and believe the best results come from working together.",
-    },
-    {
-      icon: "🚀",
-      title: "GROWTH & LEARNING",
-      description:
-        "We invest in talent, embrace learning, and foster an environment of growth and curiosity.",
+        "We believe in the power of teamwork and partnerships to achieve greater outcomes.",
     },
   ];
 
   return (
-    <section className="bg-[#e6f0fb] py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <div
+      className="relative py-12 px-4 sm:px-6 lg:px-20 bg-cover bg-center mt-5 bg-no-repeat"
+      style={{ backgroundImage: "url('/11OurValues.jpg')" }}
+    >
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/50"></div>
 
-        {/* Heading */}
+      <div className="relative max-w-6xl mx-auto text-center text-white">
+        {/* ===== Vision & Mission ===== */}
         <motion.h2
-          className="text-4xl font-bold text-center mb-16 text-[#163c4f]"
-          variants={fadeIn}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.2 }}
+          className="text-2xl sm:text-3xl md:text-4xl font-semibold text-blue-900 text-center mb-6 bg-white/80 px-4 sm:px-6 py-2 sm:py-3 inline-block rounded-lg shadow-lg"
         >
           VISION & MISSION
         </motion.h2>
 
-        {/* Mission & Vision Cards */}
-        <div className="grid md:grid-cols-2 gap-10 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12">
+          {/* Vision */}
           <motion.div
-            className="bg-white rounded-xl shadow-md border-t-4 border-[#163c4f] p-6"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: false, amount: 0.2 }}
+            className="bg-white bg-opacity-95 shadow-md rounded-2xl p-5 sm:p-6 text-gray-800"
           >
-            <h3 className="text-[#163c4f] text-xl font-bold flex items-center gap-2 mb-2">
-              🚀 OUR MISSION
+            <h3 className="text-lg sm:text-xl font-semibold text-blue-900 mb-3">
+              Our Vision
             </h3>
-            <p className="text-gray-700 text-sm">
-              Our mission is to empower businesses with insightful financial
-              solutions, guiding them towards sustainable growth, informed
-              decision-making, and financial stability. Driven by a passion for
-              financial empowerment, our mission is to partner with businesses
-              of all sizes, providing them with the tools, expertise, and
-              support they need to achieve their financial goals and
-              aspirations.
+            <p className="text-sm sm:text-base leading-relaxed">
+              To be the most trusted and innovative provider of auditing and
+              consulting services, empowering businesses to achieve sustainable
+              growth and compliance.
             </p>
           </motion.div>
 
+          {/* Mission */}
           <motion.div
-            className="bg-white rounded-xl shadow-md border-t-4 border-[#163c4f] p-6"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: false, amount: 0.2 }}
+            className="bg-white bg-opacity-95 shadow-md rounded-2xl p-5 sm:p-6 text-gray-800"
           >
-            <h3 className="text-[#163c4f] text-xl font-bold flex items-center gap-2 mb-2">
-              💡 OUR VISION
+            <h3 className="text-lg sm:text-xl font-semibold text-blue-900 mb-3">
+              Our Mission
             </h3>
-            <p className="text-gray-700 text-sm">
-              Our vision is to lead the evolution of the financial services
-              industry, setting new standards of excellence in transparency,
-              integrity, and client satisfaction, while championing financial
-              literacy and empowerment on a global scale. We aim to be the
-              premier partner for businesses worldwide, revolutionizing the way
-              they approach finance.
+            <p className="text-sm sm:text-base leading-relaxed">
+              Our mission is to provide exceptional auditing and advisory
+              services that help organizations build transparency, enhance
+              efficiency, and achieve their long-term goals with integrity.
             </p>
           </motion.div>
         </div>
 
-        {/* Vision Image */}
-        <motion.div
-          className="flex justify-center mb-24"
-          variants={fadeIn}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <img
-            src="/11OurValues.jpg"
-            alt="Vision"
-            className="rounded-xl shadow-xl border-4 border-white w-full max-w-4xl object-cover h-[350px]"
-          />
-        </motion.div>
-
-        {/* Our Values Section */}
+        {/* ===== Our Values ===== */}
         <motion.h2
-          className="text-4xl font-bold text-center mb-16 text-[#163c4f]"
-          variants={fadeIn}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.2 }}
+          className="text-2xl sm:text-3xl md:text-4xl font-semibold text-blue-900 text-center mb-6 bg-white/80 px-4 sm:px-6 py-2 sm:py-3 inline-block rounded-lg shadow-lg"
         >
           OUR VALUES
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
-          {values.map((item, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {values.map((value, index) => (
             <motion.div
               key={index}
-              className="bg-white p-6 rounded-xl shadow-md border-t-4 border-[#163c4f] hover:shadow-lg transition duration-300"
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              viewport={{ once: false, amount: 0.2 }}
+              className="bg-white bg-opacity-95 shadow-md rounded-2xl p-5 sm:p-6 text-gray-800"
             >
-              <h3 className="text-[#163c4f] text-xl font-bold flex items-center gap-2 mb-2">
-                <span className="text-2xl">{item.icon}</span> {item.title}
+              <h3 className="text-lg sm:text-xl font-semibold text-blue-900 mb-3">
+                {value.title}
               </h3>
-              <p className="text-gray-700 text-sm">{item.description}</p>
+              <p className="text-sm sm:text-base leading-relaxed">
+                {value.description}
+              </p>
             </motion.div>
           ))}
         </div>
-
-        {/* Values Image */}
-        <motion.div
-          className="flex justify-center"
-          variants={fadeIn}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <img
-            src="/1Our-Values.png"
-            alt="Our Values"
-            className="rounded-xl shadow-xl border-4 border-white w-full max-w-4xl object-cover h-[350px]"
-          />
-        </motion.div>
       </div>
-    </section>
+    </div>
   );
 };
 

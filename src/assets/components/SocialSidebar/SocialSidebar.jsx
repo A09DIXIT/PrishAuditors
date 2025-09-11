@@ -5,17 +5,7 @@ const SocialSidebar = () => {
   return (
     <div className="social-wrapper">
       <ul>
-        <li>
-          <a
-            href=""
-            target="_blank"
-            rel="noopener noreferrer"
-            className="facebook"
-            title="Follow us on Facebook"
-          >
-            <i className="fab fa-facebook-f"></i>
-          </a>
-        </li>
+        
         <li>
           <a
             href=""

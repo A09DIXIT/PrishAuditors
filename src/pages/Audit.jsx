@@ -1,22 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SendQueryForm from "../assets/components/SendQueryForm/SendQueryForm";
 
-// Animation Variant
-const fadeInUp = {
+/* ========== Shared easing & variants ========== */
+const easeOutExpo = [0.16, 1, 0.3, 1];
+
+const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOutExpo } },
 };
 
-// Services Data
+const container = {
+  hidden: { opacity: 1 },
+  show:   { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+
+const slideLtoR = {
+  hidden: { opacity: 0, x: -40 },
+  show:   { opacity: 1, x: 0, transition: { duration: 0.7, ease: easeOutExpo } },
+};
+
+const slideRtoL = {
+  hidden: { opacity: 0, x: 40 },
+  show:   { opacity: 1, x: 0, transition: { duration: 0.7, ease: easeOutExpo } },
+};
+
+// Page fade (no horizontal slide)
+const pageVariants = {
+  hidden:  { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.5, ease: easeOutExpo } },
+  exit:    { opacity: 0, transition: { duration: 0.3, ease: easeOutExpo } },
+};
+
+/* ========== Data ========== */
 const services = [
   {
     title: "Statutory Audit",
@@ -55,96 +72,139 @@ const services = [
   },
 ];
 
+const TOP_REPLAY_THRESHOLD = 12;
+const AWAY_THRESHOLD = 160;
+
 const Audit = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Replay animations when user returns to the very top
+  const [replayKey, setReplayKey] = useState(0);
+  const wasAwayRef = useRef(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY || window.pageYOffset;
+      if (y > AWAY_THRESHOLD) wasAwayRef.current = true;
+      if (y <= TOP_REPLAY_THRESHOLD && wasAwayRef.current) {
+        wasAwayRef.current = false;
+        setReplayKey((k) => k + 1); // remount -> reset animations
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <motion.section
+      key={replayKey}
       className="pt-0 pb-20 bg-white"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      variants={pageVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
     >
-      {/* Top Banner */}
-      <motion.div
-        className="w-screen h-[50vh] overflow-hidden"
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <img
+      {/* Top Banner — pure zoom (no slide) */}
+      <div className="w-screen h-[40vh] md:h-[50vh] overflow-hidden">
+        <motion.img
           src="/Audit-Assurance.png"
           alt="Audit Banner"
           className="w-full h-full object-cover"
+          initial={{ scale: 1.08, transformOrigin: "center center" }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 5.0, ease: easeOutExpo }}
+          style={{ willChange: "transform", transform: "translateZ(0)" }}
         />
-      </motion.div>
+      </div>
 
-      {/* Text Section */}
-      <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
+      {/* Intro — plays immediately at top; also replays when returning to top */}
+      <div className="px-4 sm:px-6 md:px-16 mt-8 md:mt-10 max-w-8xl mx-auto">
         <motion.div
-          className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-16 px-4 sm:px-6 lg:px-8 rounded-lg shadow-md"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-10 sm:py-14 px-4 sm:px-6 lg:px-8 rounded-lg shadow-md"
+          variants={container}
+          initial="hidden"
+          animate="show"               // play on load at top
           whileHover={{
             scale: 1.02,
-            boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.15)",
+            boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.2)",
             transition: { duration: 0.4 },
           }}
         >
-          <motion.h1 className="text-black text-4xl md:text-4xl mb-10 font-semibold text-center px-4">
+          <motion.h1
+            className="text-black text-2xl sm:text-3xl md:text-4xl mb-6 md:mb-10 font-semibold text-center px-2 sm:px-4"
+            variants={slideLtoR}
+            style={{ willChange: "transform, opacity" }}
+          >
             AUDITING AND ASSURANCE
           </motion.h1>
-          <div className="text-gray-700 text-base md:text-xl leading-relaxed space-y-4 max-w-6xl mx-auto">
-            <p>
-              We at <b>PRISH</b> have our core competence in the field of Audit and Assurance. Each of our audit assignments is customized as per audit statutory requirements governed by IFRS/ IAS. We ensure efficient and dedicated audit planning, execution and reporting supervised and reviewed carefully by our experts.
-            </p>
-          </div>
+
+          <motion.p
+            className="text-gray-700 text-sm sm:text-base md:text-xl leading-relaxed max-w-6xl mx-auto text-center"
+            variants={slideRtoL}
+            style={{ willChange: "transform, opacity" }}
+          >
+            We at <b>PRISH</b> have our core competence in the field of Audit
+            and Assurance. Each of our audit assignments is customized as per
+            audit statutory requirements governed by IFRS/ IAS. We ensure
+            efficient and dedicated audit planning, execution and reporting
+            supervised and reviewed carefully by our experts.
+          </motion.p>
         </motion.div>
       </div>
 
-      {/* Grid Cards Section */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={fadeInUp}
-        className="max-w-7xl mx-auto px-6 md:px-12 py-16"
-      >
-        <div className="grid md:grid-cols-2 gap-8">
+      {/* Services Grid — images stay still; only text animates */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {services.map((audit, idx) => {
             const isMysteryAudit = audit.title === "Mystery Audit";
 
             const card = (
-              <motion.div
+              <div
                 key={idx}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
                 className="relative rounded-lg overflow-hidden shadow-lg group"
+                style={{ willChange: "transform, opacity" }}
               >
+                {/* image is plain — no motion */}
                 <img
                   src={audit.bg}
                   alt={audit.title}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
+                  className="w-full h-56 sm:h-64 object-cover group-hover:scale-110 transition duration-500"
                 />
-                <div className="absolute inset-0 bg-black/70 p-6 flex flex-col justify-end">
-                  <h2 className="text-2xl font-semibold text-white mb-2 drop-shadow-lg">
-                    {audit.title}
-                  </h2>
-                  <p className="text-white text-sm mb-3 leading-relaxed drop-shadow-md">
-                    {audit.description}
-                  </p>
-                  <Link
-                    to={audit.link}
-                    className="text-blue-300 hover:underline text-sm font-medium"
+
+                {/* overlay content (text only) */}
+                <motion.div
+                  className="absolute inset-0 bg-black/70 p-4 sm:p-6 flex flex-col justify-end"
+                  variants={container}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: false, amount: 0.45 }}
+                >
+                  <motion.h2
+                    className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-2 drop-shadow-lg"
+                    variants={idx % 2 === 0 ? slideLtoR : slideRtoL}
                   >
-                    Read more →
-                  </Link>
-                </div>
-              </motion.div>
+                    {audit.title}
+                  </motion.h2>
+
+                  <motion.p
+                    className="text-white text-xs sm:text-sm md:text-base mb-3 leading-relaxed drop-shadow-md"
+                    variants={fadeUp}
+                  >
+                    {audit.description}
+                  </motion.p>
+
+                  <motion.div variants={fadeUp}>
+                    <Link
+                      to={audit.link}
+                      className="text-blue-300 hover:underline text-xs sm:text-sm font-medium"
+                    >
+                      Read more →
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              </div>
             );
 
             return isMysteryAudit ? (
@@ -156,17 +216,20 @@ const Audit = () => {
             );
           })}
         </div>
-      </motion.div>
+      </div>
 
-      {/* Send Query Form */}
+      {/* Send Query Form — bottom -> top, retriggers on view */}
       <motion.div
-        className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
-        variants={fadeInUp}
+        className="max-w-4xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
+        variants={fadeUp}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        whileInView="show"
+        viewport={{ once: false, amount: 0.25 }}
+        style={{ willChange: "transform, opacity" }}
       >
-        <h2 className="text-4xl font-bold mb-6 text-center">Send a Query</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-center">
+          Send a Query
+        </h2>
         <SendQueryForm />
       </motion.div>
     </motion.section>

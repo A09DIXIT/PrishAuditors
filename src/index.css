@@ -14,3 +14,28 @@
   overflow-x: hidden;
 }
   
+/* Fix Botpress chat mobile spacing */
+.bpw-layout {
+  margin: 0 !important;
+  padding: 0 !important;
+  bottom: 0 !important;
+  right: 0 !important;
+}
+
+/* Make sure the widget doesn't push page content */
+.bpw-widget-container,
+.bpw-widget {
+  position: fixed !important;
+  bottom: 10px !important; /* adjust if needed */
+  right: 10px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: clip; /* prevents unwanted horizontal scroll */
+}

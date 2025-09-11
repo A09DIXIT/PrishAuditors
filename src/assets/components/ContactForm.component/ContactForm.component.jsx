@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { db } from '../../../firebase';
 import { ref, push } from 'firebase/database';
 import emailjs from '@emailjs/browser';
+import { motion, useInView } from "framer-motion";
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
@@ -14,13 +15,17 @@ const ContactForm = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [error, setError] = useState(false);
 
+    const leftRef = useRef(null);
+    const rightRef = useRef(null);
+    const leftInView = useInView(leftRef, { once: false, amount: 0.3 });
+    const rightInView = useInView(rightRef, { once: false, amount: 0.3 });
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const contactRef = ref(db, 'contacts');
             await push(contactRef, formData);
@@ -41,23 +46,26 @@ const ContactForm = () => {
             setError(false);
             setFormData({ name: '', mobile: '', email: '', message: '' });
 
-            setTimeout(() => setShowPopup(false), 3000);
+            setTimeout(() => setShowPopup(false), 4000);
         } catch (err) {
             console.error("Error submitting form:", err);
             setError(true);
         }
     };
 
-    
-      //Scroll on top
-      useEffect(() => {
-          window.scrollTo(0, 0);
-        }, [])
+    // Scroll on top
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    // Animation Variants (Right to Left)
+    const slideRightToLeft = {
+        hidden: { opacity: 0, x: 100 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    };
 
     return (
         <>
-
-       
             <section id="contact-form" className="p-5 bg-gray-100 flex justify-center items-center relative">
                 {showPopup && (
                     <div className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-100 ease-in-out">
@@ -69,7 +77,13 @@ const ContactForm = () => {
 
                 <div className="max-w-7xl w-full bg-white shadow-lg rounded-lg flex flex-wrap overflow-hidden">
                     {/* Left Form */}
-                    <div className="w-full md:w-2/5 p-8 flex flex-col justify-center">
+                    <motion.div
+                        ref={leftRef}
+                        variants={slideRightToLeft}
+                        initial="hidden"
+                        animate={leftInView ? "visible" : "hidden"}
+                        className="w-full md:w-2/5 p-8 flex flex-col justify-center"
+                    >
                         <h2 className="text-4xl font-semibold text-center mb-6 mt-6 text-[#163c4f]">Contact Us</h2>
                         {error && (
                             <p className="text-red-600 text-center mb-4">
@@ -78,58 +92,69 @@ const ContactForm = () => {
                         )}
 
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <input
+                            <motion.input
                                 type="text"
                                 name="name"
                                 value={formData.name}
                                 placeholder="Name"
                                 required
+                                variants={slideRightToLeft}
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition"
                                 onChange={handleChange}
                             />
-                            <input
+                            <motion.input
                                 type="text"
                                 name="mobile"
                                 value={formData.mobile}
                                 placeholder="Mobile Number"
                                 required
+                                variants={slideRightToLeft}
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition"
                                 onChange={handleChange}
                             />
-                            <input
+                            <motion.input
                                 type="email"
                                 name="email"
                                 value={formData.email}
                                 placeholder="Email"
                                 required
+                                variants={slideRightToLeft}
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition"
                                 onChange={handleChange}
                             />
-                            <textarea
+                            <motion.textarea
                                 name="message"
                                 value={formData.message}
                                 placeholder="Message"
                                 required
                                 rows="5"
+                                variants={slideRightToLeft}
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition"
                                 onChange={handleChange}
-                            ></textarea>
+                            ></motion.textarea>
 
                             <div className="text-center">
-                                <button
+                                <motion.button
                                     type="submit"
+                                    variants={slideRightToLeft}
                                     className="bg-[#163c4f] text-white px-6 py-3 rounded-lg 
                                         hover:bg-[#0f2f3c] active:scale-95 active:shadow-inner 
                                         transition-all duration-150 ease-in-out"
                                 >
                                     Submit
-                                </button>
+                                </motion.button>
                             </div>
                         </form>
-                    </div>
+                    </motion.div>
 
                     {/* Right Side - Background Image with Info */}
-                    <div className="w-full md:w-3/5 relative h-[550px] md:h-auto">
+                    <motion.div
+                        ref={rightRef}
+                        variants={slideRightToLeft}
+                        initial="hidden"
+                        animate={rightInView ? "visible" : "hidden"}
+                        className="w-full md:w-3/5 relative h-[550px] md:h-auto"
+                    >
                         <img
                             src="/pro-contact.webp"
                             alt="Contact Us"
@@ -137,7 +162,7 @@ const ContactForm = () => {
                         />
 
                         <div className="absolute inset-0 bg-opacity-60 flex flex-col justify-center p-8 text-white space-y-6">
-                            <div>
+                            <motion.div variants={slideRightToLeft}>
                                 <h3 className="text-xl font-bold border-b border-white inline-block pb-6 mb-2">
                                     HEAD OFFICE ADDRESS
                                 </h3>
@@ -146,9 +171,9 @@ const ContactForm = () => {
                                     Office - 20, 3rd floor, Dhanguard Business Centre, Burjuman, Near Burjuman Metro Exit -3, Dubai - 302001<br />
                                     Phone: +971-56 724 4122
                                 </p>
-                            </div>
+                            </motion.div>
 
-                            <div>
+                            <motion.div variants={slideRightToLeft}>
                                 <h3 className="text-xl font-bold border-b border-white inline-block pb-1 mb-2">
                                     OPENING HOURS
                                 </h3>
@@ -178,27 +203,11 @@ const ContactForm = () => {
                                         </button>
                                     </a>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
-
-            {/* Embedded Google Map */}
-             <div className="mt-4 max-w-8xl mx-auto px-0 mb-4">
-                <div className="rounded-lg overflow-hidden shadow-md">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2851.996120349445!2d55.3005273!3d25.2552288!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6bd09856be8d%3A0xed30649d0ebea22d!2sDhanGuard%20-%20Business%20Setup%20and%20Banking%20Consultants%20-%20Dubai%2C%20UAE!5e1!3m2!1sen!2sin!4v1749794864870!5m2!1sen!2sin"
-                        width="100%"
-                        height="450"
-                        allowFullScreen=""
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        className="w-full h-[450px] border-0"
-                    ></iframe>
-                </div>
-            </div>
-            
         </>
     );
 };

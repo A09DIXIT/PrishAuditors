@@ -1,28 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SendQueryForm from "../SendQueryForm/SendQueryForm";
 
-const fadeInUp = {
+/* ===== Shared easing & variants ===== */
+const easeOutExpo = [0.16, 1, 0.3, 1];
+
+const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: (i = 1) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.2,
-      duration: 0.6,
-    },
-  }),
+  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOutExpo } },
 };
 
-const bannerVariants = {
-  hidden: { opacity: 0, scale: 1.1 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 1 },
-  },
+const container = {
+  hidden: { opacity: 1 },
+  show:   { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.1 } },
 };
+
+const slideLtoR = {
+  hidden: { opacity: 0, x: -40 },
+  show:   { opacity: 1, x: 0, transition: { duration: 0.7, ease: easeOutExpo } },
+};
+
+const slideRtoL = {
+  hidden: { opacity: 0, x: 40 },
+  show:   { opacity: 1, x: 0, transition: { duration: 0.7, ease: easeOutExpo } },
+};
+
+const TOP_REPLAY_THRESHOLD = 12;
+const AWAY_THRESHOLD = 160;
 
 const audits = [
   {
@@ -63,85 +68,124 @@ const audits = [
 ];
 
 export default function SpecialAudit() {
+  /* Scroll to top on mount */
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  /* Replay everything when user returns to the very top */
+  const [replayKey, setReplayKey] = useState(0);
+  const wasAwayRef = useRef(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY || window.pageYOffset;
+      if (y > AWAY_THRESHOLD) wasAwayRef.current = true;
+      if (y <= TOP_REPLAY_THRESHOLD && wasAwayRef.current) {
+        wasAwayRef.current = false;
+        setReplayKey((k) => k + 1); // soft remount -> reset animations
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <section className="bg-white max-w-8xl">
-      {/* Banner */}
-      <motion.div
-        className="w-screen h-[50vh] overflow-hidden mt-0 relative"
-        initial="hidden"
-        animate="visible"
-        variants={bannerVariants}
-      >
-        <img
+    <section key={replayKey} className="bg-white max-w-8xl">
+      {/* Banner — PURE ZOOM ONLY (no left/right movement) */}
+      <div className="w-screen h-[50vh] overflow-hidden mt-0 relative">
+        <motion.img
           src="/Special-Audit123.jpeg"
           alt="Special Audit Banner"
           className="w-full h-full object-cover"
+          initial={{ scale: 1.08, transformOrigin: "center center" }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 5.5, ease: easeOutExpo }}
+          style={{ willChange: "transform", transform: "translateZ(0)" }}
           loading="lazy"
         />
-      </motion.div>
+      </div>
 
-      {/* Intro Text */}
-     <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
+      {/* Intro — heading L→R, text alternates R→L then L→R; plays at top & on top return */}
+      <div className="px-6 md:px-16 mt-10 max-w-8xl mx-auto">
         <motion.div
           className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-12 px-4 sm:px-6 lg:px-10 rounded-lg shadow-md"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={container}
+          initial="hidden"
+          animate="show"
         >
-          <motion.h2 className="text-black text-4xl font-semibold text-center mb-6">
+          <motion.h2
+            className="text-black text-4xl font-semibold text-center mb-6"
+            variants={slideLtoR}
+          >
             SPECIAL AUDITS
           </motion.h2>
-          <p className="text-gray-800 text-base md:text-xl leading-relaxed max-w-5xl mx-auto text-center">
-            Special audits referred to as an extraordinary audit, is a type of audit that is conducted in response to specific circumstances or events that warrant closer examination beyond the scope of regular audits. It typically involves a detailed examination of specific financial records, transactions, systems or procedures within an organization. Unlike regular audits, which are routine and cover broader aspects of financial reporting, special audits are targeted and focused on particular areas of concern or interest.
-          </p>
+
+          <motion.div
+            className="text-gray-800 text-base md:text-xl leading-relaxed max-w-5xl mx-auto text-center space-y-4"
+            variants={container}
+          >
+            <motion.p variants={slideRtoL}>
+              Special audits referred to as an extraordinary audit, is a type of audit that is conducted in response to specific circumstances or events that warrant closer examination beyond the scope of regular audits.
+            </motion.p>
+            <motion.p variants={slideLtoR}>
+              It typically involves a detailed examination of specific financial records, transactions, systems or procedures within an organization. Unlike regular audits, which are routine and cover broader aspects of financial reporting, special audits are targeted and focused on particular areas of concern or interest.
+            </motion.p>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* Cards Grid */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={fadeInUp}
-        className="max-w-7xl mx-auto px-6 md:px-12 py-16"
-      >
-        <div className="grid md:grid-cols-2 gap-8">
+      {/* Cards Grid — images stay static; overlay text animates */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.25 }}
+          className="grid md:grid-cols-2 gap-8"
+        >
           {audits.map((audit, idx) => {
             const isLast = audit.title === "Sales Tax Certification Audits";
 
             const card = (
-              <motion.div
+              <div
                 key={idx}
-                custom={idx}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
                 className="relative rounded-lg overflow-hidden shadow-lg group"
+                style={{ willChange: "transform, opacity" }}
               >
+                {/* image is static (no slide) */}
                 <img
                   src={audit.image}
                   alt={audit.title}
                   className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end">
-                  <h2 className="text-xl font-bold text-white mb-2">
-                    {audit.title}
-                  </h2>
-                  <p className="text-white text-sm mb-3 leading-relaxed">
-                    {audit.content}
-                  </p>
-                  <Link
-                    to={audit.path}
-                    className="text-blue-300 hover:underline text-sm font-medium"
+                {/* overlay content animates */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end"
+                  variants={container}
+                >
+                  <motion.h2
+                    className="text-xl font-bold text-white mb-2"
+                    variants={idx % 2 === 0 ? slideLtoR : slideRtoL}
                   >
-                    Read more →
-                  </Link>
-                </div>
-              </motion.div>
+                    {audit.title}
+                  </motion.h2>
+                  <motion.p
+                    className="text-white text-sm mb-3 leading-relaxed"
+                    variants={fadeUp}
+                  >
+                    {audit.content}
+                  </motion.p>
+                  <motion.div variants={fadeUp}>
+                    <Link
+                      to={audit.path}
+                      className="text-blue-300 hover:underline text-sm font-medium"
+                    >
+                      Read more →
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              </div>
             );
 
             return isLast ? (
@@ -152,16 +196,17 @@ export default function SpecialAudit() {
               <div key={idx}>{card}</div>
             );
           })}
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
-      {/* Query Form */}
+      {/* Query Form — bottom -> top (re-triggers on view) */}
       <motion.div
         className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
-        variants={fadeInUp}
+        variants={fadeUp}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        whileInView="show"
+        viewport={{ once: false, amount: 0.25 }}
+        style={{ willChange: "transform, opacity" }}
       >
         <h2 className="text-4xl font-bold mb-6 text-center">Send a Query</h2>
         <SendQueryForm />

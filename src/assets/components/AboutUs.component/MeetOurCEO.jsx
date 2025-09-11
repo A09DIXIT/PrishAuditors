@@ -45,15 +45,7 @@ const MeetOurCEO = () => {
               >
                 <FaLinkedin />
               </a>
-              <a
-                href=""
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 hover:text-blue-900"
-                aria-label="Facebook profile"
-              >
-                <FaFacebook />
-              </a>
+             
             </div>
           </div>
 

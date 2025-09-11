@@ -70,6 +70,7 @@ import AMLRegulatoryReporting from './Pages/AML/AMLRegulatoryReporting';
 import KYCAndCDDServices from './Pages/AML/KYCAndCDDServices';
 import Login from './AdminPanel/Login';
 import Dashboard from './AdminPanel/Dashboard';
+import OdooPartnership from './Pages/OdooPartnership';
 
 
 
@@ -145,6 +146,7 @@ const router = createBrowserRouter([
       { path: '/AMLSoftwareValidation', element: <AMLSoftwareValidation /> },
       { path: '/AMLRegulatoryReporting', element: <AMLRegulatoryReporting /> },
       { path: '/KYCAndCDDServices', element: <KYCAndCDDServices /> },
+    { path: '/odoo', element: <OdooPartnership />},
     ],
   },
 

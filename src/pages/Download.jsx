@@ -2,13 +2,13 @@ import React from "react";
 import { FiDownload, FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 
-// Your downloads list
+// Updated downloads list (Excel changed to PDF)
 const downloads = [
-  { name: "Company Profile.xlsx", size: "2 Mb", type: "XLSX", link: "/files/company-profile.xlsx" },
+  { name: "Company Profile.pdf", size: "2 Mb", type: "PDF", link: "/files/company-profile.pdf" },
   { name: "Service List.docx", size: "1 Mb", type: "DOCX", link: "/files/service-list.docx" },
-  { name: "Tax Calculator.xlsx", size: "2 Mb", type: "XLSX", link: "/files/tax-calculator.xlsx" },
+  { name: "Tax Calculator.pdf", size: "2 Mb", type: "PDF", link: "/files/tax-calculator.pdf" },
   { name: "Brand Guidelines.ai", size: "600 Mb", type: "AI", link: "/files/brand-guidelines.ai" },
-  { name: "Audit Form.xlsx", size: "8 Mb", type: "XLSX", link: "/files/audit-form.xlsx" },
+  { name: "Audit Form.pdf", size: "8 Mb", type: "PDF", link: "/files/audit-form.pdf" },
 ];
 
 const Download = () => {
@@ -16,13 +16,12 @@ const Download = () => {
     <section
       className="min-h-screen pt-28 pb-20 px-6 md:px-20 bg-cover bg-center bg-no-repeat relative"
       style={{
-        backgroundImage: "url('/1business-RESOURCES-CA.jpg')", // Replace with your image path
+        backgroundImage: "url('/1resourses1.jpeg')",
       }}
     >
-      {/* Semi-transparent overlay for readability */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-white/10 backdrop-blur-sm z-0"></div>
 
-      {/* Content Layer */}
       <div className="relative z-10">
         {/* Header */}
         <motion.div
@@ -32,8 +31,8 @@ const Download = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="text-center mb-20">
-            <h1 className="text-4xl md:text-4xl font-semibold text-black">RESOURCES</h1>
-            <p className="text-black mt-4 font-semibold text-xl">
+            <h1 className="text-4xl md:text-4xl font-semibold text-white">RESOURCES</h1>
+            <p className="text-white mt-4 font-semibold text-xl">
               Access our latest resources, reports, and official documents.
             </p>
           </div>

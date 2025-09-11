@@ -1,5 +1,3 @@
-// Navbar.jsx
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -11,6 +9,8 @@ const topMenu = [
   { name: "BLOG & NEWS", href: "/resources/blogs" },
   { name: "REACH US", href: "/contact" },
   { name: "CAREERS", href: "/careers" },
+    { name: "ODOO", href: "/odoo" },
+  
 ];
 
 // Services menu
@@ -131,30 +131,27 @@ const ExtendedNav = ({ activeServiceIndex, setActiveServiceIndex }) => (
               className="inline-flex items-center px-2 py-2 hover:text-indigo-600"
             >
               {service.name}
-             {service.submenu && (
-  service.name === "TAXATION" ? (
-    <svg
-      className="ml-2 w-3 h-3 text-gray-600 group-hover:text-indigo-600 transition duration-200"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      {/* Custom icon path for Taxation dropdown */}
-        <path d="M5.6 7.5L10 12l4.5-4.5z" />
-    </svg>
-  ) : (
-    <svg
-      className="ml-2 w-5 h-5 text-gray-600 group-hover:text-indigo-600 transition duration-200"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      {/* Default dropdown icon */}
-      <path d="M5.6 7.5L10 12l4.5-4.5z" />
-    </svg>
-  )
-)}
-
+              {service.submenu && (
+                service.name === "TAXATION" ? (
+                  <svg
+                    className="ml-2 w-3 h-3 text-gray-600 group-hover:text-indigo-600 transition duration-200"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M5.6 7.5L10 12l4.5-4.5z" />
+                  </svg>
+                ) : (
+                  <svg
+                    className="ml-2 w-5 h-5 text-gray-600 group-hover:text-indigo-600 transition duration-200"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M5.6 7.5L10 12l4.5-4.5z" />
+                  </svg>
+                )
+              )}
             </Link>
             {service.submenu && activeServiceIndex === index && (
               <div className="absolute -left-10 top-full mt-0 bg-white border border-gray-200 rounded-md shadow-lg min-w-[220px] z-50">
