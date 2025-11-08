@@ -8,7 +8,7 @@ const SocialSidebar = () => {
         
         <li>
           <a
-            href=""
+            href="https://x.com/Prishaccounting"
             target="_blank"
             rel="noopener noreferrer"
             className="twitter"
@@ -19,7 +19,7 @@ const SocialSidebar = () => {
         </li>
         <li>
           <a
-            href="https://www.linkedin.com/company/prish-accounting-auditing-llc/posts/?feedView=all"
+            href="https://www.linkedin.com/company/prish-accounting-auditing-llc/about/?viewAsMember=true"
             target="_blank"
             rel="noopener noreferrer"
             className="linkedin"
@@ -30,7 +30,7 @@ const SocialSidebar = () => {
         </li>
         <li>
           <a
-            href=""
+            href="https://www.instagram.com/prish.accounting/"
             target="_blank"
             rel="noopener noreferrer"
             className="instagram"

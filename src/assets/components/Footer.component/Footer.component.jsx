@@ -118,7 +118,7 @@ export default function Footer() {
             <div className="flex justify-center md:justify-start space-x-3 mt-3 text-base">
               
               <a
-                href="https://twitter.com"
+                href="https://x.com/Prishaccounting"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-400"
@@ -126,7 +126,7 @@ export default function Footer() {
                 <i className="fab fa-twitter"></i>
               </a>
               <a
-                href="https://www.linkedin.com/company/prish-accounting-auditing-llc/posts/?feedView=all"
+                href="https://www.linkedin.com/company/prish-accounting-auditing-llc/about/?viewAsMember=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-400"
@@ -134,7 +134,7 @@ export default function Footer() {
                 <i className="fab fa-linkedin-in"></i>
               </a>
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/prish.accounting/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-pink-400"

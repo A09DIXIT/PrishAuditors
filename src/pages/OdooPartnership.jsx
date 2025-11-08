@@ -1,402 +1,463 @@
-import React, { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import SendQueryForm from "../assets/components/SendQueryForm/SendQueryForm";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, MotionConfig, useScroll, useTransform, useSpring, animate } from "framer-motion";
+import { CheckCircle2, Sparkles, Rocket, ShieldCheck, Layers3, Cable, BadgeCheck, ArrowRight, CircleCheck, Stars } from "lucide-react";
 
-/* ===== Shared easing & variants (consistent across pages) ===== */
-const easeOutExpo = [0.16, 1, 0.3, 1];
+/**
+ * PRISH × Odoo — Partnership Page
+ * Animations added: parallax banner, staged hero reveal, marquee chips, count‑up stat,
+ * hover micro‑interactions, staggered sections, glass cards.
+ */
 
+// Chip list used in the Marquee below
+const appChips = [
+  "Accounting", "Invoicing", "Expenses", "Documents", "Sign", "CRM", "Sales",
+  "POS (Shop)", "POS (Restaurant)", "Subscriptions", "Rental", "Website",
+  "eCommerce", "Blog", "Forum", "Live Chat", "eLearning", "Inventory",
+  "Manufacturing", "PLM", "Purchase", "Maintenance", "Quality", "Employees",
+  "Recruitment", "Time Off", "Appraisals", "Referrals", "Fleet",
+  "Social Marketing", "Email Marketing", "SMS Marketing", "Events",
+  "Marketing Automation", "Surveys", "Project", "Timesheets",
+  "Field Service", "Helpdesk", "Planning", "Appointments", "Discuss",
+  "Approvals", "IoT", "VoIP", "Knowledge", "WhatsApp", "Studio"
+];
+
+const ease = [0.16, 1, 0.3, 1];
+
+// Shared variants
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOutExpo } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
 };
-
-const container = {
+const pop = {
+  hidden: { opacity: 0, scale: 0.96 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease } },
+};
+const containerStagger = {
   hidden: { opacity: 1 },
-  show: { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.1 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.08 } },
 };
 
-const slideLtoR = {
-  hidden: { opacity: 0, x: -40 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.7, ease: easeOutExpo } },
-};
-
-const slideRtoL = {
-  hidden: { opacity: 0, x: 40 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.7, ease: easeOutExpo } },
-};
-
-/* Replay intro when user scrolls back to the very top */
-const TOP_REPLAY_THRESHOLD = 12;
-const AWAY_THRESHOLD = 160;
-
-export default function OdooPartnership() {
-  const [openIndex, setOpenIndex] = useState(null);
-  const toggleFAQ = (index) => setOpenIndex(openIndex === index ? null : index);
-
-  // soft remount key for replay-on-top
-  const [replayKey, setReplayKey] = useState(0);
-  const wasAwayRef = useRef(false);
-
-  // hero image source + graceful fallback (files should be in /public)
-  const [heroSrc, setHeroSrc] = useState("/1partner-odoo.jpg");
-
+// CountUp component for numbers (e.g., 15M+ users)
+function CountUp({ from = 0, to = 0, duration = 1.6, className = "" }) {
+  const [value, setValue] = useState(from);
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const controls = animate(from, to, {
+      duration,
+      ease: "easeOut",
+      onUpdate: (v) => setValue(Math.floor(v)),
+    });
+    return () => controls.stop();
+  }, [from, to, duration]);
+  return <span className={className}>{value.toLocaleString()}</span>;
+}
 
-  useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY || window.pageYOffset;
-      if (y > AWAY_THRESHOLD) wasAwayRef.current = true;
-      if (y <= TOP_REPLAY_THRESHOLD && wasAwayRef.current) {
-        wasAwayRef.current = false;
-        setReplayKey((k) => k + 1);
-      }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+// Continuous marquee for app chips
+function Marquee({ items = [] }) {
+  const content = [...items, ...items]; // duplicate for seamless loop
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white/70">
+      <motion.div
+        className="flex min-w-[200%] gap-2 p-3"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 28, ease: "linear", repeat: Infinity }}
+      >
+        {content.map((chip, i) => (
+          <span
+            key={`${chip}-${i}`}
+            className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-700 shadow-sm"
+          >
+            <CircleCheck className="h-3.5 w-3.5 text-purple-600" /> {chip}
+          </span>
+        ))}
+      </motion.div>
+      {/* subtle gradient edges */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-white/80 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white/80 to-transparent" />
+    </div>
+  );
+}
 
-  const highlights = [
-    {
-      title: "Official Odoo Channel Partnership",
-      desc: "We’re recognized to consult, implement, and extend Odoo modules—end-to-end.",
-    },
-    {
-      title: "Tailored ERP at Great Value",
-      desc: "Right-sized configurations and customizations that fit your process and budget.",
-    },
-    {
-      title: "Rapid, Smooth Onboarding",
-      desc: "Thanks to Odoo’s seamless support and our proven deployment playbooks.",
-    },
-    {
-      title: "Scalable & Integrated Stack",
-      desc: "From CRM to Accounting, Inventory to HR—Odoo grows with your business.",
-    },
-  ];
-
-  const modules = [
-    "CRM",
-    "Sales",
-    "Accounting",
-    "Inventory",
-    "Manufacturing",
-    "HR & Payroll",
-    "Projects",
-    "Helpdesk",
-    "Purchasing",
-    "Website & eCommerce",
-    "Marketing Automation",
-    "Studio / Custom Apps",
-  ];
-
-  const steps = [
-    { step: "01", title: "Discovery & Fitment", desc: "Process walkthroughs, gap-fit analysis, and success criteria." },
-    { step: "02", title: "Solution Design", desc: "Module mapping, data model, and customization blueprint." },
-    { step: "03", title: "Build & Configure", desc: "Tailored modules, integrations, and initial data setup." },
-    { step: "04", title: "UAT & Training", desc: "Hands-on user testing and role-based enablement." },
-    { step: "05", title: "Go-Live & Support", desc: "Hypercare, enhancements, and continuous optimization." },
-  ];
-
-  const faqs = [
-    {
-      q: "What does the PRISH × Odoo partnership mean for me?",
-      a: "You get a certified team, priority access to Odoo resources, best practices, and a streamlined path from scoping to go-live—lower risk and faster time-to-value.",
-    },
-    {
-      q: "Can you customize Odoo to match our exact processes?",
-      a: "Absolutely. We tailor modules, add custom objects, build reports/dashboards, and integrate with your other systems using Odoo Studio or bespoke development.",
-    },
-    {
-      q: "How fast can we go live?",
-      a: "Depends on scope. Simple module sets can be delivered quickly; multi-module rollouts follow a phased roadmap. We’ll recommend the leanest path based on your goals.",
-    },
-  ];
+export default function OdooPartnershipPage() {
+  // Parallax + Ken Burns on banner
+  const bannerRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: bannerRef, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const scaleRaw = useTransform(scrollYProgress, [0, 1], [1.05, 1.18]);
+  const scale = useSpring(scaleRaw, { stiffness: 100, damping: 30 });
 
   return (
-    <section key={replayKey} className="pt-0 pb-20 bg-white">
-      {/* ===== Hero: Zoom banner with subtle overlay and badges ===== */}
-      <div className="relative w-screen h-[65vh] overflow-hidden">
-        <picture>
-          {/* If you have a WebP in /public, it will be preferred */}
-          <source srcSet="/1parterner-odoo.jpeg" type="image/webp" />
-          <motion.img
-            src={heroSrc}
-            onError={() => setHeroSrc("/1parterner-odoo.jpeg")} // fallback to jpeg if jpg fails
-            alt="PRISH × Odoo Partnership"
-            className="w-full h-full object-cover object-center"
-            style={{ objectPosition: "center 35%", willChange: "transform" }}
-            initial={{ scale: 1.06, transformOrigin: "center center" }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 5.5, ease: easeOutExpo }}
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            draggable="false"
-          />
-        </picture>
-
-        {/* gradient veil */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/40" />
-
-        {/* floating blurred blobs (AMLUAE-style ambiance) */}
-        <div className="pointer-events-none">
-          <div className="absolute -top-10 -left-10 w-56 h-56 bg-[#0d3c58] opacity-30 rounded-full blur-3xl" />
-          <div className="absolute -bottom-8 right-10 w-64 h-64 bg-fuchsia-300 opacity-25 rounded-full blur-3xl" />
-        </div>
-
-        {/* hero content */}
-        <div className="absolute inset-0 flex items-center justify-center px-6">
-          <motion.div className="max-w-5xl text-center" variants={container} initial="hidden" animate="show">
-            <motion.div
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-3 py-1 rounded-full text-white text-sm mb-4 border border-white/20"
-            >
-              <span className="h-2 w-2 rounded-full bg-emerald-300" />
-              Official Channel Partner
-            </motion.div>
-
-            <motion.h1 variants={slideLtoR} className="text-white text-3xl md:text-5xl font-semibold leading-tight">
-              PRISH × Odoo Partnership
-            </motion.h1>
-
-            <motion.p variants={slideRtoL} className="text-white/90 mt-4 md:text-lg max-w-3xl mx-auto">
-              Innovative, scalable, and integrated ERP solutions—implemented with care, precision, and speed.
-            </motion.p>
-
-            <motion.div variants={fadeUp} className="mt-6 flex items-center justify-center gap-3">
-              <a
-                href="#query"
-                className="px-5 py-2.5 rounded-md bg-[#0d3c58] text-white font-medium hover:bg-[#0b334a] transition"
-              >
-                Send a Query
-              </a>
-              <a
-                href="mailto:info@prish.ae"
-                className="px-5 py-2.5 rounded-md bg-white text-[#0d3c58] font-medium hover:bg-slate-50 transition"
-              >
-                Email Us
-              </a>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* ===== Intro block (exact content provided) ===== */}
-      <div className="relative px-6 md:px-16 mt-10 max-w-7xl mx-auto">
-        {/* subtle background blobs */}
-        <div className="absolute -z-10 -top-10 right-0 w-48 h-48 bg-amber-200 rounded-full blur-3xl opacity-30" />
-        <div className="absolute -z-10 bottom-0 left-0 w-64 h-64 bg-sky-200 rounded-full blur-3xl opacity-30" />
-
-        <motion.div
-          className="bg-gradient-to-br from-[#0d3c58] via-[#fce4ec] to-[#fff3e0] py-12 px-4 sm:px-6 lg:px-10 rounded-lg shadow-md"
-          variants={container}
-          initial="hidden"
-          animate="show"
-          whileHover={{
-            scale: 1.02,
-            boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.15)",
-            transition: { duration: 0.4 },
-          }}
-          style={{ willChange: "transform, opacity" }}
-        >
-          <motion.h2 variants={slideLtoR} className="text-black text-3xl md:text-4xl font-semibold text-center mb-6">
-            Exciting News! 🚀
-          </motion.h2>
-
+    <MotionConfig transition={{ ease }}>
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-rose-50 text-gray-900">
+        {/* Decorative floating blobs (soft, looping) */}
+        <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
           <motion.div
-            variants={container}
-            className="text-[#0a2d45] text-base md:text-[18px] leading-relaxed space-y-4 max-w-5xl mx-auto"
-          >
-            <motion.p variants={slideRtoL}>
-              At PRISH, we are always looking to elevate our technology consulting domain, and we are thrilled to
-              announce our partnership with ODOO as a channel partner!
-            </motion.p>
-            <motion.p variants={slideLtoR}>
-              This collaboration marks a significant step forward in delivering innovative and seamless business
-              solutions in terms of ERP solutions to our clients.
-            </motion.p>
-            <motion.p variants={slideRtoL}>
-              A special shoutout to the entire Odoo team for making the onboarding process incredibly smooth. Your
-              support and expertise have set the stage for a promising journey ahead.
-            </motion.p>
-            <motion.p variants={slideLtoR}>
-              We look forward to leveraging this partnership to create cutting-edge, integrated solutions that drive
-              growth and success.
-            </motion.p>
-            <motion.p variants={fadeUp} className="font-medium">
-              Feel free to connect with our super talented team to get your ERP customized at the best prices and
-              effective solutions tailored as per your needs!! 🤝🏻
-            </motion.p>
-          </motion.div>
-        </motion.div>
-      </div>
+            className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-purple-200/50 blur-3xl"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 8, repeat: Infinity, repeatType: "mirror" }}
+          />
+          <motion.div
+            className="absolute top-1/2 -right-24 h-80 w-80 rounded-full bg-rose-200/60 blur-3xl"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 10, repeat: Infinity, repeatType: "mirror" }}
+          />
+          <motion.div
+            className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-indigo-100/60 blur-3xl"
+            animate={{ y: [0, 14, 0] }}
+            transition={{ duration: 9, repeat: Infinity, repeatType: "mirror" }}
+          />
+        </div>
 
-      {/* ===== Highlights ===== */}
-      <div className="max-w-7xl mt-12 mx-auto px-6 md:px-16 pb-8">
-        <motion.h3
-          className="text-3xl font-semibold text-center text-[#163c4f] mb-8"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.25 }}
-        >
-          Why this Partnership Matters
-        </motion.h3>
-
-        <motion.div
-          className="grid md:grid-cols-2 gap-8"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          {highlights.map((h, index) => (
+        {/* HERO */}
+        <section className="relative">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 pt-16 pb-10 sm:pt-20">
             <motion.div
-              key={h.title}
-              className="bg-white shadow-md p-6 rounded-xl border-l-4 border-[#163c4f]"
-              variants={index % 2 === 0 ? slideLtoR : slideRtoL}
-              style={{ willChange: "transform, opacity" }}
+              variants={containerStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid gap-10 lg:grid-cols-12 items-center"
             >
-              <h4 className="text-xl font-semibold text-[#163c4f] mb-2">{h.title}</h4>
-              <p className="text-gray-700 text-base">{h.desc}</p>
+              <motion.div variants={fadeUp} className="lg:col-span-7 text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 rounded-full border border-purple-200 bg-white/80 px-3 py-1 text-sm text-purple-700 shadow-sm ring-1 ring-purple-200/60">
+                  <span className="h-2 w-2 rounded-full bg-purple-500 animate-pulse" /> Channel Partner Announcement
+                </div>
+                <motion.h1
+                  variants={fadeUp}
+                  className="mt-4 text-4xl sm:text-5xl font-semibold tracking-tight"
+                >
+                  PRISH <span className="text-purple-600">×</span> Odoo
+                </motion.h1>
+                <motion.p variants={fadeUp} className="mt-4 text-lg text-gray-700 leading-relaxed">
+                  We’re thrilled to announce our channel partnership with Odoo — the all‑in‑one
+                  business suite that unifies ERP, CRM, Finance, Supply Chain, HR, and more into a
+                  single, beautifully integrated platform. Together, we’ll deliver faster, smarter,
+                  and more affordable digital transformation.
+                </motion.p>
+                <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                  <motion.a
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="/contact"
+                    className="inline-flex items-center gap-2 rounded-xl bg-purple-600 px-5 py-3 text-white text-sm font-medium shadow hover:bg-purple-700"
+                  >
+                    <Rocket className="h-4 w-4" /> Book a discovery call
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    href=""
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-purple-300 bg-white px-5 py-3 text-sm font-medium text-purple-700 hover:border-purple-400 hover:bg-purple-50"
+                  >
+                    Explore Odoo <ArrowRight className="h-4 w-4" />
+                  </motion.a>
+                </motion.div>
+              </motion.div>
+
+              <motion.div variants={pop} className="lg:col-span-5">
+                <motion.div
+                  whileHover={{ y: -3 }}
+                  className="relative rounded-3xl border border-purple-100 bg-white/70 p-6 shadow-xl backdrop-blur"
+                >
+                  <p className="text-base leading-relaxed text-gray-800 whitespace-pre-line">
+{`🚀 Exciting News!
+
+At PRISH, we’re elevating our technology consulting with a new milestone — we’ve partnered with Odoo as a Channel Partner!
+
+This collaboration helps us deliver modern, seamless ERP outcomes across finance, operations, and customer experience.
+
+Huge thanks to the Odoo team for a smooth onboarding — your support sets us up for a powerful journey ahead.
+
+We look forward to building integrated solutions that drive growth and efficiency.
+
+Connect with our expert team to tailor Odoo to your business at the best value — from discovery to go‑live and beyond. 🤝🏻`}
+                  </p>
+                </motion.div>
+              </motion.div>
             </motion.div>
-          ))}
-        </motion.div>
-      </div>
+          </div>
+        </section>
 
-      {/* ===== Modules / Solutions ===== */}
-      <div className="max-w-7xl mx-auto px-6 md:px-16 pb-16">
-        <motion.h3
-          className="text-3xl font-semibold text-center text-[#163c4f] mb-8"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.25 }}
-        >
-          Solutions We Deliver with Odoo
-        </motion.h3>
+        {/* BIG BANNER (FULL‑WIDTH IMAGE) with parallax & Ken Burns */}
+        <section className="relative" ref={bannerRef}>
+          <div className="mx-auto max-w-[100rem] px-0">
+            <div className="relative w-full aspect-[21/9] sm:aspect-[16/7] lg:aspect-[21/8] overflow-hidden">
+              <picture>
+                <source srcSet="/oddo-partnership.jpeg" type="image/webp" />
+                <motion.img
+                  style={{ y, scale }}
+                  src="/oddo-partnership.jpeg"
+                  alt="PRISH × Odoo — partnership banner"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </picture>
+              {/* Overlay & caption */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease }}
+                className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/25 to-transparent"
+              />
+              <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10">
+                <motion.h2
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease }}
+                  className="text-white text-2xl sm:text-4xl font-semibold drop-shadow"
+                >
+                  Transform your ERP with PRISH × Odoo
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease, delay: 0.1 }}
+                  className="mt-2 max-w-2xl text-white/90 text-sm sm:text-base drop-shadow"
+                >
+                  Modern, modular, integrated. From finance to operations — everything connected on one platform.
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease, delay: 0.15 }}
+                  className="mt-4 flex flex-wrap gap-3"
+                >
+                  <motion.a
+                    whileTap={{ scale: 0.98 }}
+                    href="/contact"
+                    className="inline-flex items-center gap-2 rounded-xl bg-white/95 px-5 py-3 text-sm font-semibold text-purple-700 hover:bg-white"
+                  >
+                    Get a tailored demo
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    href=""
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-transparent px-5 py-3 text-sm font-medium text-white hover:bg-white/10"
+                  >
+                    Learn about Odoo →
+                  </motion.a>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.25 }}
-        >
-          {modules.map((m) => (
+        {/* SOCIAL PROOF / QUICK STATS with animated counter */}
+        <section className="pb-6 sm:pb-10">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
             <motion.div
-              key={m}
-              variants={fadeUp}
-              className="group bg-white border border-gray-200 rounded-lg px-4 py-3 shadow-sm hover:shadow-md transition"
+              variants={containerStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid gap-4 sm:grid-cols-3"
             >
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#0d3c58] group-hover:scale-110 transition" />
-                <p className="text-gray-800 font-medium">{m}</p>
+              <motion.div variants={fadeUp} className="flex items-center gap-3 rounded-2xl border border-purple-100 bg-white/80 px-4 py-3 shadow-sm">
+                <div className="rounded-lg bg-purple-600/10 p-2 text-purple-700"><BadgeCheck className="h-5 w-5" /></div>
+                <span className="text-sm font-medium text-gray-800"><CountUp to={15} duration={1.8} />M+ users trust Odoo</span>
+              </motion.div>
+              <motion.div variants={fadeUp} className="flex items-center gap-3 rounded-2xl border border-purple-100 bg-white/80 px-4 py-3 shadow-sm">
+                <div className="rounded-lg bg-purple-600/10 p-2 text-purple-700"><Layers3 className="h-5 w-5" /></div>
+                <span className="text-sm font-medium text-gray-800">All your business on one platform</span>
+              </motion.div>
+              <motion.div variants={fadeUp} className="flex items-center gap-3 rounded-2xl border border-purple-100 bg-white/80 px-4 py-3 shadow-sm">
+                <div className="rounded-lg bg-purple-600/10 p-2 text-purple-700"><ShieldCheck className="h-5 w-5" /></div>
+                <span className="text-sm font-medium text-gray-800">Open‑source core + Enterprise options</span>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* APP CHIPS with marquee + on‑scroll reveal grid */}
+        <section className="py-4 sm:py-6">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">Integrated Apps We Implement</h2>
+              <p className="mt-2 text-gray-600">Start with one app or roll out a full suite—everything connects out of the box.</p>
+              {/* Marquee */}
+              <div className="mt-4">
+                <Marquee items={appChips} />
               </div>
             </motion.div>
-          ))}
-        </motion.div>
-      </div>
+          </div>
+        </section>
 
-      {/* ===== Implementation Approach (timeline cards) ===== */}
-      <div className="max-w-7xl mx-auto px-6 md:px-16 pb-6">
-        <motion.h3
-          className="text-3xl font-semibold text-center text-[#163c4f] mb-8"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.25 }}
-        >
-          Our Implementation Approach
-        </motion.h3>
-
-        <motion.div
-          className="grid md:grid-cols-5 gap-4"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.25 }}
-        >
-          {steps.map((s) => (
+        {/* WHY ODOO + PRISH */}
+        <section className="py-10 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
             <motion.div
-              key={s.title}
-              variants={fadeUp}
-              className="bg-white rounded-xl shadow-md p-5 border border-gray-200 hover:shadow-lg transition"
+              variants={containerStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid gap-6 md:grid-cols-2"
             >
-              <div className="text-[#0d3c58] font-semibold text-sm">{s.step}</div>
-              <div className="text-lg font-semibold mt-1 text-[#163c4f]">{s.title}</div>
-              <p className="text-gray-600 text-sm mt-2">{s.desc}</p>
+              <motion.div variants={fadeUp} whileHover={{ y: -3 }} className="rounded-3xl border border-purple-100 bg-white/80 p-6 shadow">
+                <div className="flex items-center gap-3">
+                  <Sparkles className="h-5 w-5 text-purple-700" />
+                  <h3 className="text-lg font-semibold">Unified by design</h3>
+                </div>
+                <p className="mt-2 text-sm text-gray-700">
+                  Odoo’s apps are built to work together—sales, finance, inventory, projects, HR, and more—so your data flows end‑to‑end without messy integrations.
+                </p>
+                <ul className="mt-4 space-y-2 text-sm text-gray-700">
+                  <li className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 text-green-600" /> Less manual entry and faster decisions with one source of truth.</li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 text-green-600" /> Modular rollout: start small, expand as you grow.</li>
+                </ul>
+              </motion.div>
+
+              <motion.div variants={fadeUp} whileHover={{ y: -3 }} className="rounded-3xl border border-purple-100 bg-white/80 p-6 shadow">
+                <div className="flex items-center gap-3">
+                  <Cable className="h-5 w-5 text-purple-700" />
+                  <h3 className="text-lg font-semibold">Open, flexible, future‑ready</h3>
+                </div>
+                <p className="mt-2 text-sm text-gray-700">
+                  Open‑source core with optional Enterprise features. No vendor lock‑in—own your data and choose cloud or on‑premise hosting.
+                </p>
+                <ul className="mt-4 space-y-2 text-sm text-gray-700">
+                  <li className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 text-green-600" /> Visual customization with Odoo Studio, automation and reports without heavy code.</li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 text-green-600" /> Transparent, single price per user covering all apps.*</li>
+                </ul>
+              </motion.div>
             </motion.div>
-          ))}
-        </motion.div>
+
+            <div className="mt-6 text-xs text-gray-500">*Pricing depends on region/edition and hosting.</div>
+          </div>
+        </section>
+
+        {/* IMPLEMENTATION TIMELINE */}
+        <section className="py-10 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+            <h2 className="text-2xl font-semibold tracking-tight">Our Implementation Playbook</h2>
+            <p className="mt-2 text-gray-600">From discovery to hypercare—designed for BFSI, Healthcare, Real Estate and beyond.</p>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { title: "Discover", desc: "Process mapping, KPIs, data audit, quick wins." },
+                { title: "Design", desc: "Solution blueprint, module scope, integrations." },
+                { title: "Configure", desc: "App setup, fields, workflows, Studio tweaks." },
+                { title: "Migrate", desc: "Cleansing, templates, test runs, cutover plan." },
+                { title: "Train", desc: "Role-based enablement, playbooks, UAT support." },
+                { title: "Go‑Live & Support", desc: "Hypercare, SLAs, enhancements, roadmap." },
+              ].map((s, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05, duration: 0.5, ease }}
+                  whileHover={{ y: -3 }}
+                  className="rounded-2xl border border-purple-100 bg-white/80 p-5 shadow"
+                >
+                  <div className="flex items-center gap-2 text-purple-700"><Stars className="h-4 w-4" /><h3 className="font-medium">{s.title}</h3></div>
+                  <p className="mt-1 text-sm text-gray-700">{s.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA STRIP */}
+        <section className="py-10">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease }}
+              className="relative overflow-hidden rounded-3xl border border-purple-200 bg-gradient-to-r from-purple-600 to-rose-500 p-8 text-white shadow-xl"
+            >
+              <motion.div
+                aria-hidden
+                animate={{ opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-white/10 blur-2xl"
+              />
+              <motion.div
+                aria-hidden
+                animate={{ opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+                className="absolute -left-16 -bottom-16 h-40 w-40 rounded-full bg-white/10 blur-2xl"
+              />
+              <div className="relative">
+                <h3 className="text-2xl font-semibold">Ready to build your next‑gen ERP on Odoo?</h3>
+                <p className="mt-2 text-white/90 max-w-3xl">Talk to PRISH’s certified team about quick pilots, fixed‑fee implementations, and ongoing optimization. We’ll help you unlock value in weeks—not months.</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-white/95 px-5 py-3 text-sm font-semibold text-purple-700 hover:bg-white">
+                    <Rocket className="h-4 w-4" /> Get a tailored demo
+                  </motion.a>
+                  <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} href="" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-transparent px-5 py-3 text-sm font-medium text-white hover:bg-white/10">
+                    Learn about Odoo <ArrowRight className="h-4 w-4" />
+                  </motion.a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-10 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+            <h2 className="text-2xl font-semibold tracking-tight">FAQ</h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {[ 
+                {
+                  q: "What makes Odoo different?",
+                  a: "It’s a unified platform of integrated apps across departments, with an open‑source foundation. You can start with one app and expand as you grow—no brittle patchwork."
+                },
+                {
+                  q: "Cloud or on‑premise?",
+                  a: "Choose what suits you: Odoo cloud (including Odoo.sh) for speed and simplicity, or self‑host for full control."
+                },
+                {
+                  q: "How does pricing work?",
+                  a: "Simple per‑user pricing covers all apps, with no hidden usage limits. Final pricing varies by region and hosting."
+                },
+                {
+                  q: "Do you provide training & support?",
+                  a: "Yes—role‑based training, UAT assistance, go‑live hypercare, SLAs, and continuous optimization are included in our services."
+                },
+              ].map(({ q, a }, i) => (
+                <motion.div
+                  key={q}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05, duration: 0.5, ease }}
+                  whileHover={{ y: -3 }}
+                  className="rounded-2xl border border-purple-100 bg-white/80 p-5 shadow"
+                >
+                  <h3 className="font-medium">{q}</h3>
+                  <p className="mt-2 text-sm text-gray-700">{a}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FOOTER MINI */}
+        <footer className="pb-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease }}
+              className="rounded-2xl border border-purple-100 bg-white/60 p-6 text-center shadow"
+            >
+              <p className="text-sm text-gray-700">PRISH is an Odoo Channel Partner. Logos are property of their respective owners and used for identification only.</p>
+            </motion.div>
+          </div>
+        </footer>
       </div>
-
-      {/* ===== FAQ (accordion with AnimatePresence) ===== */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.2 }}
-        className="max-w-8xl mx-auto px-6 md:px-16 pb-16"
-      >
-        <motion.h3 className="text-3xl font-semibold text-center text-[#163c4f] mb-8" variants={fadeUp}>
-          Frequently Asked Questions
-        </motion.h3>
-
-        <motion.div className="space-y-4" variants={container}>
-          {faqs.map((item, index) => (
-            <motion.div key={index} className="border border-[#d6e4ec] rounded-lg overflow-hidden" variants={fadeUp}>
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center px-6 py-4 text-left text-lg font-semibold bg-[#0d3c58] text-white hover:bg-[#09293d] transition-colors"
-                aria-expanded={openIndex === index}
-                aria-controls={`faq-${index}`}
-              >
-                {item.q}
-                <span className="text-xl">{openIndex === index ? "▲" : "▼"}</span>
-              </button>
-
-              <AnimatePresence initial={false}>
-                {openIndex === index && (
-                  <motion.div
-                    key={`faq-${index}`}
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                  >
-                    <div id={`faq-${index}`} className="px-6 py-4 text-gray-700 bg-[#f9fbfc] text-base">
-                      {item.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
-
-      {/* ===== CTA / Query Form ===== */}
-      <motion.div
-        id="query"
-        className="max-w-4xl mx-auto w-full px-6 py-12 bg-[#f8f9fa] shadow-xl rounded-xl"
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
-        style={{ willChange: "transform, opacity" }}
-      >
-        <h2 className="text-4xl font-bold mb-6 text-center">Send a Query</h2>
-        <SendQueryForm />
-        <p className="text-center text-sm text-gray-600 mt-3">
-          Prefer email? Write to us at{" "}
-          <a className="underline" href="mailto:info@prish.ae">
-            info@prish.ae
-          </a>
-        </p>
-      </motion.div>
-    </section>
+    </MotionConfig>
   );
 }
