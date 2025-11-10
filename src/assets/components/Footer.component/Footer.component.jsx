@@ -36,10 +36,10 @@ export default function Footer() {
       await push(contactRef, { email: subscriberEmail });
 
       await emailjs.send(
-        "service_ne60fxo",
-        "template_3g7aygq",
+        "service_6avvt7t",
+        "template_q770gok",
         { from_email: subscriberEmail },
-        "vWRlgxYx1J6hGdJlp"
+        "gKTG3FCdlSdv4M_bd"
       );
 
       setShowPopup(true);

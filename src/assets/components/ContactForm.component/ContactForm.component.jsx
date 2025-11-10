@@ -31,15 +31,15 @@ const ContactForm = () => {
             await push(contactRef, formData);
 
             await emailjs.send(
-                'service_ne60fxo',
-                'template_3g7aygq',
+                "service_6avvt7t",
+        "template_q770gok",
                 {
                     from_name: formData.name,
                     from_email: formData.email,
                     message: formData.message,
                     mobile: formData.mobile
                 },
-                'vWRlgxYx1J6hGdJlp'
+                "gKTG3FCdlSdv4M_bd"
             );
 
             setShowPopup(true);
