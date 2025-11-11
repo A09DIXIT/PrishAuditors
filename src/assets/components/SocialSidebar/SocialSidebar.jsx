@@ -39,6 +39,19 @@ const SocialSidebar = () => {
             <i className="fab fa-instagram"></i>
           </a>
         </li>
+
+ <li>
+          <a
+            href="https://www.facebook.com/prish.accounting" // <-- update with your real Facebook URL
+            target="_blank"
+            rel="noopener noreferrer"
+            className="facebook"
+            title="Follow us on Facebook"
+          >
+            <i className="fab fa-facebook-f"></i>
+          </a>
+        </li>
+
         <li>
   <a
     href="https://wa.me/971567244122"
@@ -50,6 +63,8 @@ const SocialSidebar = () => {
     <i className="fab fa-whatsapp"></i>
   </a>
 </li>
+
+
 
       </ul>
     </div>

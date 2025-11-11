@@ -141,6 +141,19 @@ export default function Footer() {
               >
                 <i className="fab fa-instagram"></i>
               </a>
+
+ 
+          <a
+            href="https://www.facebook.com/prish.accounting" // <-- update with your real Facebook URL
+            target="_blank"
+            rel="noopener noreferrer"
+            className="facebook"
+            title="Follow us on Facebook"
+          >
+            <i className="fab fa-facebook-f"></i>
+          </a>
+    
+
               <a
                 href="https://wa.me/971567244122"
                 target="_blank"
