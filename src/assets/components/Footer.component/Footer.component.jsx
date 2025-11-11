@@ -148,7 +148,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="facebook"
-            title="Follow us on Facebook"
+            className="hover:text-blue-400"
           >
             <i className="fab fa-facebook-f"></i>
           </a>
