@@ -147,7 +147,6 @@ export default function Footer() {
             href="https://www.facebook.com/prish.accounting" // <-- update with your real Facebook URL
             target="_blank"
             rel="noopener noreferrer"
-            className="facebook"
             className="hover:text-blue-400"
           >
             <i className="fab fa-facebook-f"></i>
