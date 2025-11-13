@@ -42,7 +42,7 @@ const SocialSidebar = () => {
 
  <li>
           <a
-            href="https://www.facebook.com/prish.accounting" // <-- update with your real Facebook URL
+            href="https://www.facebook.com/profile.php?id=61583358151479" // <-- update with your real Facebook URL
             target="_blank"
             rel="noopener noreferrer"
             className="facebook"
