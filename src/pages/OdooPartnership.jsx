@@ -329,7 +329,7 @@ Connect with our expert team to tailor Odoo to your business at the best value â
               </motion.div>
             </motion.div>
 
-            <div className="mt-6 text-xs text-gray-500">*Pricing depends on region/edition and hosting.</div>
+            
           </div>
         </section>
 

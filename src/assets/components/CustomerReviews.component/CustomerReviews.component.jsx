@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FaQuoteLeft } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const testimonials = [
   {
@@ -32,6 +33,7 @@ Zahid Qureshi`,
 
 const CustomerReviews = () => {
   const [bgPosition, setBgPosition] = useState("50% 50%");
+  const swiperRef = useRef(null);
 
   const handleMouseMove = (e) => {
     const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
@@ -49,6 +51,23 @@ const CustomerReviews = () => {
         transition: "background-position 0.2s ease",
       }}
     >
+
+      {/* LEFT BUTTON */}
+      <button
+        onClick={() => swiperRef.current.slidePrev()}
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md hover:bg-gray-200 z-20"
+      >
+        <FaArrowLeft size={18} className="text-blue-800" />
+      </button>
+
+      {/* RIGHT BUTTON */}
+      <button
+        onClick={() => swiperRef.current.slideNext()}
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-md hover:bg-gray-200 z-20"
+      >
+        <FaArrowRight size={18} className="text-blue-800" />
+      </button>
+
       {/* Left Content - Slider */}
       <div className="lg:w-1/2 w-full z-10">
         <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
@@ -59,7 +78,8 @@ const CustomerReviews = () => {
           modules={[Pagination, Autoplay]}
           slidesPerView={1}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 3000 }}
+          autoplay={{ delay: 5000 }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
         >
           {testimonials.map((review, index) => (
             <SwiperSlide key={index}>
@@ -89,7 +109,7 @@ const CustomerReviews = () => {
         </Swiper>
       </div>
 
-      {/* Right Image with scroll-triggered animation */}
+      {/* Right Image */}
       <motion.div
         className="lg:w-1/3 w-full mt-10 lg:mt-0 z-10"
         initial={{ opacity: 0, x: 100 }}
