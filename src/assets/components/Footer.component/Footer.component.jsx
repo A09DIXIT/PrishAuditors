@@ -211,15 +211,15 @@ export default function Footer() {
               <h4 className="text-base font-bold mb-2">SERVICES</h4>
               <motion.ul className="space-y-1 text-xs md:text-sm">
                 {[
-                  { to: "/services/audit", text: "AUDIT & ASSURANCE" },
-                  { to: "/services/special-audit", text: "SPECIAL AUDIT" },
-                  { to: "/services/risk-assurance", text: "RISK ASSURANCE" },
-                  { to: "/services/taxation", text: "TAXATION" },
-                  { to: "/services/AntiMoneyLaundering", text: "ANTI MONEY LAUNDERING" },
-                  { to: "/services/AccountingBookkeeping", text: "ACCOUNTING & BOOKKEEPING" },
-                  { to: "/services/CompanyIncorporation", text: "COMPANY INCORPORATION" },
-                  { to: "/services/corporate-consulting", text: "CORPORATE CONSULTANCY" },
-                  { to: "/services/mergers-acquisitions", text: "MERGERS & ACQUISITIONS" },
+                  { to: "/services/audit", text: "Audit & Assurance" },
+                  { to: "/services/special-audit", text: "Special Audit" },
+                  { to: "/services/risk-assurance", text: "Risk Assurance" },
+                  { to: "/services/taxation", text: "Taxation" },
+                  { to: "/services/AntiMoneyLaundering", text: "Anti Money Laundering" },
+                  { to: "/services/AccountingBookkeeping", text: "Accounting & Bookkeeping" },
+                  { to: "/services/CompanyIncorporation", text: "Company Incorporation" },
+                  { to: "/services/corporate-consulting", text: "Corporate Consultancy" },
+                  { to: "/services/mergers-acquisitions", text: "Mergers & Acquisitions" },
                 ].map((item, index) => (
                   <motion.li
                     key={index}
