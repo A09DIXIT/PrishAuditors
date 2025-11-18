@@ -30,17 +30,18 @@ const ContactForm = () => {
             const contactRef = ref(db, 'contacts');
             await push(contactRef, formData);
 
-            await emailjs.send(
-                "service_cuef4a9",
-        "template_2tvvgf7",
-                {
-                    from_name: formData.name,
-                    from_email: formData.email,
-                    message: formData.message,
-                    mobile: formData.mobile
-                },
-                "4qwnvEJOawyN-6Ips"
-            );
+           await emailjs.send(
+    "service_l2rwk0i",
+    "template_2tvvgf7",
+    {
+        user_name: formData.name,
+        phone: formData.mobile,
+        user_email: formData.email,
+        message: formData.message
+    },
+    "public_4qwnvEJOawyN-6Ips"
+);
+
 
             setShowPopup(true);
             setError(false);

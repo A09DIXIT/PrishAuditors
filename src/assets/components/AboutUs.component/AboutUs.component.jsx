@@ -10,17 +10,20 @@ const AboutUs = () => {
           
           {/* Left: Image with motion */}
           <motion.div
-            className="w-full"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <img
-              src="/who-we-are.jpeg"
-              alt="Who We Are"
-              className="rounded-lg shadow-lg w-full object-cover max-h-[530px]"
-            />
-          </motion.div>
+  className="w-full"
+  initial={{ opacity: 0, x: -100 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8 }}
+>
+  <div className="w-full h-[530px]">
+    <img
+      src="/who-we-are.jpeg"
+      alt="Who We Are"
+      className="w-full h-full object-cover"
+    />
+  </div>
+</motion.div>
+
 
           {/* Right: Text with motion */}
           <motion.div
