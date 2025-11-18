@@ -50,7 +50,7 @@ const services = [
     description:
       "Corporate Tax in UAE effective from 1st June 2023. We provide Impact Assessment, Registration, Return Filing, and Consultancy.",
     link: "/corporate-tax",
-    bg: "/1UAECT.jpeg",
+    bg: "/1UAECORPOREATETAX1.png",
   },
   {
     title: "Transfer Pricing",

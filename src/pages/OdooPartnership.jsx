@@ -145,7 +145,7 @@ export default function OdooPartnershipPage() {
                   <motion.a
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    href=""
+                    href="https://www.odoo.com/"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-xl border border-purple-300 bg-white px-5 py-3 text-sm font-medium text-purple-700 hover:border-purple-400 hover:bg-purple-50"
@@ -237,7 +237,7 @@ Connect with our expert team to tailor Odoo to your business at the best value â
                   <motion.a
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    href=""
+                    href="https://www.odoo.com/"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-transparent px-5 py-3 text-sm font-medium text-white hover:bg-white/10"
@@ -394,7 +394,7 @@ Connect with our expert team to tailor Odoo to your business at the best value â
                   <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-white/95 px-5 py-3 text-sm font-semibold text-purple-700 hover:bg-white">
                     <Rocket className="h-4 w-4" /> Get a tailored demo
                   </motion.a>
-                  <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} href="" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-transparent px-5 py-3 text-sm font-medium text-white hover:bg-white/10">
+                  <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} href="https://www.odoo.com/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-transparent px-5 py-3 text-sm font-medium text-white hover:bg-white/10">
                     Learn about Odoo <ArrowRight className="h-4 w-4" />
                   </motion.a>
                 </div>

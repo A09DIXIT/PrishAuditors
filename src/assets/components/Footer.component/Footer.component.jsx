@@ -180,11 +180,11 @@ export default function Footer() {
               <h4 className="text-base font-bold mb-2">QUICK LINKS</h4>
               <motion.ul className="space-y-1 text-xs md:text-sm">
                 {[
-                  { to: "/about", text: "ABOUT US" },
-                  { to: "/resources/blogs", text: "BLOGS AND NEWS" },
-                  { to: "/resources/downloads", text: "RESOURCES" },
-                  { to: "/contact", text: "REACH US" },
-                  { to: "/careers", text: "CAREERS" },
+                  { to: "/about", text: "About Us" },
+                  { to: "/resources/blogs", text: "Blogs And News" },
+                  { to: "/resources/downloads", text: "Resources" },
+                  { to: "/contact", text: "Reach Us" },
+                  { to: "/careers", text: "Careers" },
                 ].map((item, index) => (
                   <motion.li
                     key={index}
