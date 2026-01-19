@@ -24,35 +24,43 @@ const ContactForm = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const contactRef = ref(db, 'contacts');
-            await push(contactRef, formData);
+   const handleSubmit = async (e) => {
+  e.preventDefault();
 
-           await emailjs.send(
-    "service_l2rwk0i",
-    "template_2tvvgf7",
-    {
-        user_name: formData.name,
-        phone: formData.mobile,
-        user_email: formData.email,
-        message: formData.message
-    },
-    "public_4qwnvEJOawyN-6Ips"
+  try {
+    // Firebase save
+    const contactRef = ref(db, "contacts");
+    await push(contactRef, formData);
+
+    // EmailJS send
+    await emailjs.send(
+  "service_l2rwk0i",        // Service ID
+  "template_2tvvgf7",       // Template ID
+  {
+    user_name: formData.name,
+    phone: formData.mobile,
+    user_email: formData.email,
+    message: formData.message,
+  },
+  "4qwnvEJOawyN-6Ips"        // ✅ PUBLIC KEY (VERY IMPORTANT)
 );
 
+    setShowPopup(true);
+    setError(false);
+    setFormData({
+      name: "",
+      mobile: "",
+      email: "",
+      message: "",
+    });
 
-            setShowPopup(true);
-            setError(false);
-            setFormData({ name: '', mobile: '', email: '', message: '' });
+    setTimeout(() => setShowPopup(false), 4000);
 
-            setTimeout(() => setShowPopup(false), 4000);
-        } catch (err) {
-            console.error("Error submitting form:", err);
-            setError(true);
-        }
-    };
+  } catch (err) {
+    console.error("EmailJS Error:", err);
+    setError(true);
+  }
+};
 
     // Scroll on top
     useEffect(() => {
