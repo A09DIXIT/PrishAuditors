@@ -33,17 +33,19 @@ const ContactForm = () => {
     await push(contactRef, formData);
 
     // EmailJS send
-    await emailjs.send(
-  "service_l2rwk0i",        // Service ID
-  "template_2tvvgf7",       // Template ID
+  await emailjs.send(
+  "service_l2rwk0i",
+  "template_2tvvgf7",
   {
     user_name: formData.name,
     phone: formData.mobile,
     user_email: formData.email,
     message: formData.message,
+    reply_to: formData.email   // ⭐ REQUIRED
   },
-  "4qwnvEJOawyN-6Ips"        // ✅ PUBLIC KEY (VERY IMPORTANT)
+  "4qwnvEJOawyN-6Ips"
 );
+ 
 
     setShowPopup(true);
     setError(false);
