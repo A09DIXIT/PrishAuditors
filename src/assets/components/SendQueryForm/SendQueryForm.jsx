@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const SendQueryForm = () => {
   const [formData, setFormData] = useState({
@@ -8,40 +9,62 @@ const SendQueryForm = () => {
     message: ""
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
-      alert("Please fill all required fields.");
-      return;
+    try {
+      await emailjs.send(
+        "service_l2rwk0i",        // ✅ SAME AS CONTACT FORM
+        "template_2tvvgf7",       // ✅ SAME TEMPLATE
+        {
+          user_name: formData.name,
+          user_email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          reply_to: formData.email
+        },
+        "4qwnvEJOawyN-6Ips"        // ✅ SAME PUBLIC KEY
+      );
+
+      setShowPopup(true);
+      setError(false);
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+      });
+
+      setTimeout(() => setShowPopup(false), 4000);
+
+    } catch (err) {
+      console.error("EmailJS Error:", err);
+      setError(true);
     }
-
-    // ✅ For now, just log data (replace this with your API/Firebase call)
-    console.log("Form submitted:", formData);
-
-    setSubmitted(true);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: ""
-    });
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
-      
-      {submitted && (
-        <div className="mb-4 p-3 text-green-600 bg-green-100 rounded-md text-center">
-          Your query has been submitted successfully!
+    <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md relative">
+
+      {/* ✅ SUCCESS POPUP */}
+      {showPopup && (
+        <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
+          Your query has been sent successfully!
+        </div>
+      )}
+
+      {/* ❌ ERROR MESSAGE */}
+      {error && (
+        <div className="mb-4 p-3 text-red-600 bg-red-100 rounded-md text-center">
+          Something went wrong. Please try again.
         </div>
       )}
 
@@ -54,8 +77,7 @@ const SendQueryForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            placeholder="Enter your name"
+            className="w-full border px-4 py-2 rounded-md"
           />
         </div>
 
@@ -67,8 +89,7 @@ const SendQueryForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            placeholder="Enter your email"
+            className="w-full border px-4 py-2 rounded-md"
           />
         </div>
 
@@ -79,8 +100,7 @@ const SendQueryForm = () => {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full border px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            placeholder="Optional"
+            className="w-full border px-4 py-2 rounded-md"
           />
         </div>
 
@@ -91,14 +111,13 @@ const SendQueryForm = () => {
             value={formData.message}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded-md h-32 resize-none focus:outline-none focus:ring focus:border-blue-300"
-            placeholder="Write your message here..."
+            className="w-full border px-4 py-2 rounded-md h-32 resize-none"
           />
         </div>
 
         <button
           type="submit"
-          className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-200"
+          className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition"
         >
           Submit
         </button>
